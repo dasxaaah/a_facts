@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
+  get "community", to: "community#index"
+  get "community/:id", to: "community#show", as: "community_post"
+  resources :tutorial, only: [ :index, :show ]
+  get "articles/index"
+  get "articles/show"
+  get "pages/about"
+  resources :posts
   get "hello/index"
   get "welcome/index"
+  get "/about", to: "pages#about"
+  root "pages#home"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
