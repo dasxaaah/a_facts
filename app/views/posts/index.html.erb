@@ -1,16 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<h1>Вопрос-ответ</h1>
 
-<% content_for :title, "Posts" %>
+<p style="margin: 12px 0;">
+    <%= link_to "New Post", new_post_path, class: "btn" %>
+</p>
 
-<h1>Posts</h1>
-
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New post", new_post_path %>
+<ul>
+    <% @posts.each do |post| %>
+    <li style="margin-bottom:8px;">
+        <%= link_to(post.title.presence || "(без названия)", post) %>
+    </li>
+    <% end %>
+</ul>

@@ -46,6 +46,9 @@ gem "sprockets-rails", "~> 3.5"
 # gem "sass-rails", ">= 6"
 gem "sass-embedded"          
 gem "dartsass-sprockets"
+#аутентификация и авторизация
+gem "devise"
+gem "cancancan"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
