@@ -1,3 +1,4 @@
+<h1>Вопрос-ответ</h1>
 <%
 =begin%>
 <h1>Вопрос-ответ</h1>
@@ -5,7 +6,17 @@
 <p style="margin: 12px 0;">
     <%= link_to "New Post", new_post_path, class: "btn" %>
 </p>
+<p style="margin: 12px 0;">
+    <%= link_to "New Post", new_post_path, class: "btn" %>
+</p>
 
+<ul>
+    <% @posts.each do |post| %>
+    <li style="margin-bottom:8px;">
+        <%= link_to(post.title.presence || "(без названия)", post) %>
+    </li>
+    <% end %>
+</ul>
 <ul>
     <% @posts.each do |post| %>
     <li style="margin-bottom:8px;">
