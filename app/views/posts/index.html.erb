@@ -1,3 +1,5 @@
+<%
+=begin%>
 <h1>Вопрос-ответ</h1>
 
 <p style="margin: 12px 0;">
@@ -11,3 +13,20 @@
     </li>
     <% end %>
 </ul>
+<%
+=end%>
+
+<div class="qa-page">
+    <div class="qa-page__header">
+        <h1>Вопрос–ответ</h1>
+        <%= link_to "Новый вопрос", new_post_path, class: "qa-btn" %>
+    </div>
+
+    <% if @posts.any? %>
+    <div class="qa-grid">
+        <%= render @posts, partial: "card", as: :post %>
+    </div>
+    <% else %>
+    <p class="qa-empty">Пока нет вопросов. Будь первой — задай вопрос!</p>
+    <% end %>
+</div>
