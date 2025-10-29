@@ -94,7 +94,7 @@ h1 {
   display: flex;
   flex-direction: row;
   gap: 0;
-  font-family: 'Arial Narrow Bold', sans-serif;
+  font-family: var(--arialbold);
   font-size: 1.2rem;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -329,5 +329,65 @@ h1 {
 
   .arrow_link {
     width: 12px;
+  }
+}
+
+.splash {
+  #bg-video {
+    top: -10rem;
+    transform: scaleY(-1);
+  }
+}
+
+.coming_soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50vw;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+
+  p {
+    width: 20vw;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    width: 40vw;
+  }
+
+  form {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  input[type='email'] {
+    padding: 4px;
+    font-family: var(--forma);
+    letter-spacing: 0.04em;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 140%;
+    background-color: var(--black);
+    border: solid 2px var(--green);
+  }
+
+  input[type='submit'] {
+    padding: 3px 4px;
+    background: var(--green);
+    border: none;
+    cursor: pointer;
+    font-family: var(--arialbold);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 100%;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: var(--green_secondary);
+    }
   }
 }

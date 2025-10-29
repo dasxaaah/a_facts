@@ -1,0 +1,34 @@
+<div id="custom-cursor"></div>
+<div id="logo">
+  <img src="<%= asset_path('logo.svg') %>" alt="a_facts logo">
+</div>
+<div class="splash">
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="<%= asset_path('a_facts_bg_video.mp4') %>" type="video/mp4">
+  </video>
+  <div class="coming_soon">
+    <h1>Медиа-сервис
+      о&nbsp;визуальных эффектах
+      в&nbsp;киноиндустрии</h1>
+    <p>Уникальный проект для&nbsp;тех, кто&nbsp;хочет не&nbsp;просто смотреть кино, а&nbsp;понимать, 
+      как&nbsp;создается его магия.</p>
+    <p>Подпишитесь, чтобы не пропустить релиз:</p>
+    <%= form_with url: subscribe_path, local: true do |f| %>
+      <%= f.email_field :email, placeholder: "Ваш e-mail", required: true %>
+      <%= f.submit "Подписаться" %>
+    <% end %>
+  </div>
+</div>
+<script>
+  const cursor = document.getElementById('custom-cursor');
+  const colors = ['#9cff5b', '#fdff6e', '#ff78ff', '#6af5ff'];
+  let colorIndex = 0;
+  window.addEventListener('mousemove', (e) => {
+  cursor.style.top = e.clientY + 'px';
+  cursor.style.left = e.clientX + 'px';
+  });
+  setInterval(() => {
+  colorIndex = (colorIndex + 1) % colors.length;
+  cursor.style.backgroundColor = colors[colorIndex];
+  }, 200);
+</script>

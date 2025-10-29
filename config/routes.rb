@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "subscribers/create"
   get "community", to: "community#index"
   get "community/:id", to: "community#show", as: "community_post"
   resources :tutorial, only: [ :index, :show ]
@@ -10,6 +11,10 @@ Rails.application.routes.draw do
   get "welcome/index"
   get "/about", to: "pages#about"
   root "pages#home"
+  get "/coming-soon", to: "pages#coming-soon"
+  post "/subscribe", to: "subscribers#create"
+
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
