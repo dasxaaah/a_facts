@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_28_200323) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_29_010102) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -19,7 +19,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_28_200323) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_29_010102) do
   create_table "posts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -28,6 +27,12 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_29_010102) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "subscribers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,11 +49,4 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_29_010102) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
-  end
-
-  create_table "subscribers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "email"
-    t.datetime "updated_at", null: false
-  end
 end
