@@ -1,7 +1,5 @@
-# app/controllers/posts_controller.rb
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  # before_action :authenticate_user!, except: %i[index show] # включи, если используешь Devise
 
   def index
     @posts = Post.order(created_at: :desc)
@@ -44,6 +42,7 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :author)
   end
 end
+

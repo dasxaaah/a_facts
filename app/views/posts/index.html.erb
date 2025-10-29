@@ -1,43 +1,24 @@
-<h1>Вопрос-ответ</h1>
-<%
-=begin%>
-<h1>Вопрос-ответ</h1>
+<h1 class="qa-title-page">Вопрос-ответ</h1>
 
-<p style="margin: 12px 0;">
-    <%= link_to "New Post", new_post_path, class: "btn" %>
-</p>
-<p style="margin: 12px 0;">
-    <%= link_to "New Post", new_post_path, class: "btn" %>
-</p>
+<div class="qa-header">
+    <%= link_to "Новый вопрос", new_post_path, class: "qa-btn" %>
+</div>
 
-<ul>
+<div class="qa-grid">
     <% @posts.each do |post| %>
-    <li style="margin-bottom:8px;">
-        <%= link_to(post.title.presence || "(без названия)", post) %>
-    </li>
-    <% end %>
-</ul>
-<ul>
-    <% @posts.each do |post| %>
-    <li style="margin-bottom:8px;">
-        <%= link_to(post.title.presence || "(без названия)", post) %>
-    </li>
-    <% end %>
-</ul>
-<%
-=end%>
+    <div class="qa-card">
+        <h3 class="qa-card__title">
+            <%= link_to(post.title.presence || "(без названия)", post_path(post)) %>
+        </h3>
 
-<div class="qa-page">
-    <div class="qa-page__header">
-        <h1>Вопрос–ответ</h1>
-        <%= link_to "Новый вопрос", new_post_path, class: "qa-btn" %>
-    </div>
+        <p class="qa-card__excerpt">
+            <%= truncate(post.body.to_s, length: 140) %>
+        </p>
 
-    <% if @posts.any? %>
-    <div class="qa-grid">
-        <%= render @posts, partial: "card", as: :post %>
+        <div class="qa-meta">
+            <span>Комментарии: <%= post.comments.count %></span>
+            <span><%= l(post.created_at, format: :short) rescue post.created_at %></span>
+        </div>
     </div>
-    <% else %>
-    <p class="qa-empty">Пока нет вопросов. Будь первой — задай вопрос!</p>
     <% end %>
 </div>

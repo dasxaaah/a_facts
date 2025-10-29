@@ -1,0 +1,21 @@
+ru:
+  devise:
+    sessions:
+      new:
+        sign_in: 'Войти'
+    shared:
+      links:
+        sign_in: 'Войти'
+        sign_up: 'Регистрация'
+        forgot_password: 'Забыли пароль?'
+        already_registered: 'Уже зарегистрированы?'
+        didn_t_receive_confirmation_instructions: 'Не получили инструкции для подтверждения?'
+        didn_t_receive_unlock_instructions: 'Не получили инструкции для разблокировки?'
+    registrations:
+      new:
+        sign_up: 'Регистрация'
+    passwords:
+      new:
+        forgot_password: 'Забыли пароль?'
+      edit:
+        change_password: 'Сменить пароль'

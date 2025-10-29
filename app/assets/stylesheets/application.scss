@@ -84,6 +84,7 @@ h1 {
 h1 {
   font-size: 2.8rem;
   margin-bottom: 1.8rem;
+  font-family: var(--arialbold);
 }
 
 .menu {
@@ -91,7 +92,7 @@ h1 {
 
   position: fixed;
   bottom: 20px;
-  left: 45%;
+  left: 42%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -107,7 +108,7 @@ h1 {
   a {
     text-decoration: none;
     color: var(--black);
-    padding: 3px 4px;
+    padding: 0px 3px;
   }
 
   .W_MainSection {
@@ -145,7 +146,6 @@ h1 {
   }
   #menu_user {
     background-color: var(--white);
-    display: flex;
 
     &:hover {
       background-color: var(--green_secondary);
@@ -379,7 +379,7 @@ h1 {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  margin-top: 20px;
+  margin: 10%;
 }
 .qa-grid > * {
   background: #000000;
@@ -394,7 +394,7 @@ h1 {
   transform: translateY(-3px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
-.qa-card__title {
+.qa-title {
   font-size: 1.08rem;
   font-weight: 600;
   margin-bottom: 8px;
@@ -407,7 +407,7 @@ h1 {
 .qa-card__title a:hover {
   text-decoration: underline;
 }
-.qa-card__excerpt {
+.qa-excerpt {
   font-size: 0.95rem;
   font-weight: 400;
   line-height: 1.45;
@@ -455,6 +455,7 @@ h1 {
     line-height: 140%;
     background-color: var(--black);
     border: solid 2px var(--green);
+    color: white;
   }
 
   input[type='submit'] {
@@ -476,67 +477,168 @@ h1 {
 }
 
 //-------
-.qa-page {
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 0 16px;
-}
-.qa-page__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
+
+.auth-title {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  font-family: var(--arialbold);
 }
 
-.qa-btn {
-  display: inline-block;
-  padding: 8px 14px;
-  border: 1px solid var(--pink);
+.auth-field {
+  margin-bottom: 18px;
+  text-align: left;
+  font-family: var(--arialbold);
+}
+
+.auth-input {
+  width: 90%;
+  padding: 10px 12px;
+  color: #000;
+}
+
+.auth-btn {
+  width: 97%;
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  background: var(--cyan);
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-btn:hover {
+  background: var(--cyan_secondary);
+}
+
+.auth-links {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-links a {
   text-decoration: none;
   color: white;
+  font-weight: 400;
+  text-align: center;
 }
-.qa-btn:hover {
-  background: var(--pink_secondary);
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+.auth-checkbox {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.auth-wrapper {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.auth-container {
+  margin: 0;
+  max-width: 360px;
+  width: 100%;
+  padding: 30px;
+  border: 1px solid var(--cyan);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  color: #fff;
+
+  label {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    display: inline-block;
+    font-family: var(--arialbold);
+  }
+  a {
+    font-family: var(--arialbold);
+    font-weight: 400;
+  }
+}
+
+.qa-form {
+  max-width: 600px;
+  margin: 24px auto;
+  border: 1px solid var(--green);
+  padding: 24px;
+  background: #000000aa;
+  backdrop-filter: blur(4px);
   color: #fff;
 }
 
-.qa-grid {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  margin-top: 20px;
+.qa-field {
+  margin-bottom: 18px;
 }
-.qa-grid > * {
-  background: #000000;
+
+.qa-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-family: var(--arialbold);
+}
+
+.qa-input {
+  width: 95%;
+  padding: 12px;
+  background: #000;
   border: 1px solid var(--green);
-  padding: 16px 20px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
-  font-family: 'Forma DJR Cyrillic';
-  color: white;
+  color: #fff;
+  font-family: var(--forma);
 }
-.qa-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+
+.qa-input:focus {
+  outline: none;
+  border-color: var(--pink);
 }
-.qa-card__title {
-  font-size: 1.08rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  line-height: 1.35;
+
+.qa-textarea {
+  resize: vertical;
 }
-.qa-card__title a {
-  text-decoration: none;
-  color: #0a0a0a;
+
+.qa-btn {
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid var(--cyan);
+  background: var(--cyan_secondary);
+  color: #000;
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.15s;
 }
-.qa-card__title a:hover {
-  text-decoration: underline;
+
+.qa-btn:hover {
+  background: var(--pink);
 }
-.qa-card__excerpt {
-  font-size: 0.95rem;
-  font-weight: 400;
-  line-height: 1.45;
-  opacity: 0.88;
-  margin-bottom: 12px;
+.qa-title-page {
+  position: fixed;
+  left: 42%;
+  top: 60px;
+}
+.qa-errors {
+  background: #ff4d0018;
+  border-left: 3px solid #ff4d00;
+  padding: 12px;
+  margin-bottom: 16px;
+  color: #ffb0a0;
+}
+
+.qa-error-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.qa-error-list {
+  padding-left: 20px;
+  font-size: 14px;
 }

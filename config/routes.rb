@@ -14,8 +14,7 @@ Rails.application.routes.draw do
   get "welcome/index"
   get "/about", to: "pages#about"
   # root "pages#home"
-  root 'posts#index'
-  root "pages#home"
+  root "pages#coming-soon"
   get "/coming-soon", to: "pages#coming-soon"
   post "/subscribe", to: "subscribers#create"
 
