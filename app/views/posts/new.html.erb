@@ -1,3 +1,5 @@
+<%
+=begin%>
 <% content_for :title, "New post" %>
 
 <h1>New post</h1>
@@ -7,5 +9,9 @@
 <br>
 
 <div>
-  <%= link_to "Back to posts", posts_path %>
+    <%= link_to "Back to posts", posts_path %>
 </div>
+<%
+=end%>
+<h1 class="qa-title-page">Новый вопрос</h1>
+<%= render "form", post: @post %>

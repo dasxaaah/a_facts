@@ -1,27 +1,26 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= form_with(model: post, local: true, html: { class: "qa-form" }) do |form| %>
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<% if post.errors.any? %>
+<div class="qa-errors" role="alert">
+    <p class="qa-error-title">Ошибка заполнения формы:</p>
+    <ul class="qa-error-list">
+        <% post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+</div>
+<% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
+<div class="qa-field">
+    <%= form.label :title, "Заголовок" %>
+    <%= form.text_field :title, class: "qa-input", placeholder: "Кратко сформулируйте вопрос", required: true %>
+</div>
 
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.textarea :body %>
-  </div>
+<div class="qa-field">
+    <%= form.label :body, "Текст вопроса" %>
+    <%= form.text_area :body, class: "qa-input qa-textarea", rows: 6, placeholder: "Добавьте подробности", required: true %>
+</div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+<%= form.submit (post.persisted? ? "Сохранить" : "Создать вопрос"), class: "qa-btn" %>
+
 <% end %>

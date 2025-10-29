@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get "subscribers/create"
   get "community", to: "community#index"
   get "community/:id", to: "community#show", as: "community_post"
@@ -6,11 +7,14 @@ Rails.application.routes.draw do
   get "articles/index"
   get "articles/show"
   get "pages/about"
-  resources :posts
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+  end
   get "hello/index"
   get "welcome/index"
   get "/about", to: "pages#about"
-  root "pages#home"
+  # root "pages#home"
+  root "pages#coming-soon"
   get "/coming-soon", to: "pages#coming-soon"
   post "/subscribe", to: "subscribers#create"
 

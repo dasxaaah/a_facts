@@ -34,4 +34,9 @@
 /config/*.key
 
 /db/*.sqlite3
+<<<<<<< HEAD
 /db/*.sqlite3-*
+=======
+/db/*.sqlite3-*/db/*.sqlite3
+>>>>>>> zaya
+/db/*.sqlite3*

@@ -45,7 +45,7 @@ body {
   overflow-x: hidden;
   background: #000000;
   color: #fff6ff;
-  cursor: none;
+  // cursor: none;
 }
 
 #custom-cursor {
@@ -84,14 +84,17 @@ h1 {
 h1 {
   font-size: 2.8rem;
   margin-bottom: 1.8rem;
+  font-family: var(--arialbold);
 }
 
 .menu {
+  // transform: translate(-50%);
+
   position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translate(-50%);
+  left: 42%;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   gap: 0;
   font-family: var(--arialbold);
@@ -99,39 +102,52 @@ h1 {
   letter-spacing: -0.02em;
   text-transform: uppercase;
   z-index: 11;
+  width: 54%;
 
   a {
     text-decoration: none;
     color: var(--black);
-    padding: 3px 4px;
+    padding: 0px 3px;
   }
 
-  #menu_tutorial {
-    background-color: var(--green);
+  .W_MainSection {
+    width: auto;
+    display: flex;
+    left: 50%;
+    #menu_tutorial {
+      background-color: var(--green);
+
+      &:hover {
+        background-color: var(--green_secondary);
+      }
+    }
+    #menu_articles {
+      background-color: var(--yellow);
+
+      &:hover {
+        background-color: var(--yellow_secondary);
+      }
+    }
+    #menu_about {
+      background-color: var(--pink);
+
+      &:hover {
+        background-color: var(--pink_secondary);
+      }
+    }
+    #menu_community {
+      background-color: var(--cyan);
+
+      &:hover {
+        background-color: var(--cyan_secondary);
+      }
+    }
+  }
+  #menu_user {
+    background-color: var(--white);
 
     &:hover {
       background-color: var(--green_secondary);
-    }
-  }
-  #menu_articles {
-    background-color: var(--yellow);
-
-    &:hover {
-      background-color: var(--yellow_secondary);
-    }
-  }
-  #menu_about {
-    background-color: var(--pink);
-
-    &:hover {
-      background-color: var(--pink_secondary);
-    }
-  }
-  #menu_community {
-    background-color: var(--cyan);
-
-    &:hover {
-      background-color: var(--cyan_secondary);
     }
   }
 }

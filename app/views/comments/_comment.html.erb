@@ -1,0 +1,5 @@
+<p><%= comment.body %></p>
+
+<%= link_to "Удалить",
+            [comment.post, comment],
+            data: { turbo_method: :delete, turbo_confirm: "Удалить комментарий?" } %>

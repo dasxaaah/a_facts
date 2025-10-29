@@ -46,6 +46,18 @@ gem "sprockets-rails", "~> 3.5"
 # gem "sass-rails", ">= 6"
 gem "sass-embedded"
 gem "dartsass-sprockets"
+#аутентификация и авторизация
+gem "devise"
+gem "cancancan"
+
+group :production do
+  gem "pg"
+end
+
+group :development, :test do
+  gem "sqlite3", "~> 2.1"
+end
+
 
 group :production do
   gem "pg"

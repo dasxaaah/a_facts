@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+
+<head>
+    <title><%= content_for(:title) || "Afacts" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Myapp">
@@ -19,9 +20,11 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%# javascript_importmap_tags %>
     <%= javascript_importmap_tags %>
-  </head>
-  <body>
+</head>
+
+<body>
     <%= render "shared/menu" %>
     <%= yield %>
-  </body>
+</body>
+
 </html>
