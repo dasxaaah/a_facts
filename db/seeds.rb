@@ -1,40 +1,14 @@
-# create_users(10)
+puts "== Seeding started =="
 
-# def create_users(quantity)
-#   i = 0
-#
-#   quantity.times do
-#     user_data = {
-#       email: "user_#{i}@email.com",
-#       password: 'testtest'
-#     }
-#
-#     user = User.create!(user_data)
-#     puts "User created with id #{user.id}"
-#
-#     i += 1
-#   end
-# end
+QA_USERS = [
+  "user0@example.com",
+  "qa_author@example.com",
+  "qa_user1@example.com",
+  "qa_user2@example.com",
+  "qa_user3@example.com"
+]
 
-author = User.first || User.create!(email: "user0@example.com", password: "testtest")
-Post.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
-  p.body = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
-end
-
-puts "\n== Seeding Q&A (posts + comments) =="
-
-author = User.find_by(email: "qa_author@example.com") ||
-         User.create!(email: "qa_author@example.com", password: "testtest")
-
-commenters = [
-  ["qa_user1@example.com", "testtest"],
-  ["qa_user2@example.com", "testtest"],
-  ["qa_user3@example.com", "testtest"]
-].map do |email, pwd|
-  User.find_by(email: email) || User.create!(email: email, password: pwd)
-end
-
-questions = [
+QA_QUESTIONS = [
   {
     title: "Вопрос: Какой софт лучше для 3D-трекинга в шоте с параллаксом?",
     body:  "Сцена с handheld камерой, есть parallax. Думала о PFTrack/3DEqualizer. Нужен совет по пайплайну."
@@ -45,46 +19,86 @@ questions = [
   },
   {
     title: "Вопрос: Чем лучше заменить keylight в AE для сложных волос?",
-    body:  "Фон неравномерный, spill сильный. Стоит ли прыгать в Nuke, или хватит AE+pulgins?"
+    body:  "Фон неравномерный, spill сильный. Стоит ли прыгать в Nuke, или хватит AE+plugins?"
   }
 ]
 
-# обновляем посты и комментарии
-questions.each_with_index do |q, i|
-  post = Post.find_or_initialize_by(title: q[:title])
-  post.body = q[:body]
-  post.save! unless post.persisted? && post.body == q[:body]
+QA_THREADS = {
+  0 => [
+    "Для параллакса берите 3DEqualizer. Если нет - PFTrack ок. Снимите много tracking-марок и метадату камеры.",
+    "Ещё проверь rolling shutter - иногда спасает предварительная стабилизация/дисторсия линзы."
+  ],
+  1 => [
+    "HDRI норм, но сделайте grey/colour-chart на площадке, потом match-grade. В Nuke - C_DLUT + Grade по чарту.",
+    "Посмотрите на ACES - сведёте несоответствия между дублями аккуратнее."
+  ],
+  2 => [
+    "Для сложных волос лучше Nuke: Primatte/Ultimatte+IBK. В AE можно Photokey + ручные маски, но больно.",
+    "Spill убирайте по каналам, в Nuke - DespillMadness/Keymix."
+  ]
+}
 
-  # ответы
-  thread = case i
-  when 0
-    [
-      "Для параллакса берите 3DEqualizer. Если нет — PFTrack ок. Снимите много tracking-марок и метадату камеры.",
-      "Ещё проверь rolling shutter — иногда спасает предварительная стабилизация/дисторсия линзы.",
-    ]
-  when 1
-    [
-      "HDRI норм, но сделайте grey/colour-chart на площадке, потом match-grade. В Nuke — C_DLUT + Grade по чарту.",
-      "Посмотрите на ACES — сведёте несоответствия между дублями аккуратнее.",
-    ]
-  else
-    [
-      "Для сложных волос лучше Nuke: Primatte/Ultimatte+IBK. В AE можно Photokey + ручные маски, но больно.",
-      "Spill убирайте по каналам, в Nuke — DespillMadness/Keymix.",
-    ]
-  end
-
-  # создаём комментарии, если их ещё нет
-  if post.comments.count < thread.size
-    needed = thread.size - post.comments.count
-    thread.last(needed).each_with_index do |text, j|
-      user = commenters[(i + j) % commenters.size]
-      post.comments.create!(body: text)
-    end
-  end
-
-  puts "• Q&A пост: #{post.title} (#{post.comments.count} комм.)"
+def seed
+  create_base_users
+  seed_example_post
+  seed_qa_threads
+  puts "== Seeding finished =="
 end
 
-puts "Q&A seed\n"
+def create_base_users
+  QA_USERS.each do |email|
+    user = User.find_or_create_by!(email: email) do |u|
+      u.password = "testtest"
+    end
+    puts "User: #{user.email} (id=#{user.id})"
+  end
+end
 
+def seed_example_post
+  author = User.find_by(email: "user0@example.com")
+
+  post = Post.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
+    p.body   = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
+    p.author = author if p.respond_to?(:author)
+  end
+
+  puts "Example post: #{post.title} (id=#{post.id})"
+end
+
+def seed_qa_threads
+  puts "\n== Seeding Q&A (posts + comments) =="
+
+  author = User.find_by(email: "qa_author@example.com")
+  commenters = User.where(email: ["qa_user1@example.com", "qa_user2@example.com", "qa_user3@example.com"]).to_a
+
+  QA_QUESTIONS.each_with_index do |q, index|
+    post = Post.find_or_create_by!(title: q[:title]) do |p|
+      p.body   = q[:body]
+      p.author = author if p.respond_to?(:author)
+    end
+
+    thread = QA_THREADS[index] || []
+    ensure_comments_for_post(post, thread, commenters)
+
+    puts "• Q&A пост: #{post.title} (#{post.comments.count} комментариев)"
+  end
+
+  puts "Q&A seed done\n"
+end
+
+def ensure_comments_for_post(post, texts, commenters)
+  existing_count = post.comments.count
+  needed = texts.size - existing_count
+  return if needed <= 0
+
+  texts.last(needed).each_with_index do |text, j|
+    user = commenters[(post.id + j) % commenters.size] if commenters.any?
+
+    comment_data = { body: text }
+    comment_data[:user] = user if post.comments.build.respond_to?(:user)
+
+    post.comments.create!(comment_data)
+  end
+end
+
+seed

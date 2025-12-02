@@ -38,9 +38,13 @@
             <h1 class="post-card__title"><%= @post.title %></h1>
 
             <div class="post-card__meta">
+                <%
+=begin%>
                 <span class="post-card__author">
                     Автор: <strong><%= @post.author.presence || "не указан" %></strong>
                 </span>
+                <%
+=end%>
                 <span class="post-card__date">
                     <%= l(@post.created_at, format: :long) rescue @post.created_at %>
                 </span>
