@@ -8,7 +8,7 @@
     <% @posts.each do |post| %>
     <div class="qa-card">
         <h3 class="qa-card__title">
-            <%= link_to(post.title.presence || "(без названия)", post_path(post)) %>
+            <%= link_to post.title, post_path(post) %>
         </h3>
 
         <p class="qa-card__excerpt">
