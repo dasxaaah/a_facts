@@ -49,6 +49,7 @@ gem "dartsass-sprockets"
 #аутентификация и авторизация
 gem "devise"
 gem "cancancan"
+gem "rack-cors"
 gem "letter_opener"
 
 group :production do
