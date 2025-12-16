@@ -1,3 +1,5 @@
+<%
+=begin%>
 <%= form_with model: Comment.new, url: post_comments_path(@post) do |form| %>
 <div>
     <%= form.label :body, style: "display: block" %>
@@ -8,3 +10,19 @@
     <%= form.submit %>
 </div>
 <% end %>
+<%
+=end%>
+
+
+<div class="comment-form">
+    <%= form_with(model: [@post, @post.comments.build]) do |form| %>
+    <div class="form-group">
+        <%= form.label :body, "Комментарий", class: "form-label" %>
+        <%= form.text_area :body, rows: 4, class: "form-input form-textarea" %>
+    </div>
+
+    <div class="form-actions">
+        <%= form.submit "Отправить", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+</div>

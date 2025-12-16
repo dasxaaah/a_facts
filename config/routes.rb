@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
+ 
   devise_for :users
-  get "subscribers/create"
+
+  namespace :api, format: 'json' do
+    namespace :v1 do
+      resources :subscribers, only: :create
+      get "welcome/preview"
+    end
+  end
+
   get "community", to: "community#index"
   get "community/:id", to: "community#show", as: "community_post"
-  resources :tutorial, only: [ :index, :show ]
-  get "articles/index"
-  get "articles/show"
+  resources :tutorials, only: [ :index, :show ]
+  resources :articles, only: [:index, :show]
   get "pages/about"
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
+  resources :subscriptions, only: :create
   get "hello/index"
   get "welcome/index"
   get "/about", to: "pages#about"

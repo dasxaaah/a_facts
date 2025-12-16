@@ -1,5 +1,9 @@
-<p><%= comment.body %></p>
+<div class="comment">
+    <p><%= comment.body %></p>
 
-<%= link_to "Удалить",
-            [comment.post, comment],
-            data: { turbo_method: :delete, turbo_confirm: "Удалить комментарий?" } %>
+    <%= button_to "Удалить",
+        [comment.post, comment],
+        method: :delete,
+        data: { confirm: "Точно удалить комментарий?" },
+        class: "btn btn-secondary" %>
+</div>
