@@ -1,4 +1,4 @@
-class ArticlesController < ApplicationController
+class Admin::ArticlesController < ApplicationController
   def index
     @articles = Post.where(post_type: 1)
   end

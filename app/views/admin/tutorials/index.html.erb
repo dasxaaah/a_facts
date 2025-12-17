@@ -4,15 +4,15 @@
     <% @tutorials.each do |a| %>
     <article class="card">
         <h2 class="card-title">
-            <%= link_to a.title, article_path(a) %>
+            <%#= link_to a.title, article_path(a) %>
         </h2>
 
         <p class="card-excerpt">
-            <%= truncate(a.body, length: 160) %>
+            <%#= truncate(a.body, length: 160) %>
         </p>
 
         <div class="card-meta">
-            <%= l(a.created_at, format: :short) %>
+            <%#= l(a.created_at, format: :short) %>
         </div>
     </article>
     <% end %>
