@@ -88,9 +88,8 @@ end
 def seed_example_post
   author = User.find_by(email: "user0@example.com")
 
-  post = Post.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
-    p.body   = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
-    p.author = author if p.respond_to?(:author)
+  post = author.posts.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
+    p.body = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
   end
 
   puts "Example post: #{post.title} (id=#{post.id})"
@@ -103,9 +102,8 @@ def seed_qa_threads
   commenters = User.where(email: ["qa_user1@example.com", "qa_user2@example.com", "qa_user3@example.com"]).to_a
 
   QA_QUESTIONS.each_with_index do |q, index|
-    post = Post.find_or_create_by!(title: q[:title]) do |p|
-      p.body   = q[:body]
-      p.author = author if p.respond_to?(:author)
+    post = author.posts.find_or_create_by!(title: q[:title]) do |p|
+      p.body = q[:body]
     end
 
     thread = QA_THREADS[index] || []

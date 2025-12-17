@@ -1,9 +1,20 @@
 <div class="comment">
     <p><%= comment.body %></p>
 
+    <%
+=begin%>
     <%= button_to "Удалить",
         [comment.post, comment],
         method: :delete,
         data: { confirm: "Точно удалить комментарий?" },
         class: "btn btn-secondary" %>
+    <%
+=end%>
+
+    <% if user_signed_in? && comment.user == current_user %>
+    <%= button_to "Удалить",
+                  post_comment_path(comment.post, comment),
+                  method: :delete,
+                  form: { data: { turbo_confirm: "Удалить комментарий?" } } %>
+    <% end %>
 </div>

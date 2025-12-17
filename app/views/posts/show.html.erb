@@ -1,36 +1,3 @@
-<%
-=begin%>
-<p style="color: green"><%= notice %></p>
-
-<h2><%= @post.title %></h2>
-
-<p>
-    <strong>Автор:</strong>
-    <%= @post.author.presence || "не указан" %>
-</p>
-
-<p>
-    <%= simple_format(@post.body.to_s) %>
-</p>
-
-<hr>
-
-<h2>Комментарии</h2>
-<%= render @post.comments %>
-
-<h2>Добавить комментарий</h2>
-<%= render "comments/form" %>
-
-<hr>
-
-<div>
-    <%= link_to "Редактировать пост", edit_post_path(@post) %> |
-    <%= link_to "Назад к списку постов", posts_path %>
-</div>
-<%
-=end%>
-
-
 <div class="post-page">
 
     <article class="post-card">
