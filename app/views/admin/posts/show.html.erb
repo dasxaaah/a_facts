@@ -5,13 +5,6 @@
             <h1 class="post-card__title"><%= @post.title %></h1>
 
             <div class="post-card__meta">
-                <%
-=begin%>
-                <span class="post-card__author">
-                    Автор: <strong><%= @post.author.presence || "не указан" %></strong>
-                </span>
-                <%
-=end%>
                 <span class="post-card__date">
                     <%= l(@post.created_at, format: :long) rescue @post.created_at %>
                 </span>
@@ -23,8 +16,8 @@
         </div>
 
         <footer class="post-card__footer">
-            <%= link_to "Редактировать пост", edit_post_path(@post), class: "btn btn-secondary" %>
-            <%= link_to "Назад к списку постов", posts_path, class: "btn btn-link" %>
+            <%= link_to "Редактировать пост",  edit_admin_post_path(@post), class: "btn btn-secondary" %>
+            <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
         </footer>
     </article>
 
@@ -32,12 +25,12 @@
         <h2 class="comments__title">Комментарии</h2>
 
         <div class="comments__list">
-            <%= render @post.comments %>
+            <%= render partial: "admin/comments/comment", collection: @post.comments, as: :comment %>
         </div>
 
         <div class="comments__form">
             <h3 class="comments__form-title">Добавить комментарий</h3>
-            <%= render "comments/form" %>
+            <%= render "admin/comments/form", post: @post %>
         </div>
     </section>
 </div>

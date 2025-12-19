@@ -1,51 +1,25 @@
-# class CommentsController < ApplicationController
-#   before_action :authenticate_user!
-#   before_action :set_post, only: %i[ create destroy ]
-  
-#   def create
-#     @comment = @post.comments.create(params[:comment].permit(:body))
-#     redirect_to post_path(@post)
-#   end
-
-#   def destroy
-#     @comment = @post.comments.find(params[:id])
-#     @comment.destroy
-#     redirect_to post_path(@post)
-#   end
-  
-#   private
-  
-#     def set_post
-#       @post = Post.find(params[:post_id])
-#     end
-  
-# end
-
 class Admin::CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: %i[create destroy]
-  before_action :set_comment, only: %i[destroy]
-  before_action :authorize_comment!, only: %i[destroy]
+  before_action :set_post
+  before_action :set_comment, only: :destroy
+  before_action :authorize_comment!, only: :destroy
 
   def create
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
-    @comment.save!
-    redirect_to post_path(@post)
+
+    if @comment.save
+      redirect_to admin_post_path(@post), notice: "Комментарий добавлен"
+    else
+      redirect_to admin_post_path(@post), alert: "Ошибка, проверьте комментарий"
+    end
   end
 
-  # def destroy
-  #   @comment.destroy
-  #   redirect_to post_path(@post)
-  # end
   def destroy
-   @comment = @post.comments.find(params[:id])
-    return redirect_to post_path(@post), alert: "Нет доступа" unless @comment.user == current_user
-
-   @comment.destroy
-   redirect_to post_path(@post)
+    @comment.destroy
+    redirect_to admin_post_path(@post), notice: "Комментарий удалён"
   end
-  
+
   private
 
   def set_post
@@ -57,9 +31,10 @@ class Admin::CommentsController < ApplicationController
   end
 
   def authorize_comment!
+    return if current_user&.admin?
     return if @comment.user == current_user
 
-    redirect_to post_path(@post), alert: "Нет доступа"
+    redirect_to admin_post_path(@post), alert: "Нет доступа"
   end
 
   def comment_params

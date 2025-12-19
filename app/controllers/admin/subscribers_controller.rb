@@ -1,18 +1,20 @@
 class Admin::SubscribersController < ApplicationController
-  def create
-    @subscriber = Subscriber.new(subscriber_params)
-    if @subscriber.save
-      flash[:notice] = "Спасибо! Вы подписаны."
-      redirect_to coming_soon_path
-    else
-      flash[:alert] = "Ошибка, проверьте e-mail."
-      redirect_to coming_soon_path
-    end
+  before_action :authenticate_user!
+  before_action :authorize_admin!
+
+  def index
+    @subscribers = Subscriber.order(created_at: :desc)
+  end
+
+  def destroy
+    @subscriber = Subscriber.find(params[:id])
+    @subscriber.destroy
+    redirect_to admin_subscribers_path, notice: "Подписчик удалён"
   end
 
   private
 
-  def subscriber_params
-    params.require(:subscriber).permit(:email)
+  def authorize_admin!
+    redirect_to root_path, alert: "Нет доступа" unless current_user&.admin?
   end
 end

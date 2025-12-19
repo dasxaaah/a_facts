@@ -70,6 +70,7 @@ TUTORIALS_DATA = [
 
 def seed
   create_base_users
+  create_admin_user
   seed_example_post
   seed_qa_threads
   seed_articles_and_tutorials
@@ -83,6 +84,17 @@ def create_base_users
     end
     puts "User: #{user.email} (id=#{user.id})"
   end
+end
+
+def create_admin_user
+  admin = User.find_or_create_by!(email: "admin@gmail.com") do |u|
+    u.password = "1234qwer"
+    u.password_confirmation = "1234qwer"
+  end
+
+  admin.update!(admin: true) unless admin.admin?
+
+  puts "Admin: #{admin.email} (id=#{admin.id})"
 end
 
 def seed_example_post
