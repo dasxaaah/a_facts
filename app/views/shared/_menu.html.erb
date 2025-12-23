@@ -23,8 +23,12 @@
         form: { data: { turbo: true } },
         class: "auth-btn as-link" %>
         <% else %>
-        <%= link_to "Войти", new_user_session_path, class: "auth-btn" %>
-        <%= link_to "Зарегистрироваться", new_user_registration_path, class: "auth-link" %>
+        <%= link_to "Войти", new_session_path(:user), class: "auth-btn" %>
+        <%
+=begin%>
+        <%= link_to "Зарегистрироваться", new_registration_path(:user), class: "auth-link" %>
+        <%
+=end%>
         <% end %>
     </div>
 </nav>

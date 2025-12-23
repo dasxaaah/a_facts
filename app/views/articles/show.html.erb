@@ -1,0 +1,7 @@
+<h1><%= @article.title %></h1>
+
+<div>
+    <%= simple_format(@article.body) %>
+</div>
+
+<%= link_to "Назад к статьям", articles_path %>
