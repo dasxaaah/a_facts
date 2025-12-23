@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :tutorials, only: [:index, :show]
   resources :articles, only: [:index, :show]
   resources :community, only: [:index, :show], controller: "community"
-  resources :posts, only: [:index, :show] do
-    resources :comments, only: [:create]
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
   end
 
   # Админка
