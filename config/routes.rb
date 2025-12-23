@@ -9,24 +9,33 @@ Rails.application.routes.draw do
     end
   end
 
-  get "community", to: "community#index"
-  get "community/:id", to: "community#show", as: "community_post"
-  resources :tutorials, only: [ :index, :show ]
-  resources :articles, only: [:index, :show]
-  get "pages/about"
-  resources :posts do
-    resources :comments, only: [:create, :destroy]
-  end
-  resources :subscriptions, only: :create
-  get "hello/index"
-  get "welcome/index"
-  get "/about", to: "pages#about"
-  # root "pages#home"
-  root "pages#coming-soon"
-  get "/coming-soon", to: "pages#coming-soon"
+  
+  # Публичные страницы
+  root "welcome#index"
+  get "/coming-soon", to: "pages#coming_soon"
   post "/subscribe", to: "subscribers#create"
+  get "/about", to: "pages#about"
 
+  # Публичные контентные разделы
+  resources :tutorials, only: [:index, :show]
+  resources :articles, only: [:index, :show]
+  # resources :posts, only: [:index, :show] do
+  #   resources :comments, only: [:create]
+  # end
 
+  # Админка
+  namespace :admin do
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
+    resources :articles
+    resources :tutorials
+    resources :subscribers, only: [:index, :destroy]
+    get "community", to: "community#index"
+    get "community/:id", to: "community#show", as: "community_post"
+    get "/about", to: "pages#about"
+    get "/coming-soon", to: "pages#coming-soon"
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

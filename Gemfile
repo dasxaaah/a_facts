@@ -52,12 +52,6 @@ gem "cancancan"
 gem "rack-cors"
 gem "letter_opener"
 
-group :production do
-  gem "pg"
-end
-
-
-
 
 group :production do
   gem "pg"

@@ -1,8 +1,11 @@
 <div class="auth-wrapper">
     <div class="auth-container">
         <h2 class="auth-title">Регистрация</h2>
-
-        <%= form_with(model: resource, url: registration_path(resource_name), local: true, html: { class: "auth-form" }) do |f| %>
+        <%= form_with(model: resource, url: registration_path(resource_name),
+              data: { turbo: false },
+              local: true,
+              html: { class: "auth-form" }) do |f| %>
+        <%#<%= form_with(model: resource, url: registration_path(resource_name), local: true, html: { class: "auth-form" }) do |f| %>
         <%# Ошибки Devise %>
         <% if resource.errors.any? %>
         <div class="auth-errors">
@@ -35,7 +38,7 @@
 
         <div class="auth-checkbox">
             <label>
-                <input type="checkbox" required>
+                <input type="checkbox" name="terms" required>
                 Я принимаю <%= link_to "условия сервиса", "/terms", class: "auth-link-inline" %>
             </label>
         </div>

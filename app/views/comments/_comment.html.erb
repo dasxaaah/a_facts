@@ -1,9 +1,0 @@
-<div class="comment">
-    <p><%= comment.body %></p>
-
-    <%= button_to "Удалить",
-        [comment.post, comment],
-        method: :delete,
-        data: { confirm: "Точно удалить комментарий?" },
-        class: "btn btn-secondary" %>
-</div>

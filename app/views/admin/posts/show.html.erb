@@ -1,0 +1,36 @@
+<div class="post-page">
+
+    <article class="post-card">
+        <header class="post-card__header">
+            <h1 class="post-card__title"><%= @post.title %></h1>
+
+            <div class="post-card__meta">
+                <span class="post-card__date">
+                    <%= l(@post.created_at, format: :long) rescue @post.created_at %>
+                </span>
+            </div>
+        </header>
+
+        <div class="post-card__body">
+            <%= simple_format(@post.body.to_s) %>
+        </div>
+
+        <footer class="post-card__footer">
+            <%= link_to "Редактировать пост",  edit_admin_post_path(@post), class: "btn btn-secondary" %>
+            <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
+        </footer>
+    </article>
+
+    <section class="comments">
+        <h2 class="comments__title">Комментарии</h2>
+
+        <div class="comments__list">
+            <%= render partial: "admin/comments/comment", collection: @post.comments, as: :comment %>
+        </div>
+
+        <div class="comments__form">
+            <h3 class="comments__form-title">Добавить комментарий</h3>
+            <%= render "admin/comments/form", post: @post %>
+        </div>
+    </section>
+</div>

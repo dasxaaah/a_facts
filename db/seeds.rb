@@ -70,6 +70,7 @@ TUTORIALS_DATA = [
 
 def seed
   create_base_users
+  create_admin_user
   seed_example_post
   seed_qa_threads
   seed_articles_and_tutorials
@@ -85,12 +86,22 @@ def create_base_users
   end
 end
 
+def create_admin_user
+  admin = User.find_or_create_by!(email: "admin@gmail.com") do |u|
+    u.password = "1234qwer"
+    u.password_confirmation = "1234qwer"
+  end
+
+  admin.update!(admin: true) unless admin.admin?
+
+  puts "Admin: #{admin.email} (id=#{admin.id})"
+end
+
 def seed_example_post
   author = User.find_by(email: "user0@example.com")
 
-  post = Post.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
-    p.body   = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
-    p.author = author if p.respond_to?(:author)
+  post = author.posts.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
+    p.body = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
   end
 
   puts "Example post: #{post.title} (id=#{post.id})"
@@ -103,9 +114,8 @@ def seed_qa_threads
   commenters = User.where(email: ["qa_user1@example.com", "qa_user2@example.com", "qa_user3@example.com"]).to_a
 
   QA_QUESTIONS.each_with_index do |q, index|
-    post = Post.find_or_create_by!(title: q[:title]) do |p|
-      p.body   = q[:body]
-      p.author = author if p.respond_to?(:author)
+    post = author.posts.find_or_create_by!(title: q[:title]) do |p|
+      p.body = q[:body]
     end
 
     thread = QA_THREADS[index] || []
