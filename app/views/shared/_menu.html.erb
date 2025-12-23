@@ -2,16 +2,16 @@
     <div class="W_MainSection">
         <%= link_to "О нас", about_path, id: "menu_about" %>
 
-        <% if user_signed_in? %>
-        <% if current_user.respond_to?(:admin?) && current_user.admin? %>
+        <% if user_signed_in? && current_user.respond_to?(:admin?) && current_user.admin? %>
+        <!-- Админ -->
         <%= link_to "Учебник", admin_tutorials_path, id: "menu_tutorial" %>
         <%= link_to "Статьи", admin_articles_path, id: "menu_articles" %>
         <%= link_to "Коммьюнити", admin_community_path, id: "menu_community" %>
         <% else %>
+        <!-- Обычный пользователь ИЛИ гость -->
         <%= link_to "Учебник", tutorials_path, id: "menu_tutorial" %>
         <%= link_to "Статьи", articles_path, id: "menu_articles" %>
         <%= link_to "Коммьюнити", community_index_path, id: "menu_community" %>
-        <% end %>
         <% end %>
     </div>
 

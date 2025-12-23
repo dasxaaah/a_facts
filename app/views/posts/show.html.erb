@@ -15,14 +15,23 @@
             <%= simple_format(@post.body.to_s) %>
         </div>
 
-        <%
-=begin%>
+
         <footer class="post-card__footer">
-            <%= link_to "Редактировать пост",  edit_admin_post_path(@post), class: "btn btn-secondary" %>
+            <% if user_signed_in? && @post.user == current_user %>
+            <%= link_to "Редактировать пост",
+      edit_post_path(@post),
+      class: "btn btn-secondary" %>
+            <% end %>
+            <%
+=begin%>
+            <%= link_to "Редактировать пост",  edit_post_path(@post), class: "btn btn-secondary" %>
+            <%
             <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
-        </footer>
-        <%
+            <% 
+<%
 =end%>
+        </footer>
+
     </article>
 
     <section class="comments">

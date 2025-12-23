@@ -2,11 +2,15 @@
     <p><%= comment.body %></p>
 
     <%
+=begin%>
+    <%
     <%= button_to "Удалить",
         [comment.post, comment],
         method: :delete,
         data: { confirm: "Точно удалить комментарий?" },
         class: "btn btn-secondary" %>
+    <%
+=end%>
 
 
     <% if user_signed_in? && (current_user.admin? || comment.user == current_user) %>
