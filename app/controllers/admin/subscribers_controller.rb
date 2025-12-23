@@ -1,6 +1,7 @@
 class Admin::SubscribersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :authorize_admin!
+  load_and_authorize_resource
+  # before_action :authenticate_user!
+  # before_action :authorize_admin!
 
   def index
     @subscribers = Subscriber.order(created_at: :desc)

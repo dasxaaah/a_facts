@@ -1,4 +1,4 @@
-class Admin::PostsController < ApplicationController
+class PostsController < ApplicationController
   load_and_authorize_resource
   # before_action :authenticate_user!
   # before_action :set_post, only: %i[show edit update destroy]
@@ -22,7 +22,7 @@ class Admin::PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to admin_post_path(@post), notice: "Пост создан"
+      redirect_to post_path(@post), notice: "Пост создан"
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class Admin::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to admin_post_path(@post), notice: "Пост обновлён", status: :see_other
+      redirect_to post_path(@post), notice: "Пост обновлён", status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Admin::PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to admin_posts_path, notice: "Пост удалён", status: :see_other
+    redirect_to posts_path, notice: "Пост удалён", status: :see_other
   end
 
   private
@@ -51,7 +51,7 @@ class Admin::PostsController < ApplicationController
     return if current_user&.admin?
     return if @post.user == current_user
 
-    redirect_to admin_posts_path, alert: "Нет доступа"
+    redirect_to posts_path, alert: "Нет доступа"
   end
 
   def post_params

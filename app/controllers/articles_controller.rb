@@ -1,4 +1,4 @@
-class Admin::ArticlesController < ApplicationController
+class ArticlesController < ApplicationController
   load_and_authorize_resource class: "Post"
   # before_action :authenticate_user!
   # before_action :require_admin!

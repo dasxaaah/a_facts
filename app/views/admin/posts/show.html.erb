@@ -15,10 +15,14 @@
             <%= simple_format(@post.body.to_s) %>
         </div>
 
+        <%
+=begin%>
         <footer class="post-card__footer">
             <%= link_to "Редактировать пост",  edit_admin_post_path(@post), class: "btn btn-secondary" %>
             <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
         </footer>
+        <%
+=end%>
     </article>
 
     <section class="comments">
@@ -33,4 +37,21 @@
             <%= render "admin/comments/form", post: @post %>
         </div>
     </section>
+    <footer class="post-card__footer">
+        <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
+        <%
+=begin%>
+        <%= link_to "Редактировать пост", edit_admin_post_path(@post), class: "btn btn-secondary" %>
+        <%
+=end%>
+
+        <%= button_to "Удалить пост",
+          admin_post_path(@post),
+          method: :delete,
+          form: { data: { turbo_confirm: "Удалить пост?" } },
+          class: "btn btn-danger" %>
+        <% end %>
+
+        <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
+    </footer>
 </div>

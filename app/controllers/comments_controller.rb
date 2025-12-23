@@ -1,4 +1,4 @@
-class Admin::CommentsController < ApplicationController
+class CommentsController < ApplicationController
   load_and_authorize_resource :post, class: "Post"
   load_and_authorize_resource :comment, through: :post
   # before_action :authenticate_user!
@@ -11,15 +11,15 @@ class Admin::CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to admin_post_path(@post), notice: "Комментарий добавлен"
+      redirect_to post_path(@post), notice: "Комментарий добавлен"
     else
-      redirect_to admin_post_path(@post), alert: "Ошибка, проверьте комментарий"
+      redirect_to post_path(@post), alert: "Ошибка, проверьте комментарий"
     end
   end
 
   def destroy
     @comment.destroy
-    redirect_to admin_post_path(@post), notice: "Комментарий удалён"
+    redirect_to post_path(@post), notice: "Комментарий удалён"
   end
 
   private
@@ -36,7 +36,7 @@ class Admin::CommentsController < ApplicationController
     return if current_user&.admin?
     return if @comment.user == current_user
 
-    redirect_to admin_post_path(@post), alert: "Нет доступа"
+    redirect_to post_path(@post), alert: "Нет доступа"
   end
 
   def comment_params

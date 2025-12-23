@@ -3,22 +3,28 @@
         <%= link_to "О нас", about_path, id: "menu_about" %>
 
         <% if user_signed_in? %>
+        <% if current_user.respond_to?(:admin?) && current_user.admin? %>
         <%= link_to "Учебник", admin_tutorials_path, id: "menu_tutorial" %>
         <%= link_to "Статьи", admin_articles_path, id: "menu_articles" %>
         <%= link_to "Коммьюнити", admin_community_path, id: "menu_community" %>
+        <% else %>
+        <%= link_to "Учебник", tutorials_path, id: "menu_tutorial" %>
+        <%= link_to "Статьи", articles_path, id: "menu_articles" %>
+        <%= link_to "Коммьюнити", community_index_path, id: "menu_community" %>
+        <% end %>
         <% end %>
     </div>
 
     <div id="menu_user">
         <% if user_signed_in? %>
-        <%#= link_to current_user.email, edit_user_registration_path, class: "auth-link" %>
-        <%= button_to "Выйти", destroy_user_session_path,
-          method: :delete,
-          form: { data: { turbo: true } },
-          class: "auth-btn as-link" %>
-        <%# else %>
-        <%#= link_to "Войти", new_user_session_path, class: "auth-btn" %>
-        <%#= link_to "Зарегистрироваться", new_user_registration_path, class: "auth-link" %>
+        <%= button_to "Выйти",
+        destroy_user_session_path,
+        method: :delete,
+        form: { data: { turbo: true } },
+        class: "auth-btn as-link" %>
+        <% else %>
+        <%= link_to "Войти", new_user_session_path, class: "auth-btn" %>
+        <%= link_to "Зарегистрироваться", new_user_registration_path, class: "auth-link" %>
         <% end %>
     </div>
 </nav>
