@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :api do
+    namespace :v1 do
+      get "welcome/index"
+    end
+  end
   get "subscribers/create"
   get "community", to: "community#index"
   get "community/:id", to: "community#show", as: "community_post"
