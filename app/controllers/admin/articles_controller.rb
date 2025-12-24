@@ -4,11 +4,11 @@ class Admin::ArticlesController < ApplicationController
   # before_action :require_admin!
 
   def index
-    @articles = Post.where(post_type: 1).order(created_at: :desc)
+    @articles = Article.where(post_type: 2).order(created_at: :desc)
   end
 
   def show
-    @article = Post.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   private

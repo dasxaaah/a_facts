@@ -49,6 +49,7 @@ gem "cancancan"
 gem "rack-cors"
 gem "letter_opener"
 gem "meta-tags"
+gem 'carrierwave', '~> 3.0'
 
 
 group :production do

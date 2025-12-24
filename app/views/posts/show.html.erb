@@ -29,6 +29,10 @@ set_meta_tags(
             <%= simple_format(@post.body.to_s) %>
         </div>
 
+        #картинка
+        <% if @post.post_image.present? %>
+        <%= image_tag @post.post_image.url, style: "max-width: 100%; height: auto;" %>
+        <% end %>
 
         <footer class="post-card__footer">
             <% if user_signed_in? && @post.user == current_user %>
