@@ -208,6 +208,8 @@ GEM
       net-smtp
     marcel (1.1.0)
     matrix (0.4.3)
+    meta-tags (2.22.2)
+      actionpack (>= 6.0.0, < 8.2)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -480,13 +482,13 @@ DEPENDENCIES
   jbuilder
   kamal
   letter_opener
+  meta-tags
   pg
   propshaft
   puma (>= 5.0)
   rack-cors
   rails (~> 8.1.0)
   rubocop-rails-omakase
-  sass-embedded
   selenium-webdriver
   solid_cable
   solid_cache
