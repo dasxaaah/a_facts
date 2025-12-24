@@ -52,6 +52,7 @@ gem "meta-tags"
 gem 'carrierwave', '~> 3.0'
 #gem "carrierwave-imageoptimizer"
 gem "mini_magick"
+gem "russian"
 
 
 group :production do

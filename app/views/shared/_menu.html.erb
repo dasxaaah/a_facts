@@ -1,5 +1,11 @@
 <nav class="menu">
+    <%= link_to root_path, class: "menu-logo" do %>
+    <%= image_tag "new_logo.png", alt: "AFACTS", class: "menu-logo__img" %>
+    <% end %>
     <div class="W_MainSection">
+
+
+
         <%= link_to "О нас", about_path, id: "menu_about" %>
 
         <% if user_signed_in? && current_user.respond_to?(:admin?) && current_user.admin? %>
@@ -17,18 +23,23 @@
 
     <div id="menu_user">
         <% if user_signed_in? %>
-        <%= button_to "Выйти",
-        destroy_user_session_path,
-        method: :delete,
-        form: { data: { turbo: true } },
-        class: "auth-btn as-link" %>
+        <%= button_to destroy_user_session_path,
+      method: :delete,
+      form: { data: { turbo: true } },
+      class: "menu-profile-btn",
+      title: "Выйти" do %>
+
+        <%= image_tag "profile_icon.png", alt: "Профиль", class: "menu-profile-icon" %>
+
+        <% end %>
         <% else %>
-        <%= link_to "Войти", new_session_path(:user), class: "auth-btn" %>
-        <%
-=begin%>
-        <%= link_to "Зарегистрироваться", new_registration_path(:user), class: "auth-link" %>
-        <%
-=end%>
+        <%= link_to new_session_path(:user),
+      class: "menu-profile-link",
+      title: "Войти" do %>
+
+        <%= image_tag "profile_icon.png", alt: "Войти", class: "menu-profile-icon" %>
+
+        <% end %>
         <% end %>
     </div>
 </nav>
