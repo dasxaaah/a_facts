@@ -3,22 +3,16 @@ class PostsController < ApplicationController
   # before_action :authenticate_user!
   # before_action :set_post, only: %i[show edit update destroy]
   # before_action :authorize_post!, only: %i[edit update destroy]
-  def show
-    @post = Post.find(params[:id])
-
-    set_meta_tags(
-      title:'TEST TITLE' @post.title'',
-      description: "TEST Ask question in community page",
-      keywords: %w[questions answers community vfx],
-      
-    )
-  end
-  def index
+   def index
     @posts = Post.order(created_at: :desc)
   end
 
   def show
+    @post = Post.find(params[:id])
+
+    
   end
+  
 
   def new
     @post = Post.new

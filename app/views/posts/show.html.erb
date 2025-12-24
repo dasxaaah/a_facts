@@ -1,25 +1,17 @@
 <%
-=begin%>
-<%set_meta_tags (
-    title: @post.name,
-    description: "Ask question in community page",
-    keywords: "questions, answers, community, vfx",
-    og: {
-        title: @post.name,
-        type: "website",
-        url: post_url(@post),
-        # image: "http://ia.media-imdb.com/rock.jpg",
-    },
-    set_meta_tags article: {
-    published_time: "2013-09-17T05:59:00+01:00",
-    modified_time: "2013-09-16T19:08:47+01:00",
-    section: "Article Section",
-    tag: "Article Tag"
-    })
+set_meta_tags(
+  title: "#{@post.title} | AFACTS",
+ description: @post.body.to_s.truncate(160),
+  keywords: "community, questions, answers, vfx",
+  og: {
+ title: "#{@post.title} | AFACTS",
+    type: "article",
+    url: post_url(@post)
+  }
+)
 %>
-<% content_for : title, @post.name%>
-<%
-=end%>
+
+<% content_for :title, @post.title %>
 <div class="post-page">
 
     <article class="post-card">
@@ -41,12 +33,10 @@
         <footer class="post-card__footer">
             <% if user_signed_in? && @post.user == current_user %>
             <%= link_to "Редактировать пост",
-      edit_post_path(@post),
-      class: "btn btn-secondary" %>
+            edit_post_path(@post),
+            class: "btn btn-secondary" %>
             <% end %>
-            <%
 
-        </footer>
 
     </article>
 
@@ -55,28 +45,28 @@
 
         <div class="comments__list">
             <%= render partial: "admin/comments/comment", collection: @post.comments, as: :comment %>
-</div>
+        </div>
 
-<div class="comments__form">
-    <h3 class="comments__form-title">Добавить комментарий</h3>
-    <%= render "comments/form", post: @post %>
-</div>
-</section>
-<footer class="post-card__footer">
-    <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
-    <%
+        <div class="comments__form">
+            <h3 class="comments__form-title">Добавить комментарий</h3>
+            <%= render "comments/form", post: @post %>
+        </div>
+    </section>
+    <footer class="post-card__footer">
+        <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
+        <%
 =begin%>
-    <%= link_to "Редактировать пост", edit_admin_post_path(@post), class: "btn btn-secondary" %>
-    <%
+        <%= link_to "Редактировать пост", edit_admin_post_path(@post), class: "btn btn-secondary" %>
+        <%
 =end%>
 
-    <%= button_to "Удалить пост",
+        <%= button_to "Удалить пост",
           post_path(@post),
           method: :delete,
           form: { data: { turbo_confirm: "Удалить пост?" } },
           class: "btn btn-danger" %>
-    <% end %>
+        <% end %>
 
-    <%= link_to "Назад к списку постов", posts_path, class: "btn btn-link" %>
-</footer>
+        <%= link_to "Назад к списку постов", posts_path, class: "btn btn-link" %>
+    </footer>
 </div>
