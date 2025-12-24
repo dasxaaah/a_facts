@@ -135,20 +135,18 @@ def seed_articles_and_tutorials
     a = Article.create!(
       title: data[:title],
       body: data[:body],
-      article_type: data[:article_type],
       user: author
     )
-    puts "Article: #{a.title} (type=#{a.article_type})"
+    puts "Article: #{a.title}"
   end
 
   TUTORIALS_DATA.each do |data|
-    t = Article.create!(
+    t = Tutorial.create!(
       title: data[:title],
       body: data[:body],
-      article_type: data[:article_type],
       user: author
     )
-    puts "Tutorial: #{t.title} (type=#{t.article_type})"
+    puts "Tutorial: #{t.title}"
   end
 end
 

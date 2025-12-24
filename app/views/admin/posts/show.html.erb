@@ -15,14 +15,15 @@
             <%= simple_format(@post.body.to_s) %>
         </div>
 
-        <%
-=begin%>
-        <footer class="post-card__footer">
-            <%= link_to "Редактировать пост",  edit_admin_post_path(@post), class: "btn btn-secondary" %>
-            <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
-        </footer>
-        <%
-=end%>
+        <div class="post-card__body">
+            <%= simple_format(@post.body.to_s) %>
+        </div>
+
+        <% if @post.post_image.present? %>
+        <div class="post-card__image">
+            <%= image_tag @post.post_image.url, style: "max-width: 100%; height: auto;" %>
+        </div>
+        <% end %>
     </article>
 
     <section class="comments">
@@ -37,6 +38,7 @@
             <%= render "admin/comments/form", post: @post %>
         </div>
     </section>
+
     <footer class="post-card__footer">
         <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
         <%

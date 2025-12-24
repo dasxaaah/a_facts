@@ -4,7 +4,7 @@ class Admin::ArticlesController < ApplicationController
   # before_action :require_admin!
 
   def index
-    @articles = Article.where(post_type: 2).order(created_at: :desc)
+    @articles = Article.order(created_at: :desc)
   end
 
   def show
