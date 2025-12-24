@@ -50,6 +50,8 @@ gem "rack-cors"
 gem "letter_opener"
 gem "meta-tags"
 gem 'carrierwave', '~> 3.0'
+#gem "carrierwave-imageoptimizer"
+gem "mini_magick"
 
 
 group :production do

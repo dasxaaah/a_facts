@@ -3,17 +3,34 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   include CarrierWave::Vips
+  # include CarrierWave::ImageOptimizer
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
+  # process optimize: [{ quality: 80 }]
+  # process resize_to_fit: [1200, 800]  # единый размер для всех
 
+ 
+  process resize_to_fill: [600, 400]
+
+  def extension_allowlist
+    %w[jpg jpeg png webp]
+  end
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+#tikens for images
+  protected
+
+    def secure_token(length=16)
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
+    end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:

@@ -31,7 +31,7 @@ set_meta_tags(
 
         #картинка
         <% if @post.post_image.present? %>
-        <%= image_tag @post.post_image.url, style: "max-width: 100%; height: auto;" %>
+        <%= image_tag @post.post_image.url %>
         <% end %>
 
         <footer class="post-card__footer">
