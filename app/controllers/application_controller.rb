@@ -3,5 +3,10 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   # Changes to the importmap will invalidate the etag for HTML responses
-  stale_when_importmap_changes
+ stale_when_importmap_changes
+#  rescue_from CanCan: :AccessDenied do |exception|
+#    respond_to do |format|
+#      format.html {redirect_to root_path, alert: exception.message }
+#    end
+#  end
 end

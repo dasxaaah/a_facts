@@ -1,0 +1,59 @@
+<div class="post-page">
+
+    <article class="post-card">
+        <header class="post-card__header">
+            <h1 class="post-card__title"><%= @post.title %></h1>
+
+            <div class="post-card__meta">
+                <span class="post-card__date">
+                    <%= l(@post.created_at, format: :long) rescue @post.created_at %>
+                </span>
+            </div>
+        </header>
+
+        <div class="post-card__body">
+            <%= simple_format(@post.body.to_s) %>
+        </div>
+
+        <div class="post-card__body">
+            <%= simple_format(@post.body.to_s) %>
+        </div>
+
+        <% if @post.post_image.present? %>
+        <div class="post-card__image">
+            <%= image_tag @post.post_image.url, style: "max-width: 100%; height: auto;" %>
+        </div>
+        <% end %>
+    </article>
+
+    <section class="comments">
+        <h2 class="comments__title">Комментарии</h2>
+
+        <div class="comments__list">
+            <%= render partial: "admin/comments/comment", collection: @post.comments, as: :comment %>
+        </div>
+
+        <div class="comments__form">
+            <h3 class="comments__form-title">Добавить комментарий</h3>
+            <%= render "admin/comments/form", post: @post %>
+        </div>
+    </section>
+
+    <footer class="post-card__footer">
+        <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
+        <%
+=begin%>
+        <%= link_to "Редактировать пост", edit_admin_post_path(@post), class: "btn btn-secondary" %>
+        <%
+=end%>
+
+        <%= button_to "Удалить пост",
+          admin_post_path(@post),
+          method: :delete,
+          form: { data: { turbo_confirm: "Удалить пост?" } },
+          class: "btn btn-danger" %>
+        <% end %>
+
+        <%= link_to "Назад к списку постов", admin_posts_path, class: "btn btn-link" %>
+    </footer>
+</div>

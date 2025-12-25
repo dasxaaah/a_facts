@@ -43,29 +43,25 @@ gem "image_processing", "~> 1.2"
 
 gem "sprockets", "~> 4.2"
 gem "sprockets-rails", "~> 3.5"
-# gem "sass-rails", ">= 6"
-gem "sass-embedded"
 gem "dartsass-sprockets"
-#аутентификация и авторизация
 gem "devise"
 gem "cancancan"
 gem "rack-cors"
 gem "letter_opener"
+gem "meta-tags"
+gem 'carrierwave', '~> 3.0'
+#gem "carrierwave-imageoptimizer"
+gem "mini_magick"
+gem "russian"
+
 
 group :production do
   gem "pg"
 end
 
-
-
-
-group :production do
-  gem "pg"
-end
-
-group :development, :test do
-  gem "sqlite3", "~> 2.1"
-end
+# group :development, :test do
+#   gem "sqlite3", "~> 2.1"
+# end
 
 
 group :development, :test do

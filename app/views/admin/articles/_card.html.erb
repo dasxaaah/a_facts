@@ -1,0 +1,12 @@
+<article class="qa-card">
+    <h3 class="qa-card__title">
+        <%= link_to(post.title.presence || "(без названия)", post_path(post)) %>
+    </h3>
+    <p class="qa-card__excerpt">
+        <%= truncate(strip_tags(post.body.to_s), length: 160) %>
+    </p>
+    <p class="qa-card__meta">
+        <%= l(post.created_at, format: :short) rescue post.created_at.strftime("%d.%m.%Y %H:%M") %>
+        <% if post.respond_to?(:comments) %> · <%= post.comments.size %> комм. <% end %>
+    </p>
+</article>

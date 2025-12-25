@@ -1,12 +1,34 @@
-<article class="qa-card">
-    <h3 class="qa-card__title">
-        <%= link_to(post.title.presence || "(без названия)", post_path(post)) %>
-    </h3>
-    <p class="qa-card__excerpt">
-        <%= truncate(strip_tags(post.body.to_s), length: 160) %>
-    </p>
-    <p class="qa-card__meta">
-        <%= l(post.created_at, format: :short) rescue post.created_at.strftime("%d.%m.%Y %H:%M") %>
-        <% if post.respond_to?(:comments) %> · <%= post.comments.size %> комм. <% end %>
-    </p>
+<article class="media-card">
+    <%= link_to article_path(article), class: "media-card__link" do %>
+
+    <div class="media-card__image">
+        <% if article.cover_image.present? %>
+        <%= image_tag article.cover_image.url, alt: article.title, loading: "lazy" %>
+        <% else %>
+        <div class="media-card__placeholder"></div>
+        <% end %>
+    </div>
+
+    <div class="media-card__body">
+        <div class="media-card__meta">
+            <span class="media-card__tag">
+                <span class="media-card__tag-icon" aria-hidden="true"></span>
+                <%= article.category.presence || "без тега" %>
+            </span>
+
+            <span class="media-card__dot">•</span>
+
+            <span class="media-card__time"><%= article.reading_minutes %> мин</span>
+
+            <span class="media-card__dot">•</span>
+
+            <span class="media-card__date">
+                <%= l(article.created_at, format: :short) rescue article.created_at.to_date %>
+            </span>
+        </div>
+
+        <h2 class="media-card__title"><%= article.title %></h2>
+    </div>
+
+    <% end %>
 </article>

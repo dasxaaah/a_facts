@@ -1,17 +1,22 @@
-<h1 class="section-title">Коммьюнити </h1>
+<h1 class="section-title">Коммьюнити</h1>
+
+<div class="qa-header">
+    <%= link_to "Перейти к вопросам (Q&A)", posts_path, class: "qa-btn" %>
+</div>
+
 <div class="card-grid">
-    <% @posts.each do |a| %>
+    <% @posts.each do |post| %>
     <article class="card">
         <h2 class="card-title">
-            <%= link_to a.title, article_path(a) %>
+            <%= link_to post.title, community_path(post) %>
         </h2>
 
         <p class="card-excerpt">
-            <%= truncate(a.body, length: 160) %>
+            <%= truncate(post.body.to_s, length: 160) %>
         </p>
 
         <div class="card-meta">
-            <%= l(a.created_at, format: :short) %>
+            <%= l(post.created_at, format: :short) rescue post.created_at %>
         </div>
     </article>
     <% end %>

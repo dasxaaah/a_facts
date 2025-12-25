@@ -1,0 +1,18 @@
+<div id="<%= dom_id post %>">
+    <%
+=begin%>
+    <div>
+        <%= post.title %>
+    </div>
+
+    <div>
+        <%= post.body %>
+    </div>
+    <%
+=end%>
+
+
+    <h2><%= link_to post.title, [:admin, post] %></h2>
+    <p><%= post.body %></p>
+
+</div>

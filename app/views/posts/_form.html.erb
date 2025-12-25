@@ -1,5 +1,4 @@
-<%= form_with(model: post, local: true, html: { class: "qa-form" }) do |form| %>
-
+<%= form_with(model: [post], local: true, html: { class: "qa-form" }) do |form| %>
 <% if post.errors.any? %>
 <div class="qa-errors" role="alert">
     <p class="qa-error-title">Ошибка заполнения формы:</p>
@@ -19,6 +18,8 @@
 <div class="qa-field">
     <%= form.label :body, "Текст вопроса" %>
     <%= form.text_area :body, class: "qa-input qa-textarea", rows: 6, placeholder: "Добавьте подробности", required: true %>
+    <%= form.label :post_image, "Картинка" %>
+    <%= form.file_field :post_image %>
 </div>
 
 <%= form.submit (post.persisted? ? "Сохранить" : "Создать вопрос"), class: "qa-btn" %>

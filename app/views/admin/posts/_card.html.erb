@@ -1,0 +1,10 @@
+<div class="qa-card">
+    <h3 class="qa-title">
+        <%= link_to post.title.presence || "(без названия)", admin_post_path(post) %>
+    </h3>
+    <p class="qa-excerpt"><%= truncate(post.body.to_s, length: 140) %></p>
+    <div class="qa-meta">
+        <span>Комментарии: <%= post.comments.size rescue 0 %></span>
+        <span><%= l(post.created_at, format: :short) rescue post.created_at %></span>
+    </div>
+</div>

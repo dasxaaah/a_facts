@@ -1,50 +1,81 @@
-<div class="auth-wrapper">
-    <div class="auth-container">
-        <h2 class="auth-title">Регистрация</h2>
+<div class="auth-layout">
+    <div class="auth-visual">
+        <%= image_tag "auth_back.png", alt: "", class: "auth-visual__img" %>
+    </div>
 
-        <%= form_with(model: resource, url: registration_path(resource_name), local: true, html: { class: "auth-form" }) do |f| %>
-        <%# Ошибки Devise %>
-        <% if resource.errors.any? %>
-        <div class="auth-errors">
-            <div class="auth-error-title">Проверьте форму:</div>
-            <ul>
-                <% resource.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-                <% end %>
-            </ul>
-        </div>
-        <% end %>
+    <div class="auth-form">
+        <section class="auth-title-section">
+            <h1 class="auth-title">Регистрация</h1>
+            <p class="auth-description">
+                Создай аккаунт, чтобы составлять подборки, <br>проходить обучение и участвовать<br> в обсуждениях
+            </p>
+        </section>
 
-        <div class="auth-field">
-            <%= f.label :email, "E-mail" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "auth-input" %>
-        </div>
+        <section class="auth-down-part">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "auth-form-inner" }) do |f| %>
 
-        <div class="auth-field">
-            <%= f.label :password, "Пароль" %>
-            <%= f.password_field :password, autocomplete: "new-password", class: "auth-input" %>
-            <% if @minimum_password_length %>
-            <div class="auth-hint">Минимум <%= @minimum_password_length %> символов</div>
+            <% if resource.errors.any? %>
+            <div class="auth-errors">
+                <div class="auth-error-title">Проверьте форму:</div>
+                <ul>
+                    <% resource.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
             <% end %>
-        </div>
 
-        <div class="auth-field">
-            <%= f.label :password_confirmation, "Повторите пароль" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "auth-input" %>
-        </div>
+            <div class="auth-field-button">
+                <div class="auth-fields">
 
-        <div class="auth-checkbox">
-            <label>
-                <input type="checkbox" required>
-                Я принимаю <%= link_to "условия сервиса", "/terms", class: "auth-link-inline" %>
-            </label>
-        </div>
+                    <div class="auth-field">
+                        <%= f.email_field :email,
+                autofocus: true,
+                autocomplete: "email",
+                placeholder: "Email",
+                class: "auth-input" %>
+                    </div>
 
-        <%= f.submit "Зарегистрироваться", class: "auth-btn" %>
-        <% end %>
+                    <div class="auth-field">
+                        <%= f.password_field :password,
+                autocomplete: "new-password",
+                placeholder: "Пароль",
+                class: "auth-input" %>
+                    </div>
 
-        <div class="auth-links">
-            <%= render "devise/shared/links" %>
-        </div>
+                    <div class="auth-field">
+                        <%= f.password_field :password_confirmation,
+                autocomplete: "new-password",
+                placeholder: "Повторите пароль",
+                class: "auth-input" %>
+                    </div>
+
+                    <% if @minimum_password_length %>
+                    <div class="auth-hint">
+                        Минимум <%= @minimum_password_length %> символов
+                    </div>
+                    <% end %>
+
+                    <div class="auth-checkbox">
+                        <label class="auth-checkbox__label">
+                            <%= check_box_tag :terms, "1", false, required: true, class: "auth-checkbox__input" %>
+                            <span>Я принимаю <%= link_to "условия сервиса", "/terms", class: "auth-link-inline" %></span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <div class="auth-actions">
+                    <%= f.submit "Зарегистрироваться", class: "btn-primary auth-submit" %>
+                </div>
+            </div>
+
+            <section class="auth-signup-suggest">
+                <p>Уже есть аккаунт?</p>
+                <%= link_to "Войти", new_user_session_path, class: "auth-signup-link" %>
+            </section>
+
+            <% end %>
+        </section>
     </div>
 </div>

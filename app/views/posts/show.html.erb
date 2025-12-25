@@ -1,36 +1,17 @@
 <%
-=begin%>
-<p style="color: green"><%= notice %></p>
+set_meta_tags(
+  title: "#{@post.title} | AFACTS",
+ description: @post.body.to_s.truncate(160),
+  keywords: "community, questions, answers, vfx",
+  og: {
+ title: "#{@post.title} | AFACTS",
+    type: "article",
+    url: post_url(@post)
+  }
+)
+%>
 
-<h2><%= @post.title %></h2>
-
-<p>
-    <strong>Автор:</strong>
-    <%= @post.author.presence || "не указан" %>
-</p>
-
-<p>
-    <%= simple_format(@post.body.to_s) %>
-</p>
-
-<hr>
-
-<h2>Комментарии</h2>
-<%= render @post.comments %>
-
-<h2>Добавить комментарий</h2>
-<%= render "comments/form" %>
-
-<hr>
-
-<div>
-    <%= link_to "Редактировать пост", edit_post_path(@post) %> |
-    <%= link_to "Назад к списку постов", posts_path %>
-</div>
-<%
-=end%>
-
-
+<% content_for :title, @post.title %>
 <div class="post-page">
 
     <article class="post-card">
@@ -38,13 +19,6 @@
             <h1 class="post-card__title"><%= @post.title %></h1>
 
             <div class="post-card__meta">
-                <%
-=begin%>
-                <span class="post-card__author">
-                    Автор: <strong><%= @post.author.presence || "не указан" %></strong>
-                </span>
-                <%
-=end%>
                 <span class="post-card__date">
                     <%= l(@post.created_at, format: :long) rescue @post.created_at %>
                 </span>
@@ -55,22 +29,48 @@
             <%= simple_format(@post.body.to_s) %>
         </div>
 
+        #картинка
+        <% if @post.post_image.present? %>
+        <%= image_tag @post.post_image.url %>
+        <% end %>
+
         <footer class="post-card__footer">
-            <%= link_to "Редактировать пост", edit_post_path(@post), class: "btn btn-secondary" %>
-            <%= link_to "Назад к списку постов", posts_path, class: "btn btn-link" %>
-        </footer>
+            <% if user_signed_in? && @post.user == current_user %>
+            <%= link_to "Редактировать пост",
+            edit_post_path(@post),
+            class: "btn btn-secondary" %>
+            <% end %>
+
+
     </article>
 
     <section class="comments">
         <h2 class="comments__title">Комментарии</h2>
 
         <div class="comments__list">
-            <%= render @post.comments %>
+            <%= render partial: "admin/comments/comment", collection: @post.comments, as: :comment %>
         </div>
 
         <div class="comments__form">
             <h3 class="comments__form-title">Добавить комментарий</h3>
-            <%= render "comments/form" %>
+            <%= render "comments/form", post: @post %>
         </div>
     </section>
+    <footer class="post-card__footer">
+        <% if user_signed_in? && (current_user.admin? || @post.user == current_user) %>
+        <%
+=begin%>
+        <%= link_to "Редактировать пост", edit_admin_post_path(@post), class: "btn btn-secondary" %>
+        <%
+=end%>
+
+        <%= button_to "Удалить пост",
+          post_path(@post),
+          method: :delete,
+          form: { data: { turbo_confirm: "Удалить пост?" } },
+          class: "btn btn-danger" %>
+        <% end %>
+
+        <%= link_to "Назад к списку постов", posts_path, class: "btn btn-link" %>
+    </footer>
 </div>

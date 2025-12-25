@@ -1,9 +1,11 @@
 class Article < ApplicationRecord
-  belongs_to :user, optional: true
+  mount_uploader :cover_image, ArticleCoverImageUploader
+  CATEGORIES = %w[разборы технологии личности подборки].freeze
 
-  enum article_type: {
-    article: 1,
-    tutorial: 2
-  }
+  validates :category, inclusion: { in: CATEGORIES }, allow_blank: true
+  def reading_minutes
+    words = body.to_s.split.size
+    [(words / 180.0).ceil, 1].max
+  end
 end
 
