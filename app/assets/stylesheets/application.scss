@@ -1456,3 +1456,84 @@ h1 {
 .section-title {
   margin-top: 10rem;
 }
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+/* Фильтры */
+.article-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.filter {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #1c1c1c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter.active {
+  background: #ff3b8b;
+}
+
+/* Сетка */
+.articles-grid {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Карточка */
+.article-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Картинка */
+.article-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #222;
+}
+
+.article-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Мета */
+.article-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.tag {
+  color: #ff3b8b;
+}
+
+.dot {
+  opacity: 0.6;
+}
+
+/* Заголовок */
+.article-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff;
+}
