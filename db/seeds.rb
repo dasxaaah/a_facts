@@ -131,27 +131,23 @@ end
 def seed_articles_and_tutorials
   puts "== Seeding Articles and Tutorials =="
 
-  author = User.find_by(email: "qa_author@example.com") || User.first
+  admin = admin_user
 
   ARTICLES_DATA.each do |data|
-    article = Article.create!(
+    a = Article.create!(
       title: data[:title],
       body: data[:body],
-      category: data[:category],
-      user: author
+      category: data[:category],    
     )
-
-    puts "Article: #{article.title} (#{article.category})"
+    puts "Article: #{a.title}"
   end
 
   TUTORIALS_DATA.each do |data|
-    tutorial = Tutorial.create!(
+    t = Tutorial.create!(
       title: data[:title],
       body: data[:body],
-      user: author
     )
-
-    puts "Tutorial: #{tutorial.title}"
+    puts "Tutorial: #{t.title}"
   end
 end
 
