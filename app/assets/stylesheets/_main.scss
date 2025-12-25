@@ -1,0 +1,22 @@
+.main_cover {
+  height: 100vh;
+  background-image: image-url('main_cover.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .main_cover_content {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    padding-top: 200px;
+
+    p {
+      width: 60%;
+    }
+  }
+}

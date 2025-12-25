@@ -1,0 +1,126 @@
+.menu_container {
+  width: calc(100vw - 148px);
+  margin: auto;
+  transform: translateX(40px);
+  padding: 0 26px;
+  height: 56px;
+  position: fixed;
+  top: 20px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 11;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 100px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+
+    background-color: var(--white-transparent);
+
+    border-radius: 100px;
+
+    box-shadow: inset 0 0 4px 2px rgba(255, 255, 255, 0.25);
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    font-family: var(--arialbold);
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    z-index: 12;
+
+    a {
+      text-decoration: none;
+      color: var(--black);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    #menu_main {
+      background-color: var(--purple);
+
+      &:hover {
+        background-color: var(--purple_secondary);
+      }
+    }
+
+    #menu_tutorial {
+      background-color: var(--green);
+
+      &:hover {
+        background-color: var(--green_secondary);
+      }
+    }
+    #menu_articles {
+      background-color: var(--yellow);
+
+      &:hover {
+        background-color: var(--yellow_secondary);
+      }
+    }
+    #menu_about {
+      background-color: var(--pink);
+
+      &:hover {
+        background-color: var(--pink_secondary);
+      }
+    }
+    #menu_community {
+      background-color: var(--cyan);
+
+      &:hover {
+        background-color: var(--cyan_secondary);
+      }
+    }
+  }
+
+  .menu_search_and_profile {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 12;
+
+    .menu_search {
+      background: var(--light-gray);
+      padding: 10px 44px 10px 14px;
+      position: relative;
+      border-radius: 300px;
+
+      .menu_search_input {
+        all: unset;
+        box-sizing: border-box;
+        display: inline-block;
+        border-radius: 300px;
+        font-family: var(--golos);
+        color: var(--white);
+      }
+
+      .menu_search_icon {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        pointer-events: none;
+      }
+    }
+
+    .menu_profile {
+      width: 80%;
+
+      img {
+        width: 30px;
+      }
+    }
+  }
+}

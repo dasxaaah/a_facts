@@ -1,2 +1,183 @@
-<h1>VFX Media</h1>
-<p>Превью разделов </p>
+<section class="main_cover">
+  <div class="main_cover_content">
+    <h1>Медиа-сервис о&#8239;&#8239;визуальных эффектах 
+      в&#8239;&#8239;киноиндустрии</h1>
+    <p class="subhead">Уникальный проект для&nbsp;тех,
+      кто&nbsp;хочет не&nbsp;просто смотреть кино, а&nbsp;понимать, 
+      как&nbsp;создаются сцены.</p>
+    <%= link_to "Перейти к обучению", tutorial_index_path, class: "button purple_button" %>
+  </div>
+</section>
+<section class="main_articles_of_the_week padding">
+  <div class="layout_main_header">
+    <h2>Статьи недели</h2>
+    <%= link_to "Смотреть все", articles_path, class: "button yellow_button" %>
+  </div>
+  <div class="layout_cards_1">
+    <%= link_to tutorial_index_path, class: "" do %>
+      <div class="card">
+        <div class="card_info">
+          <div class="card_info_type light_gray">
+            <div class="circle_fill yellow"></div>
+            <p class="smalltext">Технологии</p>
+          </div>
+          <div class="dark_gray">
+            <p class="smalltext">12 мин</p>
+          </div>
+          <div class="dark_black">
+            <p class="smalltext">11.02.2026</p>
+          </div>
+        </div>
+        <div class="card_cover" id="article1">
+        </div>
+        <div class="card_title light_gray">
+          <h3>Симуляция жидкости в&#8239;&#8239;кино: от&#8239;&#8239;воды до&#8239;&#8239;лавы</h3>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to tutorial_index_path, class: "" do %>
+      <div class="card">
+        <div class="card_info">
+          <div class="card_info_type light_gray">
+            <div class="circle_fill yellow"></div>
+            <p class="smalltext">Подборки</p>
+          </div>
+          <div class="dark_gray">
+            <p class="smalltext">12 мин</p>
+          </div>
+          <div class="dark_black">
+            <p class="smalltext">11.02.2026</p>
+          </div>
+        </div>
+        <div class="card_cover" id="article2">
+        </div>
+        <div class="card_title light_gray">
+          <h3>Лучшие VFX 2025 года: наш топ-5</h3>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to tutorial_index_path, class: "" do %>
+      <div class="card">
+        <div class="card_info">
+          <div class="card_info_type light_gray">
+            <div class="circle_fill yellow"></div>
+            <p class="smalltext">Подборки</p>
+          </div>
+          <div class="dark_gray">
+            <p class="smalltext">12 мин</p>
+          </div>
+          <div class="dark_black">
+            <p class="smalltext">11.02.2026</p>
+          </div>
+        </div>
+        <div class="card_cover" id="article3">
+          <%# <img src="<%= asset_path('articles_covers/article1') " alt="Обложка"> %>
+        </div>
+        <div class="card_title light_gray">
+          <h3>Фильмы, где&#8239;&#8239;CGI лучше, чем в&#8239;&#8239;Marvel</h3>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to tutorial_index_path, class: "" do %>
+      <div class="card">
+        <div class="card_info">
+          <div class="card_info_type light_gray">
+            <div class="circle_fill yellow"></div>
+            <p class="smalltext">Разборы</p>
+          </div>
+          <div class="dark_gray">
+            <p class="smalltext">12 мин</p>
+          </div>
+          <div class="dark_black">
+            <p class="smalltext">11.02.2026</p>
+          </div>
+        </div>
+        <div class="card_cover" id="article4">
+        </div>
+        <div class="card_title light_gray">
+          <h3>Обман зрения: 7 сцен без&#8239;&#8239;компьютерной графики</h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="layout_cards_2">
+    <%= link_to tutorial_index_path, class: "" do %>
+      <div class="card">
+        <div class="card_info">
+          <div class="card_info_type light_gray">
+            <div class="circle_stroke_yellow"></div>
+            <p class="smalltext">Разборы</p>
+          </div>
+          <div class="dark_gray">
+            <p class="smalltext">12 мин</p>
+          </div>
+          <div class="dark_black">
+            <p class="smalltext">11.02.2026</p>
+          </div>
+        </div>
+        <div class="card_cover" id="article5">
+        </div>
+        <div class="card_title light_gray">
+          <h3>От&#8239;&#8239;куклы до&#8239;&#8239;CGI: эволюция Чужого за&#8239;&#8239;45&#8239;&#8239;лет</h3>
+        </div>
+      </div>
+    <% end %>
+    <div class="layout_cards_2_column">
+      <%= link_to tutorial_index_path, class: "" do %>
+        <div class="card">
+          <div class="card_info">
+            <div class="card_info_type yellow">
+              <div class="circle_stroke_black"></div>
+              <p class="smalltext">Разборы</p>
+            </div>
+            <div class="dark_gray">
+              <p class="smalltext">12 мин</p>
+            </div>
+            <div class="dark_black">
+              <p class="smalltext">11.02.2026</p>
+            </div>
+          </div>
+          <div class="card_cover" id="article6">
+          </div>
+          <div class="card_title yellow">
+            <h3>Ровалы VFX</h3>
+          </div>
+        </div>
+      <% end %>
+      <%= link_to tutorial_index_path, class: "" do %>
+        <div class="card">
+          <div class="card_info">
+            <div class="card_info_type light_gray">
+              <div class="circle_stroke_yellow"></div>
+              <p class="smalltext">Разборы</p>
+            </div>
+            <div class="dark_gray">
+              <p class="smalltext">12 мин</p>
+            </div>
+            <div class="dark_black">
+              <p class="smalltext">11.02.2026</p>
+            </div>
+          </div>
+          <div class="card_cover" id="article7">
+            <%# <img src="<%= asset_path('articles_covers/article1') " alt="Обложка"> %>
+          </div>
+          <div class="card_title light_gray">
+            <h3>Взрыв без&#8239;&#8239;бюджета</h3>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<section class="main_community padding">
+  <div class="layout_main_header">
+    <h2>Присоединяйтесь к&#8239;&#8239;сообществу</h2>
+    <%= link_to "Смотреть все", articles_path, class: "button cyan_button" %>
+  </div>
+</section>
+<section class="main_tutorial padding">
+  <div class="layout_main_header">
+    <h2>Проходи обучение</h2>
+    <%= link_to "Смотреть все", tutorial_index_path, class: "button green_button" %>
+  </div>
+</section>

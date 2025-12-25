@@ -4,9 +4,6 @@
     <source src="<%= asset_path('a_facts_bg_video.mp4') %>" type="video/mp4">
   </video>
   <div class="ruler_grid"></div>
-  <div id="logo">
-    <img src="<%= asset_path('logo.svg') %>" alt="a_facts logo">
-  </div>
   <%# ------------------SLIDER--------------------------------------- %>
   <div class="slider_container">
     <div class="content_wrapper">
@@ -88,15 +85,15 @@
       }
   });
 
-  const cursor = document.getElementById('custom-cursor');
-  const colors = ['#9cff5b', '#fdff6e', '#ff78ff', '#6af5ff'];
-  let colorIndex = 0;
-  window.addEventListener('mousemove', (e) => {
-      cursor.style.top = e.clientY + 'px';
-      cursor.style.left = e.clientX + 'px';
-  });
-  setInterval(() => {
-      colorIndex = (colorIndex + 1) % colors.length;
-      cursor.style.backgroundColor = colors[colorIndex];
-  }, 200);
+  // const cursor = document.getElementById('custom-cursor');
+  // const colors = ['#9cff5b', '#fdff6e', '#ff78ff', '#6af5ff'];
+  // let colorIndex = 0;
+  // window.addEventListener('mousemove', (e) => {
+  //     cursor.style.top = e.clientY + 'px';
+  //     cursor.style.left = e.clientX + 'px';
+  // });
+  // setInterval(() => {
+  //     colorIndex = (colorIndex + 1) % colors.length;
+  //     cursor.style.backgroundColor = colors[colorIndex];
+  // }, 200);
 </script>

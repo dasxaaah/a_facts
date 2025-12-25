@@ -1,6 +1,20 @@
-<nav class="menu">
-  <%= link_to "Учебник", tutorial_index_path, id: "menu_tutorial" %>
-  <%= link_to "Статьи", articles_index_path, id: "menu_articles" %>
-  <%= link_to "О нас", about_path, id: "menu_about" %>
-  <%= link_to "Коммьюнити", community_path, id: "menu_community" %>
-</nav>
+<div class="menu_container">
+  <img src="<%= asset_path('logo') %>" alt="Логотип" class="menu_logo">
+  <nav class="menu">
+    <%= link_to "Главная", root_path, id: "menu_main" %>
+    <%= link_to "О нас", about_path, id: "menu_about" %>
+    <%= link_to "Учебник", tutorial_index_path, id: "menu_tutorial" %>
+    <%# <%= link_to "Статьи", articles_index_path, id: "menu_articles" %>
+    <%= link_to "Статьи", articles_path, id: "menu_articles" %>
+    <%= link_to "Коммьюнити", community_path, id: "menu_community" %>
+  </nav>
+  <div class="menu_search_and_profile">
+    <div class="menu_search">
+      <input type="text" placeholder="Поиск..." class="menu_search_input">
+      <img src="<%= asset_path('search_icon') %>" alt="Поиск" class="menu_search_icon">
+    </div>
+    <div class="menu_profile">
+      <img src="<%= asset_path('profile_icon') %>" alt="Профиль" class="menu_profile_icon">
+    </div>
+  </div>
+</div>

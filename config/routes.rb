@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   get "community", to: "community#index"
   get "community/:id", to: "community#show", as: "community_post"
   resources :tutorial, only: [ :index, :show ]
-  get "articles/index"
-  get "articles/show"
+  # get "articles/index"
+  # get "articles/show"
+  resources :articles, only: [:index, :show]
   get "pages/about"
   resources :posts
   get "hello/index"
