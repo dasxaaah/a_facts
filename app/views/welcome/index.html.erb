@@ -9,5 +9,44 @@ set_meta_tags(
   }
 )
 %>
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<section class="home-hero">
+    <div class="home-hero__content">
+        <h1 class="home-hero__title">
+            AFACTS
+        </h1>
+
+        <p class="home-hero__subtitle">
+            Медиа о визуальных эффектах, кино и технологиях.<br>
+            Разборы, туториалы и обсуждения от практиков индустрии.
+        </p>
+
+        <div class="home-hero__actions">
+            <a href="/articles" class="btn-primary">Читать статьи</a>
+            <a href="/tutorials" class="btn-secondary">Перейти к обучению</a>
+        </div>
+    </div>
+</section>
+
+<section class="home-preview">
+    <h2 class="home-section-title">Последние материалы</h2>
+
+    <div class="home-cards">
+        <div class="home-card">
+            <span class="tag">Технологии</span>
+            <h3>Как работает зелёный экран</h3>
+            <p>От съёмки до финального композита в Nuke.</p>
+        </div>
+
+        <div class="home-card">
+            <span class="tag">Разборы</span>
+            <h3>Почему 3DEqualizer стандарт</h3>
+            <p>Камера, линзы и точный solve.</p>
+        </div>
+
+        <div class="home-card">
+            <span class="tag">Подборки</span>
+            <h3>Лучшие VFX шоты 2024</h3>
+            <p>Фильмы и сериалы, которые стоит разобрать.</p>
+        </div>
+    </div>
+</section>
