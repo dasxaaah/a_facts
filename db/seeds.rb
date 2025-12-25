@@ -41,11 +41,13 @@ QA_THREADS = {
 ARTICLES_DATA = [
   {
     title: "Как работает зелёный экран: от съёмки до композита",
-    body:  "Green screen это система: свет, clean plate, spill контроль и корректная работа keyer-ноды."
+    body:  "Green screen это система: свет, clean plate, spill контроль и корректная работа keyer-ноды.",
+    category: "технологии"
   },
   {
     title: "Почему 3DEqualizer считается стандартом для трекинга камеры",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах."
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "разборы"
   }
 ]
 
@@ -132,21 +134,24 @@ def seed_articles_and_tutorials
   author = User.find_by(email: "qa_author@example.com") || User.first
 
   ARTICLES_DATA.each do |data|
-    a = Article.create!(
+    article = Article.create!(
       title: data[:title],
       body: data[:body],
+      category: data[:category],
       user: author
     )
-    puts "Article: #{a.title}"
+
+    puts "Article: #{article.title} (#{article.category})"
   end
 
   TUTORIALS_DATA.each do |data|
-    t = Tutorial.create!(
+    tutorial = Tutorial.create!(
       title: data[:title],
       body: data[:body],
       user: author
     )
-    puts "Tutorial: #{t.title}"
+
+    puts "Tutorial: #{tutorial.title}"
   end
 end
 

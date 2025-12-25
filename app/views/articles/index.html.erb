@@ -1,19 +1,17 @@
-<h1>Статьи user</h1>
+<h1 class="section-title">Статьи</h1>
 
-<div class="card-grid">
+<div class="filters">
+    <%= link_to "Все", articles_path,
+      class: "filter-btn #{'is-active' if @selected_category.blank?}" %>
+
+    <% @categories.each do |cat| %>
+    <%= link_to cat, articles_path(category: cat),
+        class: "filter-btn #{'is-active' if @selected_category == cat}" %>
+    <% end %>
+</div>
+
+<div class="card-grid card-grid--4">
     <% @articles.each do |article| %>
-    <article class="card">
-        <h2>
-            <%= link_to article.title, article_path(article) %>
-        </h2>
-
-        <p>
-            <%= truncate(article.body.to_s, length: 160) %>
-        </p>
-
-        <small>
-            <%= l(article.created_at, format: :short) rescue article.created_at %>
-        </small>
-    </article>
+    <%= render "card", article: article %>
     <% end %>
 </div>

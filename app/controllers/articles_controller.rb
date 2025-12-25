@@ -4,8 +4,13 @@ class ArticlesController < ApplicationController
   # before_action :require_admin!
 
   def index
+    @categories = Article::CATEGORIES
+    @selected_category = params[:category].presence
+
     @articles = Article.order(created_at: :desc)
+    @articles = @articles.where(category: @selected_category) if @selected_category
   end
+
 
   def show
     @article = Article.find(params[:id])
@@ -19,3 +24,4 @@ class ArticlesController < ApplicationController
     redirect_to root_path, alert: "Нет доступа"
   end
 end
+
