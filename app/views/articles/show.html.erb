@@ -1,0 +1,19 @@
+<%
+set_meta_tags(
+ title: "#{@article.title} | AFACTS", 
+ description: @article.body.to_s.truncate(160),
+  keywords: "article, vfx, compositing, tracking, pipeline",
+  og: {
+  title: "#{@article.title} | AFACTS",   
+  type: "article",
+    url: article_url(@article)
+  }
+)
+%>
+<h1><%= @article.title %></h1>
+
+<div>
+    <%= simple_format(@article.body) %>
+</div>
+
+<%= link_to "Назад к статьям", articles_path %>

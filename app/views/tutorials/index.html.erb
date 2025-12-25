@@ -1,0 +1,7 @@
+<h1 class='section-title'>Учебник user</h1>
+
+<% @tutorials.each do |t| %>
+<div>
+    <%= link_to t.title, tutorial_path(t) %>
+</div>
+<% end %>

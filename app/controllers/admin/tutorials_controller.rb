@@ -2,10 +2,10 @@ class Admin::TutorialsController < ApplicationController
     before_action :authenticate_user!
 
   def index
-    @tutorials = Post.where(post_type: 1)  
+    @tutorials = Tutorial.order(created_at: :desc)
   end
 
   def show
-    @tutorial = Post.find(params[:id])
+    @tutorial = Tutorial.find(params[:id])
   end
 end

@@ -1,7 +1,8 @@
 class Admin::PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post, only: %i[show edit update destroy]
-  before_action :authorize_post!, only: %i[edit update destroy]
+  load_and_authorize_resource
+  # before_action :authenticate_user!
+  # before_action :set_post, only: %i[show edit update destroy]
+  # before_action :authorize_post!, only: %i[edit update destroy]
 
   def index
     @posts = Post.order(created_at: :desc)
@@ -54,6 +55,6 @@ class Admin::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_type)
+    params.require(:post).permit(:title, :body, :post_type, :post_image)
   end
 end

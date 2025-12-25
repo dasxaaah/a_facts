@@ -1,0 +1,12 @@
+<%
+set_meta_tags(
+ title: "#{@tutorial.title} | AFACTS",
+   description: @tutorial.body.to_s.truncate(160),
+  keywords: "tutorial, vfx, nuke, houdini, after effects",
+  og: {
+title: "#{@tutorial.title} | AFACTS",
+    type: "article",
+    url: tutorial_url(@tutorial)
+  }
+)
+%>

@@ -25,152 +25,131 @@ QA_QUESTIONS = [
 
 QA_THREADS = {
   0 => [
-    "Для параллакса берите 3DEqualizer. Если нет - PFTrack ок. Снимите много tracking-марок и метадату камеры.",
-    "Ещё проверь rolling shutter - иногда спасает предварительная стабилизация/дисторсия линзы."
+    "Для параллакса берите 3DEqualizer. Если нет - PFTrack тоже ок.",
+    "Проверь rolling shutter. Иногда помогает стабилизация и lens distortion workflow."
   ],
   1 => [
-    "HDRI норм, но сделайте grey/colour-chart на площадке, потом match-grade. В Nuke - C_DLUT + Grade по чарту.",
-    "Посмотрите на ACES - сведёте несоответствия между дублями аккуратнее."
+    "Нужны grey/colour chart на площадке. Потом match-grade по чарту.",
+    "Если используете ACES, сводить разные дубли обычно проще."
   ],
   2 => [
-    "Для сложных волос лучше Nuke: Primatte/Ultimatte+IBK. В AE можно Photokey + ручные маски, но больно.",
-    "Spill убирайте по каналам, в Nuke - DespillMadness/Keymix."
+    "Для волос удобнее Nuke: IBK + Keyer, и потом ручная доводка.",
+    "Spill убирайте отдельно, часто проще через Keymix + despill."
   ]
 }
 
 ARTICLES_DATA = [
   {
     title: "Как работает зелёный экран: от съёмки до композита",
-    body:  "Green screen это не просто фон, а система: свет, clean plate, spill контроль и корректная работа keyer нодами. В статье разбирается путь от съёмки до финального композита."
+    body:  "Green screen это система: свет, clean plate, spill контроль и корректная работа keyer-ноды.",
+    category: "технологии"
   },
   {
     title: "Почему 3DEqualizer считается стандартом для трекинга камеры",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve для сложных шотов с параллаксом. Объясняем, почему его выбирают крупные студии."
-  },
-  {
-    title: "Как устроен пайплайн современного VFX проекта",
-    body:  "Matchmove, layout, assets, animation, FX, lighting, compositing и DI. Показываем, как департаменты собираются в единый пайплайн и почему это критично для качества."
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "разборы"
   }
 ]
 
 TUTORIALS_DATA = [
   {
     title: "Туториал: первый композитинг шот в Nuke",
-    body:  "Разбираем базовый сетап: Read, Grade, Merge, Keyer, маски, организацию нод и Viewer Input Processing на простом шоте."
-  },
-  {
-    title: "Туториал: параллакс в After Effects из одной картинки",
-    body:  "Готовим слои в Photoshop, импортируем в AE, настраиваем трёхмерную сцену и анимацию камеры с контролем глубины."
+    body:  "Базовый сетап: Read, Grade, Merge, Keyer, маски, организация нод."
   },
   {
     title: "Туториал: базовая симуляция дыма в Houdini",
-    body:  "Pyro Solver, эмиттер, параметры плотности и температуры, быстрый превью рендер и экспорт для композита."
+    body:  "Pyro Solver, эмиттер, параметры плотности, быстрый preview и экспорт."
   }
 ]
 
 def seed
   create_base_users
   create_admin_user
-  seed_example_post
-  seed_qa_threads
+
+  seed_posts_with_comments
   seed_articles_and_tutorials
+
+
   puts "== Seeding finished =="
 end
 
 def create_base_users
   QA_USERS.each do |email|
-    user = User.find_or_create_by!(email: email) do |u|
-      u.password = "testtest"
-    end
+    user = User.find_or_initialize_by(email: email)
+    user.password = "1234qwer"
+    user.password_confirmation = "1234qwer" if user.respond_to?(:password_confirmation=)
+    user.save!
     puts "User: #{user.email} (id=#{user.id})"
   end
 end
 
 def create_admin_user
-  admin = User.find_or_create_by!(email: "admin@gmail.com") do |u|
-    u.password = "1234qwer"
-    u.password_confirmation = "1234qwer"
+  admin = User.find_or_create_by!(email: "admin@email.com") do |u|
+    u.password = "testtest"
   end
 
-  admin.update!(admin: true) unless admin.admin?
+  if admin.respond_to?(:admin=)
+    admin.update!(admin: true)
+  end
 
   puts "Admin: #{admin.email} (id=#{admin.id})"
 end
 
-def seed_example_post
-  author = User.find_by(email: "user0@example.com")
+def upload_random_post_image
+  path = Dir.glob(Rails.root.join("public/autoupload/posts/*")).sample
+  return nil unless path
 
-  post = author.posts.find_or_create_by!(title: "Какой софт для трекинга при параллаксе?") do |p|
-    p.body = "Нужен совет по пайплайну (Nuke/AE, FBX и т.д.)."
-  end
-
-  puts "Example post: #{post.title} (id=#{post.id})"
+  uploader = PostImageUploader.new(Post.new, :post_image)
+  uploader.cache!(File.open(path))
+  uploader
 end
 
-def seed_qa_threads
-  puts "\n== Seeding Q&A (posts + comments) =="
+def seed_posts_with_comments
+  puts "== Seeding Posts (Q&A) =="
 
-  author = User.find_by(email: "qa_author@example.com")
+  author = User.find_by(email: "qa_author@example.com") || User.first
   commenters = User.where(email: ["qa_user1@example.com", "qa_user2@example.com", "qa_user3@example.com"]).to_a
 
   QA_QUESTIONS.each_with_index do |q, index|
-    post = author.posts.find_or_create_by!(title: q[:title]) do |p|
-      p.body = q[:body]
+    post = Post.create!(
+      title: q[:title],
+      body:  q[:body],
+      user:  author,
+      post_image: upload_random_post_image
+    )
+
+    thread_texts = QA_THREADS[index] || []
+    thread_texts.each_with_index do |text, j|
+      user = commenters[(post.id + j) % commenters.size] rescue author
+      Comment.create!(post: post, user: user, body: text)
     end
 
-    thread = QA_THREADS[index] || []
-    ensure_comments_for_post(post, thread, commenters)
-
-    puts "• Q&A пост: #{post.title} (#{post.comments.count} комментариев)"
+    puts "Post: #{post.title} (comments=#{post.comments.count}, image=#{post.post_image.present?})"
   end
-
-  puts "Q&A seed done\n"
 end
 
 def seed_articles_and_tutorials
-  puts "\n== Seeding Articles and Tutorials =="
+  puts "== Seeding Articles and Tutorials =="
 
-  author = User.find_by(email: "qa_author@example.com") || User.first
+  admin = admin_user
 
-  # статьи
   ARTICLES_DATA.each do |data|
-    article = Article.find_or_create_by!(title: data[:title]) do |a|
-      a.body = data[:body]
-      # enum: article_type: { article: ..., tutorial: ... }
-      a.article_type = :article if a.respond_to?(:article_type=)
-      a.user         = author if a.respond_to?(:user=)
-    end
-
-    puts "Article: #{article.title} (id=#{article.id})"
+    a = Article.create!(
+      title: data[:title],
+      body: data[:body],
+      category: data[:category],    
+    )
+    puts "Article: #{a.title}"
   end
 
-  # туториалы
   TUTORIALS_DATA.each do |data|
-    tutorial = Article.find_or_create_by!(title: data[:title]) do |a|
-      a.body = data[:body]
-      a.article_type = :tutorial if a.respond_to?(:article_type=)
-      a.user         = author if a.respond_to?(:user=)
-    end
-
-    puts "Tutorial: #{tutorial.title} (id=#{tutorial.id})"
-  end
-
-  puts "Articles and tutorials seed done\n"
-end
-
-def ensure_comments_for_post(post, texts, commenters)
-  existing_count = post.comments.count
-  needed = texts.size - existing_count
-  return if needed <= 0
-
-  texts.last(needed).each_with_index do |text, j|
-    user = commenters[(post.id + j) % commenters.size] if commenters.any?
-
-    comment_data = { body: text }
-    comment_data[:user] = user if post.comments.build.respond_to?(:user)
-
-    post.comments.create!(comment_data)
+    t = Tutorial.create!(
+      title: data[:title],
+      body: data[:body],
+    )
+    puts "Tutorial: #{t.title}"
   end
 end
+
 
 seed

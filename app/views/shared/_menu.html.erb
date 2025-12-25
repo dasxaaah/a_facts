@@ -1,24 +1,45 @@
 <nav class="menu">
+    <%= link_to root_path, class: "menu-logo" do %>
+    <%= image_tag "new_logo.png", alt: "AFACTS", class: "menu-logo__img" %>
+    <% end %>
     <div class="W_MainSection">
+
+
+
         <%= link_to "О нас", about_path, id: "menu_about" %>
 
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.respond_to?(:admin?) && current_user.admin? %>
+        <!-- Админ -->
         <%= link_to "Учебник", admin_tutorials_path, id: "menu_tutorial" %>
         <%= link_to "Статьи", admin_articles_path, id: "menu_articles" %>
         <%= link_to "Коммьюнити", admin_community_path, id: "menu_community" %>
+        <% else %>
+        <!-- Обычный пользователь ИЛИ гость -->
+        <%= link_to "Учебник", tutorials_path, id: "menu_tutorial" %>
+        <%= link_to "Статьи", articles_path, id: "menu_articles" %>
+        <%= link_to "Коммьюнити", community_index_path, id: "menu_community" %>
         <% end %>
     </div>
 
     <div id="menu_user">
         <% if user_signed_in? %>
-        <%#= link_to current_user.email, edit_user_registration_path, class: "auth-link" %>
-        <%= button_to "Выйти", destroy_user_session_path,
-          method: :delete,
-          form: { data: { turbo: true } },
-          class: "auth-btn as-link" %>
-        <%# else %>
-        <%#= link_to "Войти", new_user_session_path, class: "auth-btn" %>
-        <%#= link_to "Зарегистрироваться", new_user_registration_path, class: "auth-link" %>
+        <%= button_to destroy_user_session_path,
+      method: :delete,
+      form: { data: { turbo: true } },
+      class: "menu-profile-btn",
+      title: "Выйти" do %>
+
+        <%= image_tag "profile_icon.png", alt: "Профиль", class: "menu-profile-icon" %>
+
+        <% end %>
+        <% else %>
+        <%= link_to new_session_path(:user),
+      class: "menu-profile-link",
+      title: "Войти" do %>
+
+        <%= image_tag "profile_icon.png", alt: "Войти", class: "menu-profile-icon" %>
+
+        <% end %>
         <% end %>
     </div>
 </nav>

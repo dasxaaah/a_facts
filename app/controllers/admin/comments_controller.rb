@@ -1,8 +1,10 @@
 class Admin::CommentsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_post
-  before_action :set_comment, only: :destroy
-  before_action :authorize_comment!, only: :destroy
+  load_and_authorize_resource :post, class: "Post"
+  load_and_authorize_resource :comment, through: :post
+  # before_action :authenticate_user!
+  # before_action :set_post
+  # before_action :set_comment, only: :destroy
+  # before_action :authorize_comment!, only: :destroy
 
   def create
     @comment = @post.comments.build(comment_params)

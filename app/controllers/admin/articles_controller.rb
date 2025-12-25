@@ -1,13 +1,14 @@
 class Admin::ArticlesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_admin!
+  load_and_authorize_resource class: "Post"
+  # before_action :authenticate_user!
+  # before_action :require_admin!
 
   def index
-    @articles = Post.where(post_type: 1).order(created_at: :desc)
+    @articles = Article.order(created_at: :desc)
   end
 
   def show
-    @article = Post.find(params[:id])
+    @article = Article.find(params[:id])
   end
 
   private
