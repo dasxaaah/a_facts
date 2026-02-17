@@ -53,6 +53,8 @@ gem 'carrierwave', '~> 3.0'
 #gem "carrierwave-imageoptimizer"
 gem "mini_magick"
 gem "russian"
+gem "jwt"
+gem "devise-jwt"
 
 
 group :production do
