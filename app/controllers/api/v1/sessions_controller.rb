@@ -51,9 +51,9 @@ class Api::V1::SessionsController < Devise::SessionsController
         }, status: :unauthorized
       end
     end
-  def sign_in_params
-    params.require(:user).permit(:email, :password)
-  end
+#   def sign_in_params
+#     params.require(:user).permit(:email, :password)
+#   end
 
     def encrypt_payload
         payload = @user.as_json(only: [:jti])
