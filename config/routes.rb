@@ -6,6 +6,13 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :subscribers, only: :create
       get "welcome/preview"
+
+      devise_scope :user do
+        post "sign_up",          to: "registrations#create"
+        post "sign_in",          to: "sessions#create"
+        get  "authorize_by_jwt", to: "sessions#authorize_by_jwt"
+        get  "sign_out",         to: "sessions#destroy"
+      end
     end
   end
 
