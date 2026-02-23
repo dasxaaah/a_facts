@@ -1,11 +1,11 @@
 puts "== Seeding started =="
 
 QA_USERS = [
-  "user0@example.com",
-  "qa_author@example.com",
-  "qa_user1@example.com",
-  "qa_user2@example.com",
-  "qa_user3@example.com"
+  "user1@gmail.com",
+  "user2@gmail.com",
+  "user3@gmail.com",
+  "user4@gmail.com",
+  "user5@gmail.com"
 ]
 
 QA_QUESTIONS = [
