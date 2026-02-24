@@ -42,7 +42,7 @@ ARTICLES_DATA = [
   {
     title: "За кулисами: сцены из  «Безумного Макса»",
     category: "Разборы",
-    cover: "green_screen.jpg",
+    cover: "article_cover_1.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -50,7 +50,7 @@ ARTICLES_DATA = [
       <p>Ключевое — равномерный фон и separation от актёра.</p>
 
       <figure>
-        <img src="/autoupload/articles/gs_setup.jpg" alt="Схема света" />
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
         <figcaption>Пример сетапа света для хромакея</figcaption>
       </figure>
 
@@ -65,57 +65,458 @@ ARTICLES_DATA = [
   },
   {
     title: "Что такое motion capture",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_2.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "VFX разбор: плащ Доктора Стрэнджа",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Личности",
-    cover: "3de.jpg"
+    cover: "article_cover_3.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Как работает 3D-сканирование",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Подборки",
-    cover: "3de.jpg"
+    cover: "article_cover_4.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Что такое motion capture ",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_5.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Что такое motion capture ",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_1.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Чо такое motion capture ",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_2.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Что таке motion capture ",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_3.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Что такое motio capture ",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_4.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
     title: "Что такое motion capure ",
-    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
     category: "Технологии",
-    cover: "3de.jpg"
+    cover: "article_cover_5.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },{
+    title: "За кулисами: сцены из  «Безумного Макса»",
+    category: "Разборы",
+    cover: "article_cover_1.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Что такое motion capture",
+    category: "Разборы",
+    cover: "article_cover_2.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "VFX разбор: плащ Доктора Стрэнджа",
+    category: "Личности",
+    cover: "article_cover_3.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Как работает 3D-сканирование",
+    category: "Технологии",
+    cover: "article_cover_4.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Что таое motion capture ",
+    category: "Подборки",
+    cover: "article_cover_5.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Что такое motion captre ",
+    category: "Личности",
+    cover: "article_cover_1.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Ч такое motion capture ",
+    category: "Технологии",
+    cover: "article_cover_2.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Что так motion capture ",
+    category: "Разборы",
+    cover: "article_cover_3.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Что такое moti capture ",
+    category: "Личности",
+    cover: "article_cover_4.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
+  },
+  {
+    title: "Что такое motion capur ",
+    category: "Подборка",
+    cover: "article_cover_5.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   }
 ]
 

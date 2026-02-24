@@ -1395,23 +1395,9 @@ h1 {
 }
 .push_card {
   border-radius: 16px;
-  border: 1px dashed rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.03);
+  // background: rgba(255, 255, 255, 0.03);
   min-height: 180px;
-}
-
-/* варианты размеров */
-.push_card--w2 {
-  grid-column: span 2;
-}
-.push_card--h2 {
-  grid-row: span 2;
-  min-height: 380px;
-}
-.push_card--w2h2 {
-  grid-column: span 2;
-  grid-row: span 2;
-  min-height: 380px;
+  grid-column: span 1;
 }
 
 .article_card_image img {

@@ -1,4 +1,4 @@
-module ApplicationHelper
+module ArticlesHelper
   CATEGORY_ICONS = {
     "Разборы" => "icons/analysis.svg",
     "Технологии" => "icons/tech.svg",

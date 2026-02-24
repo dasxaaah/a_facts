@@ -24,8 +24,10 @@
 
 <!-- Сетка карточек -->
 <div class="articles_grid" id="articles_grid">
-    <div class="push_card push_card--w2"></div>
+    <% counter = 0 %>
+
     <% @articles.each do |article| %>
+
     <div class="article_card">
         <div class="article_card_meta">
             <span class="article_card_tag">
@@ -34,6 +36,7 @@
                 <% end %>
                 <%= article.category %>
             </span>
+
             <span class="article_card_time">
                 <%= article.reading_minutes %> мин
             </span>
@@ -52,7 +55,16 @@
                     article_path(article),
                     class: "article_card_title_link" %>
         </h2>
-
     </div>
+
+    <% counter += 1 %>
+
+    <% if counter == 2 %>
+    <div class="push_card push_card--w2"></div>
+    <% elsif counter == 5 %>
+    <div class="push_card push_card--h2"></div>
+    <% counter = 0 %>
+    <% end %>
+
     <% end %>
 </div>
