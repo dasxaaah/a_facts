@@ -1,4 +1,5 @@
 class Api::V1::SubscribersController < ApplicationController
+  include JwtAuth
   skip_before_action :verify_authenticity_token  
 
   def create

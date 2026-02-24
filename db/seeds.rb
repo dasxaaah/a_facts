@@ -40,14 +40,82 @@ QA_THREADS = {
 
 ARTICLES_DATA = [
   {
-    title: "Как работает зелёный экран: от съёмки до композита",
-    body:  "Green screen это система: свет, clean plate, spill контроль и корректная работа keyer-ноды.",
-    category: "технологии"
+    title: "За кулисами: сцены из  «Безумного Макса»",
+    category: "Разборы",
+    cover: "green_screen.jpg",
+    body: <<~HTML
+      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
+
+      <h2 id="shooting">Съёмка</h2>
+      <p>Ключевое — равномерный фон и separation от актёра.</p>
+
+      <figure>
+        <img src="/autoupload/articles/gs_setup.jpg" alt="Схема света" />
+        <figcaption>Пример сетапа света для хромакея</figcaption>
+      </figure>
+
+      <h2 id="comp">Композит</h2>
+      <ul>
+        <li>Подготовка plate</li>
+        <li>Key</li>
+        <li>Despill</li>
+        <li>Matchgrade</li>
+      </ul>
+    HTML
   },
   {
-    title: "Почему 3DEqualizer считается стандартом для трекинга камеры",
+    title: "Что такое motion capture",
     body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
-    category: "разборы"
+    category: "Технологии",
+    cover: "3de.jpg"
+  },
+  {
+    title: "VFX разбор: плащ Доктора Стрэнджа",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Личности",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Как работает 3D-сканирование",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Подборки",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Что такое motion capture ",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Технологии",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Что такое motion capture ",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Технологии",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Чо такое motion capture ",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Технологии",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Что таке motion capture ",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Технологии",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Что такое motio capture ",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Технологии",
+    cover: "3de.jpg"
+  },
+  {
+    title: "Что такое motion capure ",
+    body:  "3DE даёт точную калибровку камеры, работу с lens distortion и стабильный solve в сложных шотах.",
+    category: "Технологии",
+    cover: "3de.jpg"
   }
 ]
 
@@ -64,10 +132,11 @@ TUTORIALS_DATA = [
 
 def seed
   create_base_users
-  create_admin_user
+  admin = create_admin_user
 
   seed_posts_with_comments
-  seed_articles_and_tutorials
+  seed_articles(admin)
+  seed_tutorials(admin)
 
 
   puts "== Seeding finished =="
@@ -83,16 +152,28 @@ def create_base_users
   end
 end
 
+# старый код
+# def create_admin_user
+#   admin = User.find_or_create_by!(email: "admin@email.com") do |u|
+#     u.password = "testtest"
+#   end
+
+#   if admin.respond_to?(:admin=)
+#     admin.update!(admin: true)
+#   end
+
+#   puts "Admin: #{admin.email} (id=#{admin.id})"
+# end
+
 def create_admin_user
   admin = User.find_or_create_by!(email: "admin@email.com") do |u|
     u.password = "testtest"
   end
 
-  if admin.respond_to?(:admin=)
-    admin.update!(admin: true)
-  end
+  admin.update!(admin: true) if admin.respond_to?(:admin=)
 
   puts "Admin: #{admin.email} (id=#{admin.id})"
+  admin
 end
 
 def upload_random_post_image
@@ -107,8 +188,8 @@ end
 def seed_posts_with_comments
   puts "== Seeding Posts (Q&A) =="
 
-  author = User.find_by(email: "qa_author@example.com") || User.first
-  commenters = User.where(email: ["qa_user1@example.com", "qa_user2@example.com", "qa_user3@example.com"]).to_a
+  author = User.find_by(email: "user1@gmail.com") || User.first
+  commenters = User.where(email: ["user2@gmail.com", "user3@gmail.com", "user4@gmail.com", "user5@gmail.com"]).to_a
 
   QA_QUESTIONS.each_with_index do |q, index|
     post = Post.create!(
@@ -128,25 +209,76 @@ def seed_posts_with_comments
   end
 end
 
-def seed_articles_and_tutorials
-  puts "== Seeding Articles and Tutorials =="
+# старый код
+# def seed_articles_and_tutorials
+#   puts "== Seeding Articles and Tutorials =="
 
-  admin = admin_user
+#   admin = User.find_by(email: "admin@email.com") || User.first
+
+#   ARTICLES_DATA.each do |data|
+#     a = Article.create!(
+#       title: data[:title],
+#       body: data[:body],
+#       category: data[:category]    
+#     )
+#     puts "Article: #{a.title}"
+#   end
+#   TUTORIALS_DATA.each do |data|
+#     t = Tutorial.create!(
+#       title: data[:title],
+#       body: data[:body],
+#     )
+#     puts "Tutorial: #{t.title}"
+#   end
+# end
+
+def file_from_public(*parts)
+  path = Rails.root.join("public", *parts)
+  return nil unless File.exist?(path)
+  File.open(path)
+end
+
+def seed_articles(admin)
+  puts "== Seeding Articles =="
 
   ARTICLES_DATA.each do |data|
-    a = Article.create!(
-      title: data[:title],
-      body: data[:body],
-      category: data[:category],    
-    )
-    puts "Article: #{a.title}"
+    a = Article.find_or_initialize_by(title: data[:title])
+    a.body = data[:body]
+    a.category = data[:category]
+    a.user_id = admin.id
+
+    if data[:cover].present?
+      cover_file = file_from_public("autoupload", "articles", data[:cover])
+      if cover_file
+        a.cover_image = cover_file
+      else
+        puts "WARNING: Article cover not found: public/autoupload/articles/#{data[:cover]}"
+      end
+    end
+
+    a.save!
+    puts "Article: #{a.title} (cover=#{a.cover_image.present?})"
   end
+end
+
+def seed_tutorials(admin)
+  puts "== Seeding Tutorials =="
 
   TUTORIALS_DATA.each do |data|
-    t = Tutorial.create!(
-      title: data[:title],
-      body: data[:body],
-    )
+    t = Tutorial.find_or_initialize_by(title: data[:title])
+    t.body = data[:body]
+    t.user_id = admin.id if t.respond_to?(:user_id=)
+
+    if t.respond_to?(:cover_image=) && data[:cover].present?
+      cover_file = file_from_public("autoupload", "tutorials", data[:cover])
+      if cover_file
+        t.cover_image = cover_file
+      else
+        puts "WARNING: Tutorial cover not found: public/autoupload/tutorials/#{data[:cover]}"
+      end
+    end
+
+    t.save!
     puts "Tutorial: #{t.title}"
   end
 end

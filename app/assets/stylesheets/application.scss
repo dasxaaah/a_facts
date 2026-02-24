@@ -43,7 +43,7 @@ body {
   margin: 0;
   height: 200vh;
   overflow-x: hidden;
-  background: #000000;
+  background: #0d0d0d;
   color: #fff6ff;
   // cursor: none;
 }
@@ -1382,57 +1382,85 @@ h1 {
 }
 
 /* Сетка */
-.articles-grid {
+.articles_grid {
   padding: 3rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
-/* Карточка */
-.article-card {
+.article_card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+}
+.push_card {
+  border-radius: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+  min-height: 180px;
 }
 
-/* Картинка */
-.article-card__image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #222;
+/* варианты размеров */
+.push_card--w2 {
+  grid-column: span 2;
+}
+.push_card--h2 {
+  grid-row: span 2;
+  min-height: 380px;
+}
+.push_card--w2h2 {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 380px;
 }
 
-.article-card__image img {
+.article_card_image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
-/* Мета */
-.article-card__meta {
+.article_card_meta {
   display: flex;
   align-items: center;
-  gap: 6px;
   font-size: 13px;
-  color: #aaa;
 }
 
-.tag {
-  color: #ff3b8b;
+.article_card_tag {
+  border-radius: 10px 0 0 0;
+  background-color: var(--black);
+  display: flex;
+  width: 70%;
+  padding: 0.84375rem 0 0.78125rem 0;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 14px;
+  font-family: var(--forma);
 }
 
-.dot {
-  opacity: 0.6;
+.article_card_time {
+  border-radius: 0 10px 0 0;
+  background-color: #1c1c1c;
+  display: flex;
+  width: 30%;
+  padding: 0.84375rem 0 0.78125rem 0;
+  justify-content: center;
+  align-items: center;
+  height: 14px;
+  font-family: var(--forma);
 }
-
-/* Заголовок */
-.article-card__title {
-  font-size: 18px;
+.article_card_title {
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1;
+  background-color: #282828;
+  padding: 16px 20px;
+  font-family: var(--forma);
+  font-size: 2rem;
+  margin: 0;
+  border-radius: 0 0 10px 10px;
+}
+.article_card_title_link {
+  text-decoration: none;
   color: #fff;
 }
 /* HERO */
@@ -1517,4 +1545,52 @@ h1 {
 .home-card p {
   font-size: 14px;
   color: #aaa;
+}
+.article-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.article-card:hover {
+  transform: translateY(-2px);
+}
+.category_icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+// фильтрация
+.articles_filter {
+  display: flex;
+  gap: 16px;
+  margin-left: 3rem;
+  margin-top: 10rem;
+}
+
+.articles_filter_item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 24px;
+  border-radius: 10px;
+  border: 1px solid #282828;
+  font-family: var(--forma);
+}
+
+.articles_filter_item.active {
+  background: #111;
+}
+
+.articles_filter_icon {
+  width: 14px;
+  height: 14px;
 }

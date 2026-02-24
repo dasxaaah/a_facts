@@ -1,301 +1,58 @@
-<%
-=begin%>
-<% @tutorials.each do |t| %>
-<div>
-    <%= link_to t.title, tutorial_path(t) %>
-</div>
-<% end %>
-<%
-=end%>
-
-<h1 class="section-title">Статьи</h1>
-
 <!-- Фильтры -->
-<div class="article-filters">
-    <button class="filter active">Все</button>
-    <button class="filter">Разборы</button>
-    <button class="filter">Технологии</button>
-    <button class="filter">Личности</button>
-    <button class="filter">Подборки</button>
+<div class="articles_filter">
+
+    <%= link_to "Все статьи",
+              articles_path,
+              class: "articles_filter_item #{'active' unless @selected_category}" %>
+
+    <% @categories.each do |category| %>
+    <%= link_to articles_path(category: category),
+                class: "articles_filter_item #{'active' if @selected_category == category}" do %>
+
+    <% if category_icon(category) %>
+    <%= image_tag category_icon(category),
+                      class: "articles_filter_icon",
+                      alt: category %>
+    <% end %>
+
+    <span><%= category.capitalize %></span>
+
+    <% end %>
+    <% end %>
+
 </div>
 
 <!-- Сетка карточек -->
-<div class="articles-grid">
-
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/film01.jpg" alt="">
+<div class="articles_grid" id="articles_grid">
+    <div class="push_card push_card--w2"></div>
+    <% @articles.each do |article| %>
+    <div class="article_card">
+        <div class="article_card_meta">
+            <span class="article_card_tag">
+                <% if (icon = category_icon(article.category)) %>
+                <%= image_tag icon, class: "category_icon", alt: "" %>
+                <% end %>
+                <%= article.category %>
+            </span>
+            <span class="article_card_time">
+                <%= article.reading_minutes %> мин
+            </span>
         </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Технологии</span>
-            <span class="dot">•</span>
-            <span>6 мин</span>
-            <span class="dot">•</span>
-            <span>12.04.2024</span>
+        <% if article.cover_image.present? %>
+        <%= link_to article_path(article), class: "article_card_image_link" do %>
+        <div class="article_card_image">
+            <%= image_tag article.cover_image.url, alt: article.title %>
         </div>
+        <% end %>
+        <% end %>
 
-        <h2 class="article-card__title">
-            Как работает зелёный экран: от съёмки до композита
+        <h2 class="article_card_title">
+            <%= link_to article.title,
+                    article_path(article),
+                    class: "article_card_title_link" %>
         </h2>
-    </article>
 
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_1.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Технологии</span>
-            <span class="dot">•</span>
-            <span>6 мин</span>
-            <span class="dot">•</span>
-            <span>12.04.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Как работает зелёный экран: от съёмки до композита
-        </h2>
-    </article>
-
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
+    </div>
+    <% end %>
 </div>

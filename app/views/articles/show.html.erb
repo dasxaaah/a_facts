@@ -1,19 +1,11 @@
-<%
-set_meta_tags(
- title: "#{@article.title} | AFACTS", 
- description: @article.body.to_s.truncate(160),
-  keywords: "article, vfx, compositing, tracking, pipeline",
-  og: {
-  title: "#{@article.title} | AFACTS",   
-  type: "article",
-    url: article_url(@article)
-  }
-)
-%>
-<h1><%= @article.title %></h1>
+<h1 class="article_title"><%= @article.title %></h1>
 
-<div>
-    <%= simple_format(@article.body) %>
+<% if @article.cover_image.present? %>
+<div class="article_cover">
+    <%= image_tag @article.cover_image.url, alt: @article.title %>
 </div>
+<% end %>
 
-<%= link_to "Назад к статьям", articles_path %>
+<div class="article_body">
+    <%= @article.body.to_s.html_safe %>
+</div>

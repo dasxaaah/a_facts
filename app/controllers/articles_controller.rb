@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
     @categories = Article::CATEGORIES
     @selected_category = params[:category].presence
 
-    @articles = Article.order(created_at: :desc)
+    @articles = Article.order(id: :desc)
     @articles = @articles.where(category: @selected_category) if @selected_category
   end
 

@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   mount_uploader :cover_image, ArticleCoverImageUploader
-  CATEGORIES = %w[разборы технологии личности подборки].freeze
+  CATEGORIES = %w[Разборы Технологии Личности Подборки].freeze
 
   validates :category, inclusion: { in: CATEGORIES }, allow_blank: true
   def reading_minutes
