@@ -43,6 +43,13 @@ Rails.application.routes.draw do
     get "community/:id", to: "community#show", as: "community_post"
   end
 
+  # Глоссарий
+  namespace :api do
+  namespace :v1 do
+    resources :glossary_terms, only: [:index]
+  end
+end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

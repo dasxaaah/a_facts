@@ -531,6 +531,40 @@ TUTORIALS_DATA = [
   }
 ]
 
+GLOSSARY_TERMS_DATA = [
+  {
+    term: "Chromakey",
+    category: "композитинг",
+    definition: <<~TEXT
+      Технология замены однотонного фона, чаще всего зелёного или синего,
+      на другое изображение или видео.
+    TEXT
+  },
+  {
+    term: "Compositing",
+    category: "композитинг",
+    definition: <<~TEXT
+      Процесс объединения нескольких визуальных слоёв в один финальный кадр.
+    TEXT
+  },
+  {
+    term: "Motion Capture",
+    category: "технологии",
+    definition: <<~TEXT
+      Технология записи движения актёра для последующего переноса
+      на цифрового персонажа.
+    TEXT
+  },
+  {
+    term: "Tracking",
+    category: "технологии",
+    definition: <<~TEXT
+      Процесс анализа движения камеры или объекта в кадре,
+      чтобы точно встроить CG-элементы.
+    TEXT
+  }
+]
+
 def seed
   create_base_users
   admin = create_admin_user
@@ -538,6 +572,7 @@ def seed
   seed_posts_with_comments
   seed_articles(admin)
   seed_tutorials(admin)
+  seed_glossary_terms(admin)
 
 
   puts "== Seeding finished =="
@@ -610,28 +645,6 @@ def seed_posts_with_comments
   end
 end
 
-# старый код
-# def seed_articles_and_tutorials
-#   puts "== Seeding Articles and Tutorials =="
-
-#   admin = User.find_by(email: "admin@email.com") || User.first
-
-#   ARTICLES_DATA.each do |data|
-#     a = Article.create!(
-#       title: data[:title],
-#       body: data[:body],
-#       category: data[:category]    
-#     )
-#     puts "Article: #{a.title}"
-#   end
-#   TUTORIALS_DATA.each do |data|
-#     t = Tutorial.create!(
-#       title: data[:title],
-#       body: data[:body],
-#     )
-#     puts "Tutorial: #{t.title}"
-#   end
-# end
 
 def file_from_public(*parts)
   path = Rails.root.join("public", *parts)
@@ -684,5 +697,19 @@ def seed_tutorials(admin)
   end
 end
 
+def seed_glossary_terms(admin)
+  puts "== Seeding Glossary Terms =="
+
+  GLOSSARY_TERMS_DATA.each do |data|
+    term = GlossaryTerm.find_or_initialize_by(term: data[:term])
+
+    term.definition = data[:definition]
+    term.category = data[:category]
+    term.user_id = admin.id if term.respond_to?(:user_id=)
+
+    term.save!
+    puts "Glossary term: #{term.term}"
+  end
+end
 
 seed

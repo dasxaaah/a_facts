@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_24_165039) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_21_143235) do
   create_table "articles", force: :cascade do |t|
     t.integer "article_type"
     t.text "body"
@@ -30,6 +30,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_165039) do
     t.integer "user_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "glossary_terms", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.text "definition"
+    t.string "term"
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
