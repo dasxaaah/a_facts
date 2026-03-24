@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_21_143235) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_23_203225) do
   create_table "articles", force: :cascade do |t|
     t.integer "article_type"
     t.text "body"
@@ -52,6 +52,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_21_143235) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "quiz_questions", force: :cascade do |t|
+    t.string "correct_answer"
+    t.datetime "created_at", null: false
+    t.string "option_a"
+    t.string "option_b"
+    t.string "option_c"
+    t.string "option_d"
+    t.text "question"
+    t.integer "quiz_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_quiz_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "title"
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subscribers", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email"
@@ -86,5 +107,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_21_143235) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "tutorials", "users"
 end

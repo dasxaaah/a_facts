@@ -1,45 +1,74 @@
 <nav class="menu">
-    <%= link_to root_path, class: "menu-logo" do %>
-    <%= image_tag "new_logo.png", alt: "AFACTS", class: "menu-logo__img" %>
+    <%= link_to root_path, class: "menu_logo" do %>
+    <%= image_tag "new_logo.png", alt: "AFACTS", class: "menu_logo_img" %>
     <% end %>
     <div class="W_MainSection">
-
-
-
-        <%= link_to "О нас", about_path, id: "menu_about" %>
+        <%= link_to "Главная", root_path,
+        id: "menu_home",
+        class: "menu_link menu_link_home #{'menu_link_home_active' if current_page?(root_path)}" %>
+        <%= link_to "О нас", about_path,
+        id: "menu_about",
+        class: "menu_link menu_link_about #{'menu_link_about_active' if current_page?(about_path)}" %>
 
         <% if user_signed_in? && current_user.respond_to?(:admin?) && current_user.admin? %>
-        <!-- Админ -->
-        <%= link_to "Учебник", admin_tutorials_path, id: "menu_tutorial" %>
-        <%= link_to "Статьи", admin_articles_path, id: "menu_articles" %>
-        <%= link_to "Коммьюнити", admin_community_path, id: "menu_community" %>
+        <%= link_to "Учебник", admin_tutorials_path,
+        id: "menu_tutorial",
+        class: "menu_link menu_link_tutorial #{'menu_link_tutorial_active' if controller_name == 'tutorials'}" %>
+
+        <%= link_to "Статьи", admin_articles_path,
+        id: "menu_articles",
+        class: "menu_link menu_link_articles #{'menu_link_articles_active' if controller_name == 'articles'}" %>
+
+        <%= link_to "Коммьюнити", admin_community_path,
+        id: "menu_community",
+        class: "menu_link menu_link_community #{'menu_link_community_active' if controller_name == 'community'}" %>
         <% else %>
-        <!-- Обычный пользователь ИЛИ гость -->
-        <%= link_to "Учебник", tutorials_path, id: "menu_tutorial" %>
-        <%= link_to "Статьи", articles_path, id: "menu_articles" %>
-        <%= link_to "Коммьюнити", community_index_path, id: "menu_community" %>
+        <%= link_to "Учебник", tutorials_path,
+        id: "menu_tutorial",
+        class: "menu_link menu_link_tutorial #{'menu_link_tutorial_active' if controller_name == 'tutorials'}" %>
+
+        <%= link_to "Статьи", articles_path,
+        id: "menu_articles",
+        class: "menu_link menu_link_articles #{'menu_link_articles_active' if controller_name == 'articles'}" %>
+
+        <%= link_to "Коммьюнити", community_index_path,
+        id: "menu_community",
+        class: "menu_link menu_link_community #{'menu_link_community_active' if controller_name == 'community'}" %>
         <% end %>
     </div>
-
-    <div id="menu_user">
-        <% if user_signed_in? %>
-        <%= button_to destroy_user_session_path,
+    <div class="menu_search_user">
+        <div class="menu_search">
+            <%= form_with url: articles_path, method: :get, local: true, class: "menu_search_form" do %>
+            <%= text_field_tag :query,
+        params[:query],
+        placeholder: "Поиск",
+        class: "menu_search_input" %>
+            <% end %>
+            <span class="menu_search_icon">
+                <%= image_tag "search_icon.png", alt: "", class: "menu_search_icon_img" %>
+            </span>
+        </div>
+        <div id="menu_user">
+            <% if user_signed_in? %>
+            <%= button_to destroy_user_session_path,
       method: :delete,
       form: { data: { turbo: true } },
       class: "menu-profile-btn",
       title: "Выйти" do %>
 
-        <%= image_tag "profile_icon.png", alt: "Профиль", class: "menu-profile-icon" %>
+            <%= image_tag "profile_icon.png", alt: "Профиль", class: "menu-profile-icon" %>
 
-        <% end %>
-        <% else %>
-        <%= link_to new_session_path(:user),
+            <% end %>
+            <% else %>
+            <%= link_to new_session_path(:user),
       class: "menu-profile-link",
       title: "Войти" do %>
 
-        <%= image_tag "profile_icon.png", alt: "Войти", class: "menu-profile-icon" %>
+            <%= image_tag "profile_icon.png", alt: "Войти", class: "menu-profile-icon" %>
 
-        <% end %>
-        <% end %>
+            <% end %>
+            <% end %>
+        </div>
     </div>
+
 </nav>

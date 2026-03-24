@@ -162,7 +162,7 @@ ARTICLES_DATA = [
   {
     title: "Что такое motion capture ",
     category: "Технологии",
-    cover: "article_cover_1.jpg",
+    cover: "article_cover_6.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -186,7 +186,7 @@ ARTICLES_DATA = [
   {
     title: "Чо такое motion capture ",
     category: "Технологии",
-    cover: "article_cover_2.jpg",
+    cover: "article_cover_7.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -210,7 +210,7 @@ ARTICLES_DATA = [
   {
     title: "Что таке motion capture ",
     category: "Технологии",
-    cover: "article_cover_3.jpg",
+    cover: "article_cover_8.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -234,7 +234,7 @@ ARTICLES_DATA = [
   {
     title: "Что такое motio capture ",
     category: "Технологии",
-    cover: "article_cover_4.jpg",
+    cover: "article_cover_9.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -281,7 +281,7 @@ ARTICLES_DATA = [
   },{
     title: "За кулисами: сцены из  «Безумного Макса»",
     category: "Разборы",
-    cover: "article_cover_1.jpg",
+    cover: "article_cover_10.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -305,7 +305,7 @@ ARTICLES_DATA = [
   {
     title: "Что такое motion capture",
     category: "Разборы",
-    cover: "article_cover_2.jpg",
+    cover: "article_cover_11.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -329,7 +329,7 @@ ARTICLES_DATA = [
   {
     title: "VFX разбор: плащ Доктора Стрэнджа",
     category: "Личности",
-    cover: "article_cover_3.jpg",
+    cover: "article_cover_12.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -353,7 +353,7 @@ ARTICLES_DATA = [
   {
     title: "Как работает 3D-сканирование",
     category: "Технологии",
-    cover: "article_cover_4.jpg",
+    cover: "article_cover_13.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -377,7 +377,7 @@ ARTICLES_DATA = [
   {
     title: "Что таое motion capture ",
     category: "Подборки",
-    cover: "article_cover_5.jpg",
+    cover: "article_cover_14.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -401,7 +401,7 @@ ARTICLES_DATA = [
   {
     title: "Что такое motion captre ",
     category: "Личности",
-    cover: "article_cover_1.jpg",
+    cover: "article_cover_15.jpg",
     body: <<~HTML
       <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
 
@@ -422,102 +422,7 @@ ARTICLES_DATA = [
       </ul>
     HTML
   },
-  {
-    title: "Ч такое motion capture ",
-    category: "Технологии",
-    cover: "article_cover_2.jpg",
-    body: <<~HTML
-      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
-
-      <h2 id="shooting">Съёмка</h2>
-      <p>Ключевое — равномерный фон и separation от актёра.</p>
-
-      <figure>
-        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
-        <figcaption>Пример сетапа света для хромакея</figcaption>
-      </figure>
-
-      <h2 id="comp">Композит</h2>
-      <ul>
-        <li>Подготовка plate</li>
-        <li>Key</li>
-        <li>Despill</li>
-        <li>Matchgrade</li>
-      </ul>
-    HTML
-  },
-  {
-    title: "Что так motion capture ",
-    category: "Разборы",
-    cover: "article_cover_3.jpg",
-    body: <<~HTML
-      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
-
-      <h2 id="shooting">Съёмка</h2>
-      <p>Ключевое — равномерный фон и separation от актёра.</p>
-
-      <figure>
-        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
-        <figcaption>Пример сетапа света для хромакея</figcaption>
-      </figure>
-
-      <h2 id="comp">Композит</h2>
-      <ul>
-        <li>Подготовка plate</li>
-        <li>Key</li>
-        <li>Despill</li>
-        <li>Matchgrade</li>
-      </ul>
-    HTML
-  },
-  {
-    title: "Что такое moti capture ",
-    category: "Личности",
-    cover: "article_cover_4.jpg",
-    body: <<~HTML
-      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
-
-      <h2 id="shooting">Съёмка</h2>
-      <p>Ключевое — равномерный фон и separation от актёра.</p>
-
-      <figure>
-        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
-        <figcaption>Пример сетапа света для хромакея</figcaption>
-      </figure>
-
-      <h2 id="comp">Композит</h2>
-      <ul>
-        <li>Подготовка plate</li>
-        <li>Key</li>
-        <li>Despill</li>
-        <li>Matchgrade</li>
-      </ul>
-    HTML
-  },
-  {
-    title: "Что такое motion capur ",
-    category: "Подборка",
-    cover: "article_cover_5.jpg",
-    body: <<~HTML
-      <p>Green screen — это система: свет, clean plate, контроль spill и грамотный key.</p>
-
-      <h2 id="shooting">Съёмка</h2>
-      <p>Ключевое — равномерный фон и separation от актёра.</p>
-
-      <figure>
-        <img src="/autoupload/articles/article_cover_2.jpg" alt="Схема света" />
-        <figcaption>Пример сетапа света для хромакея</figcaption>
-      </figure>
-
-      <h2 id="comp">Композит</h2>
-      <ul>
-        <li>Подготовка plate</li>
-        <li>Key</li>
-        <li>Despill</li>
-        <li>Matchgrade</li>
-      </ul>
-    HTML
-  }
+  
 ]
 
 TUTORIALS_DATA = [
@@ -562,9 +467,1341 @@ GLOSSARY_TERMS_DATA = [
       Процесс анализа движения камеры или объекта в кадре,
       чтобы точно встроить CG-элементы.
     TEXT
+  },
+    {
+    term: "Rotoscoping",
+    category: "композитинг",
+    definition: <<~TEXT
+      Покадровое выделение объекта вручную для отделения его от фона.
+    TEXT
+  },
+  {
+    term: "Keying",
+    category: "композитинг",
+    definition: <<~TEXT
+      Удаление однотонного фона из изображения или видео.
+    TEXT
+  },
+  {
+    term: "Matchmoving",
+    category: "технологии",
+    definition: <<~TEXT
+      Сопоставление движения виртуальной камеры с реальной съёмкой.
+    TEXT
+  },
+  {
+    term: "Render",
+    category: "технологии",
+    definition: <<~TEXT
+      Финальная визуализация сцены компьютером.
+    TEXT
+  },
+  {
+    term: "CGI",
+    category: "технологии",
+    definition: <<~TEXT
+      Компьютерная графика, созданная в 2D или 3D и интегрированная в видео.
+    TEXT
+  },
+  {
+    term: "Plate",
+    category: "композитинг",
+    definition: <<~TEXT
+      Исходный видеоматериал без визуальных эффектов.
+    TEXT
+  },
+  {
+    term: "Clean Plate",
+    category: "композитинг",
+    definition: <<~TEXT
+      Кадр без объектов, используемый для удаления элементов из сцены.
+    TEXT
+  },
+  {
+    term: "Despill",
+    category: "композитинг",
+    definition: <<~TEXT
+      Удаление цветового отражения фона с объекта.
+    TEXT
+  },
+  {
+    term: "Alpha Channel",
+    category: "композитинг",
+    definition: <<~TEXT
+      Канал прозрачности, определяющий видимость пикселей.
+    TEXT
+  },
+  {
+    term: "Mask",
+    category: "композитинг",
+    definition: <<~TEXT
+      Область изображения, ограничивающая воздействие эффекта.
+    TEXT
+  },
+  {
+    term: "Layer",
+    category: "композитинг",
+    definition: <<~TEXT
+      Отдельный элемент изображения, используемый при композитинге.
+    TEXT
+  },
+  {
+    term: "Node",
+    category: "технологии",
+    definition: <<~TEXT
+      Элемент нодовой системы, выполняющий конкретную операцию.
+    TEXT
+  },
+  {
+    term: "Pipeline",
+    category: "технологии",
+    definition: <<~TEXT
+      Последовательность этапов производства визуальных эффектов.
+    TEXT
+  },
+  {
+    term: "Lighting",
+    category: "технологии",
+    definition: <<~TEXT
+      Настройка освещения сцены для достижения реалистичного результата.
+    TEXT
+  },
+  {
+    term: "HDRI",
+    category: "технологии",
+    definition: <<~TEXT
+      Панорамное изображение с высоким динамическим диапазоном,
+      используемое для освещения сцен.
+    TEXT
+  },
+  {
+    term: "Texture",
+    category: "технологии",
+    definition: <<~TEXT
+      Изображение, накладываемое на 3D-модель для создания поверхности.
+    TEXT
+  },
+  {
+    term: "UV Mapping",
+    category: "технологии",
+    definition: <<~TEXT
+      Процесс проецирования текстуры на поверхность 3D-объекта.
+    TEXT
+  },
+  {
+    term: "Rigging",
+    category: "технологии",
+    definition: <<~TEXT
+      Создание скелета для анимации 3D-персонажа.
+    TEXT
+  },
+  {
+    term: "Animation",
+    category: "технологии",
+    definition: <<~TEXT
+      Процесс создания движения объектов или персонажей.
+    TEXT
+  },
+  {
+    term: "Frame",
+    category: "технологии",
+    definition: <<~TEXT
+      Один кадр видео или анимации.
+    TEXT
+  },
+  {
+    term: "FPS",
+    category: "технологии",
+    definition: <<~TEXT
+      Количество кадров в секунду, определяющее плавность видео.
+    TEXT
+  },
+  {
+    term: "Depth Map",
+    category: "технологии",
+    definition: <<~TEXT
+      Карта глубины, показывающая расстояние объектов от камеры.
+    TEXT
+  },
+  {
+    term: "Z-Depth",
+    category: "технологии",
+    definition: <<~TEXT
+      Данные о глубине сцены, используемые для эффектов размытия.
+    TEXT
+  },
+  {
+    term: "Motion Blur",
+    category: "технологии",
+    definition: <<~TEXT
+      Размытие движущихся объектов для имитации реальной съёмки.
+    TEXT
+  },
+  {
+    term: "Compositing Software",
+    category: "технологии",
+    definition: <<~TEXT
+      Программы для объединения визуальных элементов, например Nuke.
+    TEXT
+  },
+  {
+    term: "Green Screen",
+    category: "композитинг",
+    definition: <<~TEXT
+      Зелёный фон, используемый для последующей замены в композитинге.
+    TEXT
+  },
+  {
+    term: "Blue Screen",
+    category: "композитинг",
+    definition: <<~TEXT
+      Синий фон, альтернативный зелёному для съёмки.
+    TEXT
+  },
+  {
+    term: "Color Grading",
+    category: "композитинг",
+    definition: <<~TEXT
+      Коррекция цвета изображения для достижения нужного стиля.
+    TEXT
+  },
+  {
+    term: "Match Grade",
+    category: "композитинг",
+    definition: <<~TEXT
+      Сведение цвета разных элементов к единому виду.
+    TEXT
+  },
+  {
+    term: "Lens Distortion",
+    category: "технологии",
+    definition: <<~TEXT
+      Искажение изображения, вызванное оптикой камеры.
+    TEXT
+  },
+  {
+    term: "Tracking Marker",
+    category: "технологии",
+    definition: <<~TEXT
+      Маркеры на съёмочной площадке для трекинга движения.
+    TEXT
+  },
+  {
+    term: "3D Model",
+    category: "технологии",
+    definition: <<~TEXT
+      Трёхмерное представление объекта в цифровой среде.
+    TEXT
+  },
+  {
+    term: "Polygon",
+    category: "технологии",
+    definition: <<~TEXT
+      Основной элемент геометрии 3D-модели.
+    TEXT
+  },
+  {
+    term: "Shader",
+    category: "технологии",
+    definition: <<~TEXT
+      Алгоритм, определяющий внешний вид поверхности объекта.
+    TEXT
+  },
+  {
+    term: "Simulation",
+    category: "технологии",
+    definition: <<~TEXT
+      Моделирование физических процессов, например дыма или воды.
+    TEXT
+  },
+  {
+    term: "Particle System",
+    category: "технологии",
+    definition: <<~TEXT
+      Система для создания множества мелких элементов, таких как искры.
+    TEXT
+  },
+  {
+    term: "Render Pass",
+    category: "технологии",
+    definition: <<~TEXT
+      Отдельный слой рендера, используемый для дальнейшей обработки.
+    TEXT
+  },
+  {
+    term: "Diffuse Pass",
+    category: "технологии",
+    definition: <<~TEXT
+      Слой рендера, содержащий основной цвет объекта.
+    TEXT
+  },
+  {
+    term: "Specular",
+    category: "технологии",
+    definition: <<~TEXT
+      Отражённый свет, создающий блеск на поверхности.
+    TEXT
+  },
+  {
+    term: "Ambient Occlusion",
+    category: "технологии",
+    definition: <<~TEXT
+      Эффект затенения в местах, куда свет плохо проникает.
+    TEXT
+  },
+  {
+    term: "Camera Tracking",
+    category: "технологии",
+    definition: <<~TEXT
+      Определение движения камеры в пространстве.
+    TEXT
+  },
+  {
+    term: "Projection",
+    category: "технологии",
+    definition: <<~TEXT
+      Наложение изображения на геометрию для создания эффекта глубины.
+    TEXT
+  },
+  {
+    term: "Matte Painting",
+    category: "композитинг",
+    definition: <<~TEXT
+      Создание фоновых изображений для расширения сцены.
+    TEXT
+  },
+  {
+    term: "Plate Cleanup",
+    category: "композитинг",
+    definition: <<~TEXT
+      Удаление нежелательных элементов из исходного видео.
+    TEXT
+  },
+  {
+    term: "Edge Blur",
+    category: "композитинг",
+    definition: <<~TEXT
+      Размытие краёв объекта для лучшего интегрирования в сцену.
+    TEXT
+  },
+  {
+    term: "Garbage Matte",
+    category: "композитинг",
+    definition: <<~TEXT
+      Грубая маска для удаления лишних областей кадра.
+    TEXT
   }
 ]
 
+QUIZZES_DATA = [
+ {
+  title: "Композитинг",
+  category: "средний",
+  description: "Основы и инструменты композитинга",
+  questions: [
+    {
+      question: "Что делает alpha channel?",
+      option_a: "Добавляет звук",
+      option_b: "Определяет прозрачность",
+      option_c: "Ускоряет рендер",
+      option_d: "Создаёт 3D",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое mask?",
+      option_a: "Эффект освещения",
+      option_b: "Область действия эффекта",
+      option_c: "Тип камеры",
+      option_d: "Формат файла",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое plate?",
+      option_a: "Исходное видео",
+      option_b: "3D модель",
+      option_c: "Эффект шума",
+      option_d: "Звук",
+      correct_answer: "a"
+    },
+    {
+      question: "Что делает despill?",
+      option_a: "Добавляет цвет",
+      option_b: "Удаляет отражение фона",
+      option_c: "Размывает фон",
+      option_d: "Создаёт маску",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое clean plate?",
+      option_a: "Видео с эффектами",
+      option_b: "Видео без объектов",
+      option_c: "Звук",
+      option_d: "3D сцена",
+      correct_answer: "b"
+    }
+  ]
+},
+
+{
+    title: "3D графика",
+    category: "базовый",
+    description: "Основы 3D и CGI",
+    questions: [
+      {
+        question: "Что такое polygon?",
+        option_a: "Звук",
+        option_b: "Элемент геометрии",
+        option_c: "Цвет",
+        option_d: "Файл",
+        correct_answer: "b"
+      },
+      {
+        question: "Что делает shader?",
+        option_a: "Двигает объект",
+        option_b: "Определяет внешний вид",
+        option_c: "Удаляет шум",
+        option_d: "Записывает звук",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое texture?",
+        option_a: "Свет",
+        option_b: "Изображение поверхности",
+        option_c: "Камера",
+        option_d: "Видео",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое render?",
+        option_a: "Монтаж",
+        option_b: "Финальный вывод изображения",
+        option_c: "Запись движения",
+        option_d: "Удаление объектов",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое UV mapping?",
+        option_a: "Освещение",
+        option_b: "Проецирование текстуры",
+        option_c: "Формат видео",
+        option_d: "Эффект",
+        correct_answer: "b"
+      }
+    ]
+},
+
+{
+    title: "Трекинг",
+    category: "средний",
+    description: "Работа с движением камеры",
+    questions: [
+      {
+        question: "Что делает tracking?",
+        option_a: "Добавляет звук",
+        option_b: "Анализирует движение",
+        option_c: "Удаляет фон",
+        option_d: "Создаёт текстуру",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое matchmoving?",
+        option_a: "Цветокоррекция",
+        option_b: "Сопоставление камеры",
+        option_c: "Рендер",
+        option_d: "Съёмка",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое tracking marker?",
+        option_a: "Кнопка",
+        option_b: "Метка для трекинга",
+        option_c: "Эффект",
+        option_d: "Файл",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое camera tracking?",
+        option_a: "Запись звука",
+        option_b: "Анализ движения камеры",
+        option_c: "Удаление объектов",
+        option_d: "Сжатие видео",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое lens distortion?",
+        option_a: "Шум",
+        option_b: "Искажение линзы",
+        option_c: "Звук",
+        option_d: "Свет",
+        correct_answer: "b"
+      }
+    ]
+},
+
+{
+    title: "Анимация",
+    category: "базовый",
+    description: "Основы движения в графике",
+    questions: [
+      {
+        question: "Что такое animation?",
+        option_a: "Звук",
+        option_b: "Движение объектов",
+        option_c: "Текстура",
+        option_d: "Рендер",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое frame?",
+        option_a: "Кадр",
+        option_b: "Звук",
+        option_c: "Файл",
+        option_d: "Маска",
+        correct_answer: "a"
+      },
+      {
+        question: "Что такое FPS?",
+        option_a: "Формат",
+        option_b: "Кадры в секунду",
+        option_c: "Свет",
+        option_d: "Модель",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое rigging?",
+        option_a: "Освещение",
+        option_b: "Скелет персонажа",
+        option_c: "Видео",
+        option_d: "Маска",
+        correct_answer: "b"
+      },
+      {
+        question: "Что делает keyframe?",
+        option_a: "Удаляет шум",
+        option_b: "Фиксирует состояние",
+        option_c: "Создаёт звук",
+        option_d: "Меняет цвет",
+        correct_answer: "b"
+      }
+    ]
+},
+
+{
+    title: "Симуляции",
+    category: "средний",
+    description: "Физические эффекты",
+    questions: [
+      {
+        question: "Что такое simulation?",
+        option_a: "Звук",
+        option_b: "Имитация физики",
+        option_c: "Рендер",
+        option_d: "Видео",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое particle system?",
+        option_a: "Текст",
+        option_b: "Система частиц",
+        option_c: "Свет",
+        option_d: "Камера",
+        correct_answer: "b"
+      },
+      {
+        question: "Что моделируют FX?",
+        option_a: "Текст",
+        option_b: "Дым, огонь, вода",
+        option_c: "Звук",
+        option_d: "Файлы",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое fluid simulation?",
+        option_a: "Свет",
+        option_b: "Жидкости",
+        option_c: "Звук",
+        option_d: "Видео",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое rigid body?",
+        option_a: "Текст",
+        option_b: "Жёсткие объекты",
+        option_c: "Цвет",
+        option_d: "Файл",
+        correct_answer: "b"
+      }
+    ]
+},
+
+{
+    title: "Освещение",
+    category: "базовый",
+    description: "Свет в VFX",
+    questions: [
+      {
+        question: "Что такое lighting?",
+        option_a: "Звук",
+        option_b: "Освещение сцены",
+        option_c: "Текст",
+        option_d: "Видео",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое HDRI?",
+        option_a: "Видео",
+        option_b: "Панорамное освещение",
+        option_c: "Звук",
+        option_d: "Файл",
+        correct_answer: "b"
+      },
+      {
+        question: "Что делает light source?",
+        option_a: "Удаляет шум",
+        option_b: "Создаёт свет",
+        option_c: "Рендерит",
+        option_d: "Анимирует",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое shadow?",
+        option_a: "Свет",
+        option_b: "Тень",
+        option_c: "Видео",
+        option_d: "Текст",
+        correct_answer: "b"
+      },
+      {
+        question: "Что такое reflection?",
+        option_a: "Тень",
+        option_b: "Отражение",
+        option_c: "Звук",
+        option_d: "Файл",
+        correct_answer: "b"
+      }
+    ]
+},
+
+{
+  title: "Камеры и съёмка",
+  category: "базовый",
+  description: "Основы работы с камерой",
+  questions: [
+    {
+      question: "Что такое aperture?",
+      option_a: "Скорость",
+      option_b: "Диафрагма",
+      option_c: "ISO",
+      option_d: "Фокус",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое ISO?",
+      option_a: "Чувствительность сенсора",
+      option_b: "Фокус",
+      option_c: "Свет",
+      option_d: "Цвет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое shutter speed?",
+      option_a: "Цвет",
+      option_b: "Скорость затвора",
+      option_c: "Фокус",
+      option_d: "Свет",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое depth of field?",
+      option_a: "Глубина резкости",
+      option_b: "Яркость",
+      option_c: "Цвет",
+      option_d: "Контраст",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое focus?",
+      option_a: "Резкость изображения",
+      option_b: "Свет",
+      option_c: "Цвет",
+      option_d: "Шум",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Цветокоррекция",
+  category: "средний",
+  description: "Работа с цветом",
+  questions: [
+    {
+      question: "Что такое color grading?",
+      option_a: "Анимация",
+      option_b: "Обработка цвета",
+      option_c: "Рендер",
+      option_d: "Трекинг",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое LUT?",
+      option_a: "Таблица преобразования цвета",
+      option_b: "Файл звука",
+      option_c: "3D модель",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое white balance?",
+      option_a: "Баланс белого",
+      option_b: "Контраст",
+      option_c: "Фокус",
+      option_d: "Скорость",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое exposure?",
+      option_a: "Экспозиция",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Текстура",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое contrast?",
+      option_a: "Контраст",
+      option_b: "Фокус",
+      option_c: "Звук",
+      option_d: "Камера",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Рендеринг",
+  category: "средний",
+  description: "Процесс создания изображения",
+  questions: [
+    {
+      question: "Что такое render engine?",
+      option_a: "Движок рендера",
+      option_b: "Камера",
+      option_c: "Звук",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое ray tracing?",
+      option_a: "Отслеживание лучей",
+      option_b: "Анимация",
+      option_c: "Цвет",
+      option_d: "Звук",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое render pass?",
+      option_a: "Слой рендера",
+      option_b: "Звук",
+      option_c: "Фокус",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое sampling?",
+      option_a: "Количество выборок",
+      option_b: "Звук",
+      option_c: "Цвет",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое noise?",
+      option_a: "Шум",
+      option_b: "Цвет",
+      option_c: "Фокус",
+      option_d: "Свет",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Текстуры",
+  category: "базовый",
+  description: "Работа с поверхностями",
+  questions: [
+    {
+      question: "Что такое bump map?",
+      option_a: "Имитация рельефа",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое normal map?",
+      option_a: "Карта нормалей",
+      option_b: "Цвет",
+      option_c: "Фокус",
+      option_d: "Шум",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое roughness?",
+      option_a: "Шероховатость",
+      option_b: "Цвет",
+      option_c: "Фокус",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое specular?",
+      option_a: "Отражение",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Фокус",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое displacement?",
+      option_a: "Смещение геометрии",
+      option_b: "Цвет",
+      option_c: "Шум",
+      option_d: "Свет",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Монтаж",
+  category: "базовый",
+  description: "Основы видеомонтажа",
+  questions: [
+    {
+      question: "Что такое cut?",
+      option_a: "Резкий переход",
+      option_b: "Свет",
+      option_c: "Файл",
+      option_d: "Цвет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое timeline?",
+      option_a: "Линия времени",
+      option_b: "Звук",
+      option_c: "Фокус",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое transition?",
+      option_a: "Переход",
+      option_b: "Файл",
+      option_c: "Шум",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое clip?",
+      option_a: "Фрагмент видео",
+      option_b: "Звук",
+      option_c: "Цвет",
+      option_d: "Фокус",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое export?",
+      option_a: "Вывод файла",
+      option_b: "Звук",
+      option_c: "Свет",
+      option_d: "Фокус",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Ключинг",
+  category: "базовый",
+  description: "Удаление фона",
+  questions: [
+    {
+      question: "Что такое keying?",
+      option_a: "Удаление фона",
+      option_b: "Рендер",
+      option_c: "Звук",
+      option_d: "Монтаж",
+      correct_answer: "a"
+    },
+    {
+      question: "Какой цвет чаще используют для chroma key?",
+      option_a: "Красный",
+      option_b: "Зелёный",
+      option_c: "Жёлтый",
+      option_d: "Чёрный",
+      correct_answer: "b"
+    },
+    {
+      question: "Что такое spill?",
+      option_a: "Отражение фона",
+      option_b: "Шум",
+      option_c: "Звук",
+      option_d: "Текстура",
+      correct_answer: "a"
+    },
+    {
+      question: "Что делает keylight?",
+      option_a: "Удаляет фон",
+      option_b: "Добавляет звук",
+      option_c: "Создаёт свет",
+      option_d: "Анимирует",
+      correct_answer: "a"
+    },
+    {
+      question: "Что важно для хорошего keying?",
+      option_a: "Освещение",
+      option_b: "Звук",
+      option_c: "Камера",
+      option_d: "Файл",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "CGI основы",
+  category: "базовый",
+  description: "Компьютерная графика",
+  questions: [
+    {
+      question: "Что означает CGI?",
+      option_a: "Computer Generated Imagery",
+      option_b: "Camera Graphic Image",
+      option_c: "Color Gradient Input",
+      option_d: "Creative Game Interface",
+      correct_answer: "a"
+    },
+    {
+      question: "Что создаётся в CGI?",
+      option_a: "3D объекты",
+      option_b: "Звук",
+      option_c: "Текст",
+      option_d: "Видео",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое scene?",
+      option_a: "Сцена",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое object?",
+      option_a: "Объект",
+      option_b: "Свет",
+      option_c: "Фокус",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое viewport?",
+      option_a: "Окно просмотра",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Шум",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Advanced compositing",
+  category: "сложный",
+  description: "Продвинутый композитинг",
+  questions: [
+    {
+      question: "Что такое premultiplied alpha?",
+      option_a: "Тип альфа-канала",
+      option_b: "Звук",
+      option_c: "Камера",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое linear workflow?",
+      option_a: "Линейное пространство цвета",
+      option_b: "Монтаж",
+      option_c: "Звук",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое matte painting?",
+      option_a: "Создание фонов",
+      option_b: "Звук",
+      option_c: "Фокус",
+      option_d: "Рендер",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое roto?",
+      option_a: "Ручная маска",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое deep compositing?",
+      option_a: "Работа с глубиной пикселей",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Particles",
+  category: "средний",
+  description: "Системы частиц",
+  questions: [
+    {
+      question: "Что создают particles?",
+      option_a: "Эффекты",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камеру",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое emitter?",
+      option_a: "Источник частиц",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что влияет на частицы?",
+      option_a: "Силы",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Текст",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое velocity?",
+      option_a: "Скорость",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Цвет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое lifespan?",
+      option_a: "Жизненный цикл",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Shaders",
+  category: "средний",
+  description: "Материалы и поверхности",
+  questions: [
+    {
+      question: "Что делает shader?",
+      option_a: "Определяет внешний вид",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое PBR?",
+      option_a: "Физически корректный рендер",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое albedo?",
+      option_a: "Базовый цвет",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое metallic?",
+      option_a: "Металличность",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Цвет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое emissive?",
+      option_a: "Самосвечение",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Фокус",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Pipeline",
+  category: "сложный",
+  description: "Производственный процесс",
+  questions: [
+    {
+      question: "Что такое pipeline?",
+      option_a: "Процесс производства",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое asset?",
+      option_a: "Ресурс проекта",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое versioning?",
+      option_a: "Версии файлов",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое render farm?",
+      option_a: "Сеть для рендера",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое shot?",
+      option_a: "Отдельный кадр/сцена",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Свет и тени",
+  category: "базовый",
+  description: "Основы освещения в сцене",
+  questions: [
+    {
+      question: "Что такое light source?",
+      option_a: "Источник света",
+      option_b: "Файл",
+      option_c: "Звук",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое shadow?",
+      option_a: "Тень",
+      option_b: "Свет",
+      option_c: "Цвет",
+      option_d: "Фокус",
+      correct_answer: "a"
+    },
+    {
+      question: "Что влияет на тень?",
+      option_a: "Положение света",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое soft light?",
+      option_a: "Мягкий свет",
+      option_b: "Жёсткий свет",
+      option_c: "Звук",
+      option_d: "Файл",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое hard light?",
+      option_a: "Жёсткий свет",
+      option_b: "Мягкий свет",
+      option_c: "Файл",
+      option_d: "Звук",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Matchmoving",
+  category: "средний",
+  description: "Совмещение камеры и CG",
+  questions: [
+    {
+      question: "Что делает matchmoving?",
+      option_a: "Совмещает CG с видео",
+      option_b: "Создаёт звук",
+      option_c: "Удаляет фон",
+      option_d: "Монтирует видео",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое solve?",
+      option_a: "Решение камеры",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что важно для трекинга?",
+      option_a: "Контрастные точки",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое 3D camera?",
+      option_a: "Виртуальная камера",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое tracking data?",
+      option_a: "Данные движения",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "FX эффекты",
+  category: "средний",
+  description: "Эффекты огня, дыма и разрушений",
+  questions: [
+    {
+      question: "Что такое FX?",
+      option_a: "Эффекты",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что симулирует дым?",
+      option_a: "Particle system",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что симулирует огонь?",
+      option_a: "Fluid simulation",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое explosion?",
+      option_a: "Взрыв",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что влияет на симуляцию?",
+      option_a: "Физика",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Цвет",
+      correct_answer: "a"
+    }
+  ]
+},
+
+{
+  title: "Production",
+  category: "сложный",
+  description: "Работа в VFX команде",
+  questions: [
+    {
+      question: "Кто такой compositor?",
+      option_a: "Собирает финальный кадр",
+      option_b: "Создаёт звук",
+      option_c: "Монтирует видео",
+      option_d: "Снимает",
+      correct_answer: "a"
+    },
+    {
+      question: "Кто такой TD?",
+      option_a: "Технический директор",
+      option_b: "Звукорежиссёр",
+      option_c: "Оператор",
+      option_d: "Монтажёр",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое pipeline?",
+      option_a: "Процесс работы",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое deadline?",
+      option_a: "Срок сдачи",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Свет",
+      correct_answer: "a"
+    },
+    {
+      question: "Что такое review?",
+      option_a: "Проверка работы",
+      option_b: "Звук",
+      option_c: "Файл",
+      option_d: "Камера",
+      correct_answer: "a"
+    }
+  ]
+}
+]
 def seed
   create_base_users
   admin = create_admin_user
@@ -573,7 +1810,7 @@ def seed
   seed_articles(admin)
   seed_tutorials(admin)
   seed_glossary_terms(admin)
-
+  seed_quizzes
 
   puts "== Seeding finished =="
 end
@@ -587,20 +1824,6 @@ def create_base_users
     puts "User: #{user.email} (id=#{user.id})"
   end
 end
-
-# старый код
-# def create_admin_user
-#   admin = User.find_or_create_by!(email: "admin@email.com") do |u|
-#     u.password = "testtest"
-#   end
-
-#   if admin.respond_to?(:admin=)
-#     admin.update!(admin: true)
-#   end
-
-#   puts "Admin: #{admin.email} (id=#{admin.id})"
-# end
-
 def create_admin_user
   admin = User.find_or_create_by!(email: "admin@email.com") do |u|
     u.password = "testtest"
@@ -712,4 +1935,30 @@ def seed_glossary_terms(admin)
   end
 end
 
+def seed_quizzes
+  puts "== Seeding Quizzes =="
+
+  QUIZZES_DATA.each do |quiz_data|
+    quiz = Quiz.find_or_initialize_by(title: quiz_data[:title])
+    quiz.category = quiz_data[:category]
+    quiz.description = quiz_data[:description]
+    quiz.save!
+
+    quiz_data[:questions].each do |question_data|
+      question = QuizQuestion.find_or_initialize_by(
+        quiz: quiz,
+        question: question_data[:question]
+      )
+
+      question.option_a = question_data[:option_a]
+      question.option_b = question_data[:option_b]
+      question.option_c = question_data[:option_c]
+      question.option_d = question_data[:option_d]
+      question.correct_answer = question_data[:correct_answer]
+      question.save!
+    end
+
+    puts "Quiz: #{quiz.title} (questions=#{quiz.quiz_questions.count})"
+  end
+end
 seed

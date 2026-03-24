@@ -8,6 +8,7 @@
   --yellow: #fdff6e;
   --pink: #ff78ff;
   --cyan: #6af5ff;
+  --purple: #9c9cff;
   --green_secondary: #c4ff9d;
   --yellow_secondary: #feffa8;
   --pink_secondary: #ffaeff;
@@ -88,11 +89,9 @@ h1 {
 }
 
 .menu {
-  // transform: translate(-50%);
-
   position: fixed;
   top: 40px;
-  left: 5%;
+  left: 2%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -102,87 +101,114 @@ h1 {
   letter-spacing: -0.02em;
   text-transform: uppercase;
   z-index: 11;
-  width: 90%;
-
-  a {
-    text-decoration: none;
-    color: var(--black);
-    padding: 4px 8px 0px 8px;
-    border-radius: 8px;
-  }
-  .menu-logo {
-    display: flex;
-    align-items: center;
-    margin-right: 2rem;
-  }
-
-  .menu-logo__img {
-    height: 32px;
-    width: auto;
-    display: block;
-  }
-  .menu-profile-link,
-  .menu-profile-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-
-  .menu-profile-icon {
-    width: 28px;
-    height: 28px;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
-  }
-
-  .menu-profile-icon:hover {
-    opacity: 1;
-  }
-  .W_MainSection {
-    width: auto;
-    display: flex;
-    left: 50%;
-    #menu_tutorial {
-      background-color: var(--green);
-
-      &:hover {
-        background-color: var(--green_secondary);
-      }
-    }
-    #menu_articles {
-      background-color: var(--yellow);
-
-      &:hover {
-        background-color: var(--yellow_secondary);
-      }
-    }
-    #menu_about {
-      background-color: var(--pink);
-
-      &:hover {
-        background-color: var(--pink_secondary);
-      }
-    }
-    #menu_community {
-      background-color: var(--cyan);
-
-      &:hover {
-        background-color: var(--cyan_secondary);
-      }
-    }
-  }
-  // #menu_user {
-  //   background-color: var(--white);
-
-  //   &:hover {
-  //     background-color: var(--green_secondary);
-  //   }
-  // }
+  width: 92%;
+  padding: 1rem 2rem;
+  background: rgba(137, 137, 137, 0.33);
+  border-radius: 0.75rem;
+}
+.menu a {
+  text-decoration: none;
+  color: var(--white);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.menu_logo {
+  display: flex;
+  align-items: center;
+  margin-right: 2rem;
+  width: 15%;
+}
+.menu_logo_img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+.menu-profile-link,
+.menu-profile-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
+.menu-profile-icon {
+  width: 30px;
+  height: 30px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.menu-profile-icon:hover {
+  opacity: 1;
+}
+.W_MainSection {
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.menu_search_user {
+  display: flex;
+  gap: 2rem;
+}
+
+.menu_search {
+  display: flex;
+  flex-direction: row;
+  border-radius: 0.75rem;
+  background: rgba(26, 23, 23, 0.7);
+  height: 2.8125rem;
+  padding: 0 0.8125rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu_search_input {
+  border: none;
+  background: transparent;
+  outline: none;
+  color: #ffffff;
+  font: inherit;
+  width: 140px;
+}
+.menu_link {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu_link.menu_link_home_active {
+  background-color: var(--purple);
+  color: var(--black);
+}
+
+.menu_link.menu_link_tutorial_active {
+  background-color: var(--green);
+  color: var(--black);
+}
+
+.menu_link.menu_link_articles_active {
+  background-color: var(--yellow);
+  color: var(--black);
+}
+
+.menu_link.menu_link_community_active {
+  background-color: var(--cyan);
+  color: var(--black);
+}
+
+.menu_link.menu_link_about_active {
+  background-color: var(--pink);
+  color: var(--black);
+}
+#menu_user {
+  display: flex;
+  align-items: center;
+}
+.footer {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  background-image: url(/app/assets/images/footer_background.png);
+  background-size: cover;
+}
 #logo {
   position: fixed;
   top: 30px;
@@ -1139,8 +1165,7 @@ h1 {
 .auth-submit:active {
   background: transparent;
 }
-.auth-actions {
-}
+
 .auth-field-button {
   display: flex;
   flex-direction: column;
@@ -1383,7 +1408,7 @@ h1 {
 
 /* Сетка */
 .articles_grid {
-  padding: 3rem;
+  padding: 2rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
