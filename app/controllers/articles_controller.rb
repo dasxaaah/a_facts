@@ -1,7 +1,5 @@
 class ArticlesController < ApplicationController
-  # load_and_authorize_resource class: "Post"
   before_action :authenticate_user!
-  # before_action :require_admin!
 
   def index
     @categories = Article::CATEGORIES
@@ -11,9 +9,9 @@ class ArticlesController < ApplicationController
     @articles = @articles.where(category: @selected_category) if @selected_category
   end
 
-
   def show
     @article = Article.find(params[:id])
+    @related_articles = Article.where.not(id: @article.id).order(Arel.sql("RANDOM()")).limit(4)
   end
 
   private
@@ -24,4 +22,3 @@ class ArticlesController < ApplicationController
     redirect_to root_path, alert: "Нет доступа"
   end
 end
-

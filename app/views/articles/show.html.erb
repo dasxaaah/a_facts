@@ -1,11 +1,97 @@
-<h1 class="article_title"><%= @article.title %></h1>
+<div class="article_page">
+    <% if @article.cover_image.present? %>
+    <div class="article_cover">
+        <%= image_tag @article.cover_image.url, alt: @article.title %>
+    </div>
+    <% end %>
 
-<% if @article.cover_image.present? %>
-<div class="article_cover">
-    <%= image_tag @article.cover_image.url, alt: @article.title %>
-</div>
-<% end %>
+    <div class="article_header">
+        <div class="article_header_main">
+            <h1 class="article_title"><%= @article.title %></h1>
 
-<div class="article_body">
-    <%= @article.body.to_s.html_safe %>
+            <button class="article_favorite_button" type="button">
+                В избранное
+            </button>
+        </div>
+
+        <div class="article_meta">
+            <div class="article_meta_tag">
+                <% if (icon = category_icon(@article.category)) %>
+                <%= image_tag icon, class: "article_meta_icon", alt: "" %>
+                <% end %>
+                <span><%= @article.category %></span>
+            </div>
+
+            <div class="article_meta_item">
+                <span><%= @article.reading_minutes %> мин</span>
+            </div>
+
+            <div class="article_meta_date">
+                <span><%= @article.published_at.strftime("%d.%m.%Y") if @article.published_at.present? %></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="article_layout">
+        <aside class="article_sidebar">
+            <div class="article_sidebar_title">Содержание</div>
+
+            <nav class="article_toc">
+                <a href="#section_1" class="article_toc_link">Раздел 1</a>
+                <a href="#section_2" class="article_toc_link">Раздел 2</a>
+                <a href="#section_3" class="article_toc_link">Раздел 3</a>
+            </nav>
+        </aside>
+
+        <main class="article_content">
+            <%= @article.body.to_s.html_safe %>
+
+            <div class="article_tags_block">
+                <h2 class="article_tags_title">Теги</h2>
+
+                <div class="article_tags">
+                    <span class="article_tag">VFX</span>
+                    <span class="article_tag">CGI</span>
+                    <span class="article_tag">Композитинг</span>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <div class="article_related_block">
+        <h2 class="article_related_title">Может понравиться</h2>
+
+        <div class="article_related_grid">
+            <% @related_articles.each do |article| %>
+            <div class="article_card">
+                <div class="article_card_meta">
+                    <span class="article_card_tag">
+                        <% if (icon = category_icon(article.category)) %>
+                        <%= image_tag icon, class: "category_icon", alt: "" %>
+                        <% end %>
+                        <%= article.category %>
+                    </span>
+
+                    <span class="article_card_time">
+                        <%= article.reading_minutes %> мин
+                    </span>
+                </div>
+
+                <% if article.cover_image.present? %>
+                <%= link_to article_path(article), class: "article_card_image_link" do %>
+                <div class="article_card_image">
+                    <%= image_tag article.cover_image.url, alt: article.title %>
+                </div>
+                <% end %>
+                <% end %>
+
+                <h2 class="article_card_title">
+                    <%= link_to article.title,
+              article_path(article),
+              class: "article_card_title_link" %>
+                </h2>
+            </div>
+            <% end %>
+        </div>
+    </div>
 </div>

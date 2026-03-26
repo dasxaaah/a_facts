@@ -71,6 +71,7 @@ set_meta_tags(
           class: "btn btn-danger" %>
         <% end %>
 
-        <%= link_to "Назад к списку постов", posts_path, class: "btn btn-link" %>
-    </footer>
+        <%= link_to "Назад к обсуждениям",
+        community_index_path(tab: "discussions"),
+        class: "post_back_button" %>
 </div>

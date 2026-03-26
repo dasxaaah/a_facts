@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
- 
   devise_for :users
 
   namespace :api, format: 'json' do
@@ -28,8 +27,11 @@ Rails.application.routes.draw do
   resources :articles, only: [:index, :show]
   resources :community, only: [:index, :show], controller: "community"
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
   end
+
+  #Урок
+  resources :lessons, only: [:show]
 
   # Админка
   namespace :admin do

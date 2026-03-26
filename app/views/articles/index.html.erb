@@ -1,25 +1,17 @@
 <!-- Фильтры -->
 <div class="articles_filter">
-
     <%= link_to "Все статьи",
-              articles_path,
-              class: "articles_filter_item #{'active' unless @selected_category}" %>
+      articles_path,
+      class: "articles_filter_item #{'active' unless @selected_category}" %>
 
     <% @categories.each do |category| %>
     <%= link_to articles_path(category: category),
-                class: "articles_filter_item #{'active' if @selected_category == category}" do %>
-
-    <% if category_icon(category) %>
-    <%= image_tag category_icon(category),
-                      class: "articles_filter_icon",
-                      alt: category %>
-    <% end %>
+        class: "articles_filter_item #{'active' if @selected_category == category}" do %>
 
     <span><%= category.capitalize %></span>
 
     <% end %>
     <% end %>
-
 </div>
 
 <!-- Сетка карточек -->

@@ -1,23 +1,271 @@
-<h1 class="section-title">Коммьюнити</h1>
+<div class="community_page">
+    <div class="community_tabs">
+        <%= link_to "Обсуждения",
+      community_index_path(tab: "discussions"),
+      class: "community_tab #{'community_tab_active' if @active_tab == 'discussions'}" %>
 
-<div class="qa-header">
-    <%= link_to "Перейти к вопросам (Q&A)", posts_path, class: "qa-btn" %>
-</div>
+        <%= link_to "Митап",
+      community_index_path(tab: "meetups"),
+      class: "community_tab #{'community_tab_active' if @active_tab == 'meetups'}" %>
 
-<div class="card-grid">
-    <% @posts.each do |post| %>
-    <article class="card">
-        <h2 class="card-title">
-            <%= link_to post.title, community_path(post) %>
-        </h2>
+        <%= link_to "Работы",
+      community_index_path(tab: "works"),
+      class: "community_tab #{'community_tab_active' if @active_tab == 'works'}" %>
 
-        <p class="card-excerpt">
-            <%= truncate(post.body.to_s, length: 160) %>
-        </p>
+        <%= link_to "Конкурсы",
+      community_index_path(tab: "contests"),
+      class: "community_tab #{'community_tab_active' if @active_tab == 'contests'}" %>
+    </div>
+    <%
+=begin%>
+    обсуждения
+    <%
+=end%>
+    <% if @active_tab == "discussions" %>
+    <div class="community_layout">
+        <div class="community_main_col">
+            <div class="community_ask_block">
+                <%= form_with model: Post.new, url: posts_path, local: true, html: { multipart: true, class: "community_ask_form" } do |f| %>
+                <div class="community_ask_top">
+                    <div class="community_ask_icon">
+                        <%= image_tag "profile_icon.png", alt: "", class: "community_ask_icon_img" %>
+                    </div>
 
-        <div class="card-meta">
-            <%= l(post.created_at, format: :short) rescue post.created_at %>
+                    <%= f.text_area :body,
+                        placeholder: "Задай любой вопрос",
+                        class: "community_ask_input",
+                        rows: 2 %>
+                </div>
+
+                <div class="community_ask_bottom">
+                    <div class="community_ask_files">
+                        <label class="community_attach_button" for="community_post_image_input">
+                            <%= image_tag "file_icon.png", alt: "", class: "community_attach_icon" %>
+                            <span>Файл</span>
+                        </label>
+
+                        <label class="community_attach_button" for="community_post_image_input">
+                            <%= image_tag "image_icon.png", alt: "", class: "community_attach_icon" %>
+                            <span>Изображение</span>
+                        </label>
+
+                        <%= f.file_field :post_image,
+                        id: "community_post_image_input",
+                        class: "community_hidden_input" %>
+                    </div>
+
+                    <%= f.submit "Отправить", class: "community_button" %>
+                </div>
+                <% end %>
+            </div>
+
+            <div class="community_posts">
+                <% @posts.each do |post| %>
+                <article class="community_post_card">
+                    <div class="community_post_meta">
+                        <span class="community_post_author"><%= post.user.email %></span>
+                    </div>
+
+                    <p class="community_post_text"><%= post.body %></p>
+
+                    <% if post.post_image.present? %>
+                    <div class="community_post_image">
+                        <%= image_tag post.post_image.url, alt: "Изображение к вопросу" %>
+                    </div>
+                    <% end %>
+
+                    <div class="community_post_footer">
+                        <div class="community_post_comments_info">
+                            <%= image_tag "comment_icon.png", alt: "", class: "community_post_comments_icon" %>
+                            <span class="community_post_comments_count"><%= post.comments.count %></span>
+                        </div>
+
+                        <%= link_to "Ответить", post_path(post), class: "community_reply_button" %>
+                    </div>
+                </article>
+                <% end %>
+            </div>
         </div>
-    </article>
+
+        <div class="community_side_col">
+            <div class="community_contest_card">
+                <span class="community_contest_badge">конкурс недели</span>
+                <div class="community_contest_texts">
+                    <h3 class="community_contest_title">лучший портал</h3>
+                    <p class="community_contest_text">
+                        Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.
+                    </p>
+                </div>
+
+                <div class="community_contest_image">
+                    <%= image_tag "contest_preview.jpg", alt: "Конкурс недели" %>
+                </div>
+
+                <button class="community_button community_button_secondary" type="button">
+                    Загрузить кейс
+                </button>
+            </div>
+        </div>
+    </div>
+    <%
+=begin%>
+    Митап
+    <%
+=end%>
+    <% elsif @active_tab == "meetups" %>
+    <div class="community_meetup_layout">
+
+
+        <article class="community_meetup_card">
+            <div class="community_meetup_texts">
+                <span class="community_meetup_meta community_meetup_time">2 часа</span>
+                <span class="community_meetup_meta community_meetup_date">29.03.2026</span>
+                <span class="community_meetup_meta community_meetup_join">Участвовать</span>
+            </div>
+
+            <div class="community_meetup_image">
+                <%= image_tag "meetup_1.jpg", alt: "Митап 1" %>
+            </div>
+
+            <h3 class="community_meetup_title">VFX в инди-кино: как создать магию с малым бюджетом</h3>
+        </article>
+
+        <article class="community_meetup_card">
+            <div class="community_meetup_texts">
+                <span class="community_meetup_meta community_meetup_time">1 час</span>
+                <span class="community_meetup_meta community_meetup_date">05.04.2026</span>
+                <span class="community_meetup_meta community_meetup_join">Участвовать</span>
+            </div>
+
+            <div class="community_meetup_image">
+                <%= image_tag "meetup_2.jpg", alt: "Митап 2" %>
+            </div>
+
+            <h3 class="community_meetup_title">Первое портфолио: как собрать первые работы</h3>
+        </article>
+
+
+
+    </div>
+    <%
+=begin%>
+    работы
+    <%
+=end%>
+    <% elsif @active_tab == "works" %>
+    <div class="community_works_layout">
+
+        <article class="community_work_card">
+            <div class="community_work_author">
+                <%= image_tag "profile_icon_1.png", alt: "", class: "community_work_author_icon" %>
+                <span class="community_work_author_name"> Anna</span>
+            </div>
+
+            <div class="community_work_image">
+                <%= image_tag "work_1.jpg", alt: "Работа 1" %>
+            </div>
+
+            <h3 class="community_work_title">MIrage</h3>
+        </article>
+
+        <article class="community_work_card">
+            <div class="community_work_author">
+                <%= image_tag "profile_icon_2.png", alt: "", class: "community_work_author_icon" %>
+                <span class="community_work_author_name">Julia</span>
+            </div>
+
+            <div class="community_work_image">
+                <%= image_tag "work_2.jpg", alt: "Работа 2" %>
+            </div>
+
+            <h3 class="community_work_title">DEAD HEAD // CGI SHORT</h3>
+        </article>
+
+        <article class="community_work_card">
+            <div class="community_work_author">
+                <%= image_tag "profile_icon_3.png", alt: "", class: "community_work_author_icon" %>
+                <span class="community_work_author_name">Иван</span>
+            </div>
+
+            <div class="community_work_image">
+                <%= image_tag "work_3.jpg", alt: "Работа 3" %>
+            </div>
+
+            <h3 class="community_work_title">Obelisco</h3>
+        </article>
+
+        <article class="community_work_card">
+            <div class="community_work_author">
+                <%= image_tag "profile_icon_4.png", alt: "", class: "community_work_author_icon" %>
+                <span class="community_work_author_name">Арсений</span>
+            </div>
+
+            <div class="community_work_image">
+                <%= image_tag "work_4.jpg", alt: "Работа 4" %>
+            </div>
+
+            <h3 class="community_work_title">Isaev Workshop</h3>
+        </article>
+    </div>
+    <%
+=begin%>
+    Конкурсы
+    <%
+=end%>
+    <% elsif @active_tab == "contests" %>
+    <div class="community_meetup_layout">
+
+
+        <div class="community_contest_card_main">
+            <span class="community_contest_badge">конкурс недели</span>
+            <div class="community_contest_texts">
+                <h3 class="community_contest_title">лучший портал</h3>
+                <p class="community_contest_text">
+                    Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.
+                </p>
+            </div>
+
+            <div class="community_contest_image">
+                <%= image_tag "contest_preview.jpg", alt: "Конкурс недели" %>
+            </div>
+
+            <button class="community_button community_button_secondary" type="button">
+                Загрузить кейс
+            </button>
+        </div>
+        <div class="community_contest_card_main">
+            <span class="community_contest_badge">конкурс</span>
+            <div class="community_contest_texts">
+                <h3 class="community_contest_title">оживший объект</h3>
+                <p class="community_contest_text">
+                    Обычный бытовой объект (настольная лампа, чайник). Задача участников — снять на телефон короткое видео (до 30 сек),
+                    где этот объект «оживает» с помощью простых, но креативных
+                    VFX-приёмов (стоп-моушн, склейки). </p>
+            </div>
+            <div class="community_contest_image">
+                <%= image_tag "contest_preview_1.jpg", alt: "Конкурс недели" %>
+            </div>
+            <button class="community_button community_button_secondary" type="button">
+                Загрузить кейс
+            </button>
+        </div>
+        <div class="community_contest_card">
+            <span class="community_contest_badge">конкурс</span>
+            <div class="community_contest_texts">
+                <h3 class="community_contest_title">эффект в кадре</h3>
+                <p class="community_contest_text">
+                    Участники должны создать короткий VFX-ролик (5-15 секунд). Исходник — скучный кадр: пустая комната, простой коридор, вид из окна. Задача — вдохнуть в него магию, добавив один продуманный эффект (появление фантастического существа). </p>
+            </div>
+            <div class="community_contest_image">
+                <%= image_tag "contest_preview_2.jpg", alt: "Конкурс недели" %>
+            </div>
+            <button class="community_button community_button_secondary" type="button">
+                Загрузить кейс
+            </button>
+        </div>
+
+
+
+    </div>
     <% end %>
 </div>

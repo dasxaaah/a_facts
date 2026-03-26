@@ -1,301 +1,199 @@
-<%
-=begin%>
-<% @tutorials.each do |t| %>
-<div>
-    <%= link_to t.title, tutorial_path(t) %>
-</div>
-<% end %>
-<%
-=end%>
+<div class="tutorial_page">
+    <aside class="tutorial_sidebar">
 
-<h1 class="section-title">Учебник</h1>
+        <div class="tutorial_sidebar_header">
+            <h2 class="tutorial_sidebar_title">Содержание</h2>
+            <nav class="tutorial_sidebar_nav">
+                <a href="#module_1" class="tutorial_sidebar_link tutorial_sidebar_link_active">
+                    <span class="tutorial_sidebar_module">Модуль 1</span>
+                    <span class="tutorial_sidebar_name">Основы VFX</span>
+                </a>
 
-<!-- Фильтры -->
-<div class="article-filters">
-    <button class="filter active">Все</button>
-    <button class="filter">Разборы</button>
-    <button class="filter">Технологии</button>
-    <button class="filter">Личности</button>
-    <button class="filter">Подборки</button>
-</div>
+                <a href="#module_2" class="tutorial_sidebar_link">
+                    <span class="tutorial_sidebar_module">Модуль 2</span>
+                    <span class="tutorial_sidebar_name">Композитинг</span>
+                </a>
 
-<!-- Сетка карточек -->
-<div class="articles-grid">
+                <a href="#module_3" class="tutorial_sidebar_link">
+                    <span class="tutorial_sidebar_module">Модуль 3</span>
+                    <span class="tutorial_sidebar_name">Трекинг</span>
+                </a>
 
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/film01.jpg" alt="">
+                <a href="#module_4" class="tutorial_sidebar_link">
+                    <span class="tutorial_sidebar_module">Модуль 4</span>
+                    <span class="tutorial_sidebar_name">CGI и 3D</span>
+                </a>
+
+                <a href="#module_5" class="tutorial_sidebar_link">
+                    <span class="tutorial_sidebar_module">Модуль 5</span>
+                    <span class="tutorial_sidebar_name">Финальный разбор</span>
+                </a>
+            </nav>
         </div>
+    </aside>
 
-        <div class="article-card__meta">
-            <span class="tag">Технологии</span>
-            <span class="dot">•</span>
-            <span>6 мин</span>
-            <span class="dot">•</span>
-            <span>12.04.2024</span>
-        </div>
+    <main class="tutorial_main">
+        <section class="tutorial_module" id="module_1">
+            <div class="tutorial_module_header">
+                <div class="tutorial_module_badges">
+                    <span class="tutorial_module_badge tutorial_module_number">Модуль 1</span>
+                    <span class="tutorial_module_badge tutorial_module_lessons">4 урока</span>
+                </div>
+                <div class="tutorial_module_meta">
 
-        <h2 class="article-card__title">
-            Как работает зелёный экран: от съёмки до композита
-        </h2>
-    </article>
 
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                    <div class="tutorial_module_intro">
+                        <h2 class="tutorial_module_title">Основы VFX</h2>
+                        <p class="tutorial_module_text">
+                            В этом модуле вы познакомитесь с базовыми принципами визуальных эффектов,
+                            узнаете основные термины и поймёте, как строится работа над VFX-проектом.
+                        </p>
+                    </div>
+                    <div class="tutorial_module_status">
+                        <div class="tutorial_module_status_texts">
+                            <span class="tutorial_module_status_label">ВАШ ПРОГРЕСС:</span>
+                            <span class="tutorial_module_status_value">супервайзер 2 ступени</span>
+                        </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                        <div class="tutorial_progress_circle" style="--progress: 32;">
+                            <div class="tutorial_progress_circle_inner">
+                                <span class="tutorial_progress_circle_value">32%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
 
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+            </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+            <div class="tutorial_cards">
+                <article class="lesson_card">
+                    <div class="lesson_card_image">
+                        <%= image_tag "/autoupload/lessons/lesson_cover_1.jpg", alt: "Урок 1" %>
+                    </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                    <div class="lesson_card_content">
+                        <div class="lesson_card_meta">
+                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 1</span>
+                            <span class="lesson_card_meta_item">20 мин</span>
+                        </div>
+                        <div class="lesson_card_texts_action">
+                            <div class="lesson_card_texts">
+                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
+                                <p class="lesson_card_text">
+                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
+                                </p>
+                            </div>
+                            <div class="lesson_card_action">
+                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
+                        </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                    </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                </article>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                <article class="lesson_card">
+                    <div class="lesson_card_image">
+                        <%= image_tag "/autoupload/lessons/lesson_cover_2.jpg", alt: "Урок 2" %>
+                    </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                    <div class="lesson_card_content">
+                        <div class="lesson_card_meta">
+                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 2</span>
+                            <span class="lesson_card_meta_item">18 мин</span>
+                        </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                        <div class="lesson_card_texts_action">
+                            <div class="lesson_card_texts">
+                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
+                                <p class="lesson_card_text">
+                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
+                                </p>
+                            </div>
+                            <div class="lesson_card_action">
+                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
+                        </div>
+                    </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                </article>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                <article class="lesson_card">
+                    <div class="lesson_card_image">
+                        <%= image_tag "/autoupload/lessons/lesson_cover_3.jpg", alt: "Урок 3" %>
+                    </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_1.jpg" alt="">
-        </div>
+                    <div class="lesson_card_content">
+                        <div class="lesson_card_meta">
+                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 3</span>
+                            <span class="lesson_card_meta_item">24 мин</span>
+                        </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Технологии</span>
-            <span class="dot">•</span>
-            <span>6 мин</span>
-            <span class="dot">•</span>
-            <span>12.04.2024</span>
-        </div>
+                        <div class="lesson_card_texts_action">
+                            <div class="lesson_card_texts">
+                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
+                                <p class="lesson_card_text">
+                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
+                                </p>
+                            </div>
+                            <div class="lesson_card_action">
+                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
+                        </div>
+                    </div>
 
-        <h2 class="article-card__title">
-            Как работает зелёный экран: от съёмки до композита
-        </h2>
-    </article>
 
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                </article>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                <article class="lesson_card">
+                    <div class="lesson_card_image">
+                        <%= image_tag "/autoupload/lessons/lesson_cover_4.jpg", alt: "Урок 4" %>
+                    </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
+                    <div class="lesson_card_content">
+                        <div class="lesson_card_meta">
+                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 4</span>
+                            <span class="lesson_card_meta_item">16 мин</span>
+                        </div>
 
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                        <div class="lesson_card_texts_action">
+                            <div class="lesson_card_texts">
+                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
+                                <p class="lesson_card_text">
+                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
+                                </p>
+                            </div>
+                            <div class="lesson_card_action">
+                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
+                        </div>
+                    </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                </article>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
+                <article class="glossary_card">
+                    <div class="glossary_card_info">
+                        <div class="glossary_card_meta">
+                            <span class="glossary_card_meta_item glossary_card_meta_item_title">Глоссарий</span>
+                            <span class="glossary_card_meta_item">20 слов</span>
+                        </div>
+                        <div class="glossary_card_texts_action">
+                            <div class="glossary_card_texts">
+                                <h3 class="glossary_card_title">Термины модуля</h3>
+                                <p class="glossary_card_text">
+                                    Закрепите основные понятия модуля перед следующими уроками.
+                                </p>
+                            </div>
+                            <div class="glossary_card_action">
+                                <a href="#" class="glossary_card_button">Изучать</a>
+                            </div>
+                        </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
+                    </div>
 
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
 
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
-    <article class="article-card">
-        <div class="article-card__image">
-            <img src="/images/article_mock_2.jpg" alt="">
-        </div>
-
-        <div class="article-card__meta">
-            <span class="tag">Разборы</span>
-            <span class="dot">•</span>
-            <span>4 мин</span>
-            <span class="dot">•</span>
-            <span>02.03.2024</span>
-        </div>
-
-        <h2 class="article-card__title">
-            Почему 3DEqualizer стал стандартом в кино
-        </h2>
-    </article>
+                </article>
+            </div>
+        </section>
+    </main>
 </div>

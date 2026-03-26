@@ -27,11 +27,7 @@
 <body>
     <%= render "shared/menu" %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <%= yield %>
-    <%= render "shared/footer" %>
-</body>
+    <%= render "shared/footer" unless devise_controller? || current_page?(about_path) %></body>
 
 </html>

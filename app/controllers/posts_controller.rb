@@ -22,14 +22,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+  @post = current_user.posts.build(post_params)
 
-    if @post.save
-      redirect_to post_path(@post), notice: "Пост создан"
-    else
-      render :new, status: :unprocessable_entity
-    end
+  if @post.title.blank? && @post.body.present?
+    @post.title = @post.body.truncate(60)
   end
+
+  if @post.save
+    redirect_to community_index_path(tab: "discussions"), notice: "Вопрос опубликован"
+  else
+    @posts = Post.order(id: :desc)
+    @active_tab = "discussions"
+    render "community/index", status: :unprocessable_entity
+  end
+end
 
   def update
     if @post.update(post_params)
@@ -41,7 +47,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: "Пост удалён", status: :see_other
+    redirect_to community_index_path(tab: "discussions"), notice: "Пост удалён"
   end
 
   private

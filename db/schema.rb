@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_23_203225) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_25_182518) do
   create_table "articles", force: :cascade do |t|
     t.integer "article_type"
     t.text "body"
     t.string "category"
     t.string "cover_image"
+    t.datetime "published_at"
     t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
@@ -37,6 +38,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_23_203225) do
     t.datetime "created_at", null: false
     t.text "definition"
     t.string "term"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.text "body"
+    t.string "cover_image"
+    t.datetime "created_at", null: false
+    t.integer "lesson_number"
+    t.string "module_name"
+    t.string "title"
     t.datetime "updated_at", null: false
   end
 

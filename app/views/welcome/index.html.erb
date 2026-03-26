@@ -9,44 +9,186 @@ set_meta_tags(
   }
 )
 %>
-<section class="home-hero">
-    <div class="home-hero__content">
-        <h1 class="home-hero__title">
-            AFACTS
-        </h1>
+<div class="home_page">
+    <section class="home_hero">
+        <div class="home_hero_card">
+            <div class="home_hero_meta">
+                <span class="home_hero_brand">a_facts</span>
+                <span class="home_hero_type">медиа-сервис</span>
+            </div>
 
-        <p class="home-hero__subtitle">
-            Медиа о визуальных эффектах, кино и технологиях.<br>
-            Разборы, туториалы и обсуждения от практиков индустрии.
-        </p>
+            <div class="home_hero_texts">
+                <h2 class="home_hero_title">Медиа-сервис
+                    о&nbsp;визуальных эффектах
+                    в&nbsp;киноиндустрии</h2>
+                <p class="home_hero_text">
+                    Уникальный проект для тех,
+                    кто хочет не просто смотреть кино, а понимать, как создаются сцены
+                </p>
+                <%= link_to "перейти к обучению", tutorials_path, class: "home_button home_button_lesson" %>
 
-        <div class="home-hero__actions">
-            <a href="/articles" class="btn-primary">Читать статьи</a>
-            <a href="/tutorials" class="btn-secondary">Перейти к обучению</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="home-preview">
-    <h2 class="home-section-title">Последние материалы</h2>
-
-    <div class="home-cards">
-        <div class="home-card">
-            <span class="tag">Технологии</span>
-            <h3>Как работает зелёный экран</h3>
-            <p>От съёмки до финального композита в Nuke.</p>
-        </div>
-
-        <div class="home-card">
-            <span class="tag">Разборы</span>
-            <h3>Почему 3DEqualizer стандарт</h3>
-            <p>Камера, линзы и точный solve.</p>
+    <section class="home_articles">
+        <div class="home_section_head">
+            <h2 class="home_section_title">Статьи недели</h2>
+            <%= link_to "смотреть все", articles_path, class: "home_button home_button_article" %>
         </div>
 
-        <div class="home-card">
-            <span class="tag">Подборки</span>
-            <h3>Лучшие VFX шоты 2024</h3>
-            <p>Фильмы и сериалы, которые стоит разобрать.</p>
+        <div class="home_articles_grid">
+            <% counter = 0 %>
+
+            <% @home_articles.each do |article| %>
+            <article class="article_card">
+                <div class="article_card_meta">
+                    <span class="article_card_tag">
+                        <%= article.category %>
+                    </span>
+
+                    <span class="article_card_time">
+                        <%= article.reading_minutes %> мин
+                    </span>
+                </div>
+
+                <% if article.cover_image.present? %>
+                <%= link_to article_path(article), class: "article_card_image_link" do %>
+                <div class="article_card_image">
+                    <%= image_tag article.cover_image.url, alt: article.title %>
+                </div>
+                <% end %>
+                <% end %>
+
+                <h3 class="article_card_title">
+                    <%= link_to article.title, article_path(article), class: "article_card_title_link" %>
+                </h3>
+            </article>
+
+            <% counter += 1 %>
+
+            <% if counter == 2 %>
+            <div class="push_card push_card--w2"></div>
+            <% end %>
+            <% end %>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="home_community">
+        <div class="home_section_head">
+            <h2 class="home_section_title">Присоединяйтесь к сообществу</h2>
+            <%= link_to "в коммьюнити", community_index_path, class: "home_button home_button_community" %>
+        </div>
+
+        <div class="home_community_block">
+            <div class="community_contest_card_main">
+                <div class="community_contest_texts">
+                    <h3 class="community_contest_title">Конкурс недели</h3>
+                    <p class="community_contest_text">
+                        Создай эффект магического портала, используя любые инструменты, а&nbsp;пользователи выберут победителя. </p>
+                </div>
+
+                <div class="community_contest_image">
+                    <%= image_tag "contest_preview_3.jpg", alt: "Конкурс недели" %>
+                </div>
+
+                <button class="community_button community_button_secondary" type="button">
+                    Участвовать
+                </button>
+            </div>
+            <div class="community_contest_card_main">
+                <div class="community_contest_texts">
+                    <h3 class="community_contest_title">оживший объект</h3>
+                    <p class="community_contest_text">
+                        Создай эффект магического портала, используя любые инструменты, а&nbsp;пользователи выберут победителя.
+                </div>
+                <div class="community_contest_image">
+                    <%= image_tag "contest_preview_4.jpg", alt: "Конкурс недели" %>
+                </div>
+                <button class="community_button community_button_secondary" type="button">
+                    Участвовать
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="home_banner_full">
+        <%= image_tag "home_full_banner.jpg", alt: "AFACTS banner", class: "home_banner_full_image" %>
+    </section>
+
+    <section class="home_collage">
+        <div class="home_collage_col home_collage_col_left">
+            <%= image_tag "home_collage_left.jpg", alt: "Учебник", class: "home_collage_image" %>
+            <div class="home_collage_card">
+                <h2 class="home_collage_card_title">Освой цикл производства VFX</h2>
+                <%= link_to "Перейти к обучению", tutorials_path, class: "home_button home_button_lesson" %>
+            </div>
+        </div>
+
+        <div class="home_collage_col home_collage_col_center">
+            <%= image_tag "home_collage_center.jpg", alt: "VFX visual", class: "home_collage_image home_collage_image_tall" %>
+        </div>
+
+        <div class="home_collage_col home_collage_col_right">
+            <%= image_tag "home_collage_right_top.jpg", alt: "VFX frame 1", class: "home_collage_image" %>
+            <%= image_tag "home_collage_right_bottom.jpg", alt: "VFX frame 2", class: "home_collage_image" %>
+        </div>
+    </section>
+
+    <section class="home_subscribe">
+        <div class="home_subscribe_card">
+            <div class="home_subscribe_meta">
+                <span class="home_subscribe_brand">a_facts</span>
+                <span class="home_subscribe_type">медиа-сервис</span>
+            </div>
+            <div class="home_subscribe_texts_sub">
+                <div class="home_subscribe_texts">
+                    <h2 class="home_subscribe_title">Присоединяйся</h2>
+                    <p class="home_subscribe_text">
+                        Оставьте email, чтобы получать уведомление о&nbsp;новых статьях
+                        и&nbsp;бесплатный гайд &laquo;5&nbsp;эффектов, которые можно повторить уже сегодня&raquo;
+                    </p>
+                </div>
+
+                <form action="<%= api_v1_subscribers_path %>" accept-charset="UTF-8" method="post" id="subscription_form" class="home_subscribe_form">
+                    <input class="home_subscribe_input" type="email" placeholder="e-mail" name="subscriber[email]" id="subscriber_email" />
+
+                    <input class="home_subscribe_submit" type="submit" name="commit" value="Подписаться" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="home_slider_section">
+        <div class="home_section_head">
+            <h2 class="home_section_title">Работы учеников </h2>
+
+            <%
+=begin%>
+            <div class="home_slider_controls">
+                <button class="home_slider_button home_slider_button_prev" type="button">←</button>
+                <button class="home_slider_button home_slider_button_next" type="button">→</button>
+            </div>
+            <%
+=end%>
+        </div>
+
+        <div class="home_slider_track">
+            <article class="home_slider_card">
+                <%= image_tag "slider_1.jpg", alt: "Подборка 1", class: "home_slider_card_image" %>
+                <h3 class="home_slider_card_title">MIRAGE</h3>
+            </article>
+
+            <article class="home_slider_card">
+                <%= image_tag "slider_2.jpg", alt: "Подборка 2", class: "home_slider_card_image" %>
+                <h3 class="home_slider_card_title">DEAD HEAD // CGI SHORT</h3>
+            </article>
+
+            <article class="home_slider_card">
+                <%= image_tag "slider_3.jpg", alt: "Подборка 3", class: "home_slider_card_image" %>
+                <h3 class="home_slider_card_title">Obelisco</h3>
+            </article>
+
+        </div>
+    </section>
+</div>

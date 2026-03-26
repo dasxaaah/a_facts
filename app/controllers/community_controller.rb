@@ -1,12 +1,13 @@
 class CommunityController < ApplicationController
-  # load_and_authorize_resource
   before_action :authenticate_user!
 
   def index
-    @posts = Post.where(post_type: 1)  
-  end
+    @active_tab = params[:tab].presence || "discussions"
 
-  def show
-    @post = Post.find(params[:id])
+    @posts = Post.order(id: :desc)
+
+    # @meetups = Meetup.all
+    # @works = Work.all
+    # @contests = Contest.all
   end
 end
