@@ -37,6 +37,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :posts do
       resources :comments, only: [:create, :destroy]
+
+      member do
+        get "toggle_favourite"
+      end
     end
     resources :articles
     resources :tutorials

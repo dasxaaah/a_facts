@@ -1,3 +1,9 @@
+/*
+ *= require trix
+ *= require actiontext
+ *= require_tree .
+ *= require_self
+ */
 :root {
   --forma: 'Forma DJR Cyrillic', sans-serif;
   --arial: 'Arial Narrow', sans-serif;
@@ -46,7 +52,7 @@ body {
   overflow-x: hidden;
   background: #0d0d0d;
   color: #fff6ff;
-  // cursor: none;
+  /* cursor: none; */
 }
 .body_about {
   height: 300vh;
@@ -83,7 +89,7 @@ h1 {
   margin: 0;
   line-height: 100%;
   font-size: 2.8rem;
-  // margin-bottom: 1.8rem;
+  /* margin-bottom: 1.8rem; */
 }
 
 h2 {
@@ -216,7 +222,7 @@ h3 {
 .footer {
   width: 100%;
   min-height: 350px;
-  // padding: 1.2rem 2rem;
+  /* padding: 1.2rem 2rem; */
   background-image: url('/assets/footer_background.png');
   background-size: cover;
   background-position: center;
@@ -506,21 +512,6 @@ a.footer_link_social {
     width: 12px;
   }
 }
-
-//-------
-.qa-page {
-  max-width: 1100px;
-  margin: 24px auto;
-  padding: 0 16px;
-}
-.qa-page__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
 .qa-btn {
   display: inline-block;
   padding: 8px 14px;
@@ -720,20 +711,6 @@ a.footer_link_social {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     sans-serif;
 }
-
-.flash {
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-
-.flash-success {
-  color: #166534;
-  background-color: #dcfce7;
-  border: 1px solid #bbf7d0;
-  padding: 0.6rem 0.8rem;
-  border-radius: 0.5rem;
-}
-
 /* Карточка поста */
 
 .post-card {
@@ -774,11 +751,6 @@ a.footer_link_social {
   font-size: 0.9rem;
   color: #6b7280;
 }
-
-.post-card__author strong {
-  font-weight: 600;
-}
-
 .post-card__body {
   font-size: 1rem;
   line-height: 1.7;
@@ -918,19 +890,6 @@ a.footer_link_social {
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
   margin-bottom: 2rem;
 }
-
-.post-card__cover {
-  margin: -1.5rem -1.5rem 1rem;
-  overflow: hidden;
-  border-radius: 1rem 1rem 0 0;
-}
-
-.post-card__cover-img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 .post-card__header {
   margin-bottom: 1rem;
 }
@@ -1140,7 +1099,7 @@ a.footer_link_social {
   font-size: 13px;
   opacity: 0.6;
 }
-//страница авторизации
+/* страница авторизации */
 .auth-layout {
   display: flex;
   gap: 6rem;
@@ -1220,13 +1179,6 @@ a.footer_link_social {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.2rem;
-}
-.auth-fileds {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  width: 10rem;
 }
 .auth-field {
   width: 100%;
@@ -1311,7 +1263,7 @@ a.footer_link_social {
     opacity: 1;
   }
 }
-//регистрация
+/* регистрация */
 .auth-errors {
   width: 100%;
   background: rgba(255, 80, 80, 0.12);
@@ -1358,38 +1310,6 @@ a.footer_link_social {
 .auth-link-inline:hover {
   opacity: 0.8;
 }
-//articles
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin: 1rem 0 1.5rem;
-}
-
-.filter-btn {
-  text-decoration: none;
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  background: #1c1c1c;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.filter-btn:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.filter-btn.is-active {
-  background: var(--pink);
-  border-color: transparent;
-}
-
-.card-grid--4 {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem;
-}
-
 @media (max-width: 1100px) {
   .card-grid--4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1471,29 +1391,6 @@ a.footer_link_social {
   font-weight: 700;
   margin-bottom: 24px;
 }
-
-/* Фильтры */
-.article-filters {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 32px;
-  padding-left: 3rem;
-}
-
-.filter {
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: #1c1c1c;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.filter.active {
-  background: #ff3b8b;
-}
-
 /* Сетка */
 .articles_grid {
   padding: 2rem;
@@ -1514,7 +1411,6 @@ a.footer_link_social {
 }
 .push_card {
   border-radius: 16px;
-  // background: rgba(255, 255, 255, 0.03);
   min-height: 180px;
   grid-column: span 1;
 }
@@ -1802,47 +1698,6 @@ a.footer_link_social {
 }
 
 /* PREVIEW */
-.home-preview {
-  margin-top: 120px;
-}
-
-.home-section-title {
-  font-size: 28px;
-  margin-bottom: 32px;
-}
-
-.home-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.home-card {
-  padding: 24px;
-  border-radius: 16px;
-  background: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.home-card h3 {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.home-card p {
-  font-size: 14px;
-  color: #aaa;
-}
-.article-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-.article-card:hover {
-  transform: translateY(-2px);
-}
 .category_icon {
   width: 16px;
   height: 16px;
@@ -1855,7 +1710,6 @@ a.footer_link_social {
   align-items: center;
   gap: 6px;
 }
-// фильтрация
 .articles_filter {
   display: flex;
   gap: 16px;
@@ -1877,11 +1731,6 @@ a.footer_link_social {
 
 .articles_filter_item.active {
   border-color: var(--yellow);
-}
-
-.articles_filter_icon {
-  width: 14px;
-  height: 14px;
 }
 .tutorial_page {
   width: 96%;
@@ -1952,7 +1801,6 @@ a.footer_link_social {
   flex-direction: column;
   gap: 5%;
 }
-.tutorial_,
 .lesson_card_text,
 .glossary_card_text,
 .home_hero_text {
@@ -2390,7 +2238,6 @@ a.footer_link_social {
 }
 
 .community_ask_block,
-.community_info_card,
 .community_post_card {
   padding: 1.2rem;
   border-radius: 16px;
@@ -2604,15 +2451,13 @@ a.footer_link_social {
   text-transform: uppercase;
 }
 
-.community_contest_image,
-.community_contest_image_main {
+.community_contest_image {
   width: 100%;
   border-radius: 12px;
   overflow: hidden;
 }
 
-.community_contest_image img,
-.community_contest_image_main img {
+.community_contest_image img {
   width: 100%;
   display: block;
   object-fit: cover;
@@ -2624,13 +2469,6 @@ a.footer_link_social {
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
-.community_meetups_row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  width: 3;
-}
-
 .community_meetup_card {
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.05);
@@ -2754,13 +2592,4 @@ a.footer_link_social {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-.community_contest_card_side {
-  padding: 1.2rem;
-  border-radius: 16px;
-  background-color: #161616;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 0;
 }

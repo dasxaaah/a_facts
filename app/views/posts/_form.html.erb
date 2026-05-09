@@ -15,13 +15,9 @@
 </div>
 
 <div class="qa-field">
-    <%= form.label :body, "Текст вопроса" %>
-    <%= form.text_area :body, class: "qa-input qa-textarea", rows: 6, placeholder: "Добавьте подробности", required: true %>
-</div>
+    <p class="qa-label">Текст вопроса</p>
 
-<div class="qa-field">
-    <%= form.label :post_image, "Картинка" %>
-    <%= form.file_field :post_image, class: "qa-file" %>
+    <%= form.rich_text_area :body, class: "qa-rich-text" %>
 </div>
 
 <%= form.submit (post.persisted? ? "Сохранить" : "Создать вопрос"), class: "qa-btn" %>

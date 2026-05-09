@@ -9,10 +9,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
-    
   end
   
+  def toggle_favourite
+    FavouritePost.create(user_id: current_user.id, post_id: @post.id)
+  end
 
   def new
     @post = Post.new
@@ -21,12 +22,8 @@ class PostsController < ApplicationController
   def edit
   end
 
-  def create
+def create
   @post = current_user.posts.build(post_params)
-
-  if @post.title.blank? && @post.body.present?
-    @post.title = @post.body.truncate(60)
-  end
 
   if @post.save
     redirect_to community_index_path(tab: "discussions"), notice: "Вопрос опубликован"
@@ -64,6 +61,5 @@ end
   end
 
   def post_params
-  params.require(:post).permit(:title, :body, :post_type, :post_image)
-end
+    params.require(:post).permit(:body, :post_type, :post_image)end
 end

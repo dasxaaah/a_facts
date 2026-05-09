@@ -24,40 +24,48 @@
     <% if @active_tab == "discussions" %>
     <div class="community_layout">
         <div class="community_main_col">
+
+
+
             <div class="community_ask_block">
                 <%= form_with model: Post.new, url: posts_path, local: true, html: { multipart: true, class: "community_ask_form" } do |f| %>
-                <div class="community_ask_top">
+
+                <div class="community_ask_header">
                     <div class="community_ask_icon">
                         <%= image_tag "profile_icon.png", alt: "", class: "community_ask_icon_img" %>
                     </div>
 
-                    <%= f.text_area :body,
-                        placeholder: "Задай любой вопрос",
-                        class: "community_ask_input",
-                        rows: 2 %>
+                    <div class="community_ask_fields">
+                        <%= f.text_area :body,
+                            placeholder: "Задай любой вопрос",
+                            class: "community_ask_input",
+                            rows: 5,
+                            required: true %>
+                    </div>
                 </div>
+
+                <div class="community_ask_preview" id="community_image_preview"></div>
 
                 <div class="community_ask_bottom">
                     <div class="community_ask_files">
-                        <label class="community_attach_button" for="community_post_image_input">
-                            <%= image_tag "file_icon.png", alt: "", class: "community_attach_icon" %>
-                            <span>Файл</span>
-                        </label>
-
                         <label class="community_attach_button" for="community_post_image_input">
                             <%= image_tag "image_icon.png", alt: "", class: "community_attach_icon" %>
                             <span>Изображение</span>
                         </label>
 
                         <%= f.file_field :post_image,
-                        id: "community_post_image_input",
-                        class: "community_hidden_input" %>
+                            id: "community_post_image_input",
+                            class: "community_hidden_input",
+                            accept: "image/*" %>
                     </div>
 
                     <%= f.submit "Отправить", class: "community_button" %>
                 </div>
+
                 <% end %>
             </div>
+
+
 
             <div class="community_posts">
                 <% @posts.each do |post| %>

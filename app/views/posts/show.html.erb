@@ -1,22 +1,21 @@
 <%
 set_meta_tags(
-  title: "#{@post.title} | AFACTS",
- description: @post.body.to_s.truncate(160),
+  title: "Вопрос | AFACTS",
+  description: @post.body.to_s.truncate(160),
   keywords: "community, questions, answers, vfx",
   og: {
- title: "#{@post.title} | AFACTS",
-    type: "article",
-    url: post_url(@post)
+    title: "Вопрос | AFACTS",
+    description: @post.body.to_s.truncate(160)
   }
 )
 %>
 
-<% content_for :title, @post.title %>
+<% content_for :title, "Обсуждение" %>
 <div class="post-page">
 
     <article class="post-card">
         <header class="post-card__header">
-            <h1 class="post-card__title"><%= @post.title %></h1>
+            <h1 class="post-card__title">Обсуждение</h1>
 
             <div class="post-card__meta">
                 <span class="post-card__date">
@@ -26,10 +25,10 @@ set_meta_tags(
         </header>
 
         <div class="post-card__body">
-            <%= simple_format(@post.body.to_s) %>
+            <%= @post.body %>
         </div>
 
-        #картинка
+        <%# картинка %>
         <% if @post.post_image.present? %>
         <%= image_tag @post.post_image.url %>
         <% end %>
