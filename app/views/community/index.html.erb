@@ -28,41 +28,13 @@
 
 
             <div class="community_ask_block">
-                <%= form_with model: Post.new, url: posts_path, local: true, html: { multipart: true, class: "community_ask_form" } do |f| %>
-
-                <div class="community_ask_header">
+                <button class="community_ask_trigger" type="button" data-open-community-modal>
                     <div class="community_ask_icon">
                         <%= image_tag "profile_icon.png", alt: "", class: "community_ask_icon_img" %>
                     </div>
 
-                    <div class="community_ask_fields">
-                        <%= f.text_area :body,
-                            placeholder: "Задай любой вопрос",
-                            class: "community_ask_input",
-                            rows: 5,
-                            required: true %>
-                    </div>
-                </div>
-
-                <div class="community_ask_preview" id="community_image_preview"></div>
-
-                <div class="community_ask_bottom">
-                    <div class="community_ask_files">
-                        <label class="community_attach_button" for="community_post_image_input">
-                            <%= image_tag "image_icon.png", alt: "", class: "community_attach_icon" %>
-                            <span>Изображение</span>
-                        </label>
-
-                        <%= f.file_field :post_image,
-                            id: "community_post_image_input",
-                            class: "community_hidden_input",
-                            accept: "image/*" %>
-                    </div>
-
-                    <%= f.submit "Отправить", class: "community_button" %>
-                </div>
-
-                <% end %>
+                    <span class="community_ask_placeholder">Задай любой вопрос</span>
+                </button>
             </div>
 
 
@@ -276,4 +248,42 @@
 
     </div>
     <% end %>
+
+    <div class="community_modal" data-community-modal>
+        <div class="community_modal_overlay" data-close-community-modal></div>
+
+        <div class="community_modal_window">
+            <div class="community_modal_header">
+                <h2 class="community_modal_title">Новый вопрос</h2>
+
+                <button class="community_modal_close" type="button" data-close-community-modal>
+                    ×
+                </button>
+            </div>
+
+            <%= form_with model: Post.new, url: posts_path, local: true, html: { multipart: true, class: "community_modal_form" } do |f| %>
+            <div class="community_modal_editor">
+                <%= f.rich_text_area :body,
+                class: "community_modal_rich_text",
+                placeholder: "Задай любой вопрос" %>
+            </div>
+
+            <div class="community_ask_preview" id="community_image_preview"></div>
+
+            <div class="community_modal_bottom">
+                <label class="community_attach_button" for="community_post_image_input">
+                    <%= image_tag "image_icon.png", alt: "", class: "community_attach_icon" %>
+                    <span>Изображение</span>
+                </label>
+
+                <%= f.file_field :post_image,
+          id: "community_post_image_input",
+          class: "community_hidden_input",
+          accept: "image/*" %>
+
+                <%= f.submit "Отправить", class: "community_button" %>
+            </div>
+            <% end %>
+        </div>
+    </div>
 </div>
