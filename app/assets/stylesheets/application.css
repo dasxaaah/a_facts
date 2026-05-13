@@ -2639,6 +2639,8 @@ a.footer_link_social {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-height: 85vh;
+  overflow-y: auto;
 }
 
 .community_modal_header {
@@ -2728,10 +2730,21 @@ a.footer_link_social {
 }
 
 .community_modal_editor trix-toolbar .trix-button {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--white);
   border-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
 }
 
 .community_modal_editor trix-toolbar .trix-button-group {
   border-color: rgba(255, 255, 255, 0.15);
+}
+.post_edit_page {
+  min-height: 100vh;
+  padding: 8vh 1rem;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+}
+.post_edit_window {
+  margin: 0;
 }

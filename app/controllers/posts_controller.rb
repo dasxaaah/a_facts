@@ -36,8 +36,7 @@ end
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "Пост обновлён", status: :see_other
-    else
+      redirect_to community_index_path(tab: "discussions"), notice: "Пост обновлён", status: :see_other    else
       render :edit, status: :unprocessable_entity
     end
   end

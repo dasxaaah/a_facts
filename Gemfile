@@ -55,7 +55,6 @@ gem "mini_magick"
 gem "russian"
 gem "jwt"
 gem "devise-jwt"
-gem 'lexxy', '~> 0.1.26.beta'
 
 group :production do
   gem "pg"

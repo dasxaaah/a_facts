@@ -1,2 +1,42 @@
-<h1 class="qa-title-page">Редактировать вопрос</h1>
-<%= render "form", post: @post %>
+<div class="post_edit_page">
+    <div class="community_modal_window post_edit_window">
+        <div class="community_modal_header">
+            <h2 class="community_modal_title">Редактировать вопрос</h2>
+
+            <%= link_to "×",
+        post_path(@post),
+        class: "community_modal_close" %>
+        </div>
+
+        <%= form_with model: @post,
+      local: true,
+      html: { multipart: true, class: "community_modal_form" } do |f| %>
+
+        <div class="community_modal_editor">
+            <%= f.rich_text_area :body,
+          class: "community_modal_rich_text",
+          placeholder: "Задай любой вопрос" %>
+        </div>
+
+        <% if @post.post_image.present? %>
+        <div class="community_ask_preview">
+            <%= image_tag @post.post_image.url, class: "community_ask_preview_image" %>
+        </div>
+        <% end %>
+
+        <div class="community_modal_bottom">
+            <label class="community_attach_button" for="community_post_image_input">
+                <%= image_tag "image_icon.png", alt: "", class: "community_attach_icon" %>
+                <span>Изображение</span>
+            </label>
+
+            <%= f.file_field :post_image,
+          id: "community_post_image_input",
+          class: "community_hidden_input",
+          accept: "image/*" %>
+
+            <%= f.submit "Сохранить", class: "community_button" %>
+        </div>
+        <% end %>
+    </div>
+</div>
