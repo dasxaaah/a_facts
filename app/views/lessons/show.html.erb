@@ -14,9 +14,12 @@
                     < <%= @lesson.module_name %>> Урок <%= @lesson.lesson_number %>
                 </div>
 
-                <button class="lesson_favorite_button" type="button">
-                    В избранное
-                </button>
+                <% is_favourite = FavouriteLesson.exists?(user_id: current_user.id, lesson_id: @lesson.id) %>
+
+                <%= button_to is_favourite ? "В избранном" : "В избранное",
+                    toggle_favourite_lesson_path(@lesson),
+                    method: :post,
+                    class: "lesson_favorite_button" %>
             </div>
         </div>
     </div>

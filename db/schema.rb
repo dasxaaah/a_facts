@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_18_122613) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_18_170000) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -76,6 +76,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_18_122613) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+  end
+
+  create_table "favourite_lessons", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "lesson_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["lesson_id"], name: "index_favourite_lessons_on_lesson_id"
+    t.index ["user_id", "lesson_id"], name: "index_favourite_lessons_on_user_id_and_lesson_id", unique: true
+    t.index ["user_id"], name: "index_favourite_lessons_on_user_id"
   end
 
   create_table "favourite_posts", force: :cascade do |t|
@@ -170,6 +180,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_18_122613) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "favourite_lessons", "lessons"
+  add_foreign_key "favourite_lessons", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "tutorials", "users"

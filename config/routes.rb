@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get "/coming-soon", to: "pages#coming_soon"
   post "/subscribe", to: "subscribers#create"
   get "/about", to: "pages#about"
+  get "/profile", to: "profiles#show", as: :profile
+
 
   # Публичные разделы (для обычных пользователей)
   resources :tutorials, only: [:index, :show]
@@ -35,7 +37,11 @@ Rails.application.routes.draw do
   end
 
   #Урок
-  resources :lessons, only: [:show]
+  resources :lessons, only: [:show] do
+    member do
+      post :toggle_favourite
+    end
+  end
 
   # Админка
   namespace :admin do

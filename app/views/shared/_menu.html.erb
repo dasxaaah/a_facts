@@ -50,19 +50,18 @@
         </div>
         <div id="menu_user">
             <% if user_signed_in? %>
-            <%= button_to destroy_user_session_path,
-      method: :delete,
-      form: { data: { turbo: true } },
-      class: "menu-profile-btn",
-      title: "Выйти" do %>
+            <%= link_to profile_path,
+                class: "menu-profile-link",
+                title: "Профиль" do %>
 
             <%= image_tag "profile_icon.png", alt: "Профиль", class: "menu-profile-icon" %>
 
             <% end %>
             <% else %>
+
             <%= link_to new_session_path(:user),
-      class: "menu-profile-link",
-      title: "Войти" do %>
+                class: "menu-profile-link",
+                title: "Войти" do %>
 
             <%= image_tag "profile_icon.png", alt: "Войти", class: "menu-profile-icon" %>
 

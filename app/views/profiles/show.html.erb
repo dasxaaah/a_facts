@@ -1,0 +1,84 @@
+<div class="profile_page">
+    <section class="profile_header">
+        <h1 class="profile_title">Профиль</h1>
+
+        <div class="profile_info">
+            <p class="profile_email"><%= @user.email %></p>
+
+            <%= link_to "Редактировать аккаунт",
+          edit_user_registration_path,
+          class: "profile_edit_link" %>
+        </div>
+        <%= button_to "Выйти",
+            destroy_user_session_path,
+            method: :delete,
+            class: "profile_logout_button" %>
+
+    </section>
+
+    <section class="profile_section">
+        <h2 class="profile_section_title">Мои посты</h2>
+
+        <% if @posts.any? %>
+        <div class="profile_cards">
+            <% @posts.each do |post| %>
+            <article class="profile_card">
+                <h3 class="profile_card_title">
+                    <%= link_to "Пост ##{post.id}", post_path(post) %>
+                </h3>
+
+                <p class="profile_card_meta">
+                    <%= l(post.created_at, format: :short) rescue post.created_at.strftime("%d.%m.%Y") %>
+                </p>
+            </article>
+            <% end %>
+        </div>
+        <% else %>
+        <p class="profile_empty">Пока нет постов</p>
+        <% end %>
+    </section>
+
+    <section class="profile_section">
+        <h2 class="profile_section_title">Избранные статьи</h2>
+
+        <% if @favourite_articles.any? %>
+        <div class="profile_cards">
+            <% @favourite_articles.each do |article| %>
+            <article class="profile_card">
+                <h3 class="profile_card_title">
+                    <%= link_to article.title, article_path(article) %>
+                </h3>
+
+                <p class="profile_card_meta">
+                    <%= article.category %> · <%= article.reading_minutes %> мин
+                </p>
+            </article>
+            <% end %>
+        </div>
+        <% else %>
+        <p class="profile_empty">Пока нет избранных статей</p>
+        <% end %>
+    </section>
+
+    <section class="profile_section">
+        <h2 class="profile_section_title">Избранные уроки</h2>
+
+        <% if @favourite_lessons.any? %>
+        <div class="profile_cards">
+            <% @favourite_lessons.each do |lesson| %>
+            <article class="profile_card">
+                <h3 class="profile_card_title">
+                    <%= link_to lesson.title, lesson_path(lesson) %>
+                </h3>
+
+                <p class="profile_card_meta">
+                    <%= lesson.module_name %> · Урок <%= lesson.lesson_number %>
+                </p>
+            </article>
+            <% end %>
+        </div>
+        <% else %>
+        <p class="profile_empty">Пока нет избранных уроков</p>
+        <% end %>
+    </section>
+</div>
