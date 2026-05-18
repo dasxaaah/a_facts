@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
-  # before_action :authenticate_user!
-  # before_action :set_post, only: %i[show edit update destroy]
-  # before_action :authorize_post!, only: %i[edit update destroy]
+   # before_action :authenticate_user!
+   # before_action :set_post, only: %i[show edit update destroy]
+   # before_action :authorize_post!, only: %i[edit update destroy]
    def index
     @posts = Post.order(created_at: :desc)
   end
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
-  
+
   def toggle_favourite
     FavouritePost.create(user_id: current_user.id, post_id: @post.id)
   end

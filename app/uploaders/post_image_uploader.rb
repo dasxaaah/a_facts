@@ -12,8 +12,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # process optimize: [{ quality: 80 }]
   # process resize_to_fit: [1200, 800]  # единый размер для всех
 
- 
-  process resize_to_fill: [600, 400]
+
+  process resize_to_fill: [ 600, 400 ]
 
   def extension_allowlist
     %w[jpg jpeg png webp]
@@ -24,10 +24,10 @@ class PostImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-#tikens for images
+  # tikens for images
   protected
 
-    def secure_token(length=16)
+    def secure_token(length = 16)
       var = :"@#{mounted_as}_secure_token"
       model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.hex(length/2))
     end

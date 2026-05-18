@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  namespace :api, format: 'json' do
+  namespace :api, format: "json" do
     namespace :v1 do
       resources :subscribers, only: :create
       get "welcome/preview"
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  
+
   # Публичные страницы
   root "welcome#index"
   get "/coming-soon", to: "pages#coming_soon"
@@ -25,19 +25,19 @@ Rails.application.routes.draw do
 
 
   # Публичные разделы (для обычных пользователей)
-  resources :tutorials, only: [:index, :show]
-  resources :articles, only: [:index, :show] do
+  resources :tutorials, only: [ :index, :show ]
+  resources :articles, only: [ :index, :show ] do
     member do
       post :toggle_favourite
     end
   end
-  resources :community, only: [:index, :show], controller: "community"
+  resources :community, only: [ :index, :show ], controller: "community"
   resources :posts do
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [ :create, :destroy ]
   end
 
-  #Урок
-  resources :lessons, only: [:show] do
+  # Урок
+  resources :lessons, only: [ :show ] do
     member do
       post :toggle_favourite
     end
@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   # Админка
   namespace :admin do
     resources :posts do
-      resources :comments, only: [:create, :destroy]
+      resources :comments, only: [ :create, :destroy ]
 
       member do
         get "toggle_favourite"
@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     end
     resources :articles
     resources :tutorials
-    resources :subscribers, only: [:index, :destroy]
+    resources :subscribers, only: [ :index, :destroy ]
     get "community", to: "community#index"
     get "community/:id", to: "community#show", as: "community_post"
   end
@@ -62,8 +62,8 @@ Rails.application.routes.draw do
   # Глоссарий
   namespace :api do
   namespace :v1 do
-    resources :glossary_terms, only: [:index]
-   resources :quizzes, only: [:index, :show]
+    resources :glossary_terms, only: [ :index ]
+   resources :quizzes, only: [ :index, :show ]
   end
 end
 

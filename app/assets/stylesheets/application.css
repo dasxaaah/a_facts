@@ -2777,6 +2777,32 @@ a.footer_link_social {
   color: #a6a6a6;
 }
 
+.profile_tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.profile_tab {
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-family: var(--arialbold);
+  text-transform: uppercase;
+}
+
+.profile_tab_active {
+  background-color: var(--cyan);
+  color: var(--black);
+  border-color: var(--cyan);
+}
+
 .profile_edit_link {
   background-color: var(--purple);
   color: var(--black);
@@ -2828,6 +2854,13 @@ a.footer_link_social {
   color: #a6a6a6;
 }
 
+.profile_settings {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 900px) {
   .profile_header {
     align-items: flex-start;
@@ -2840,6 +2873,11 @@ a.footer_link_social {
 
   .profile_cards {
     grid-template-columns: 1fr;
+  }
+
+  .profile_settings {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 .profile_logout_button {

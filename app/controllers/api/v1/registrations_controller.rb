@@ -24,5 +24,4 @@ class Api::V1::RegistrationsController < Devise::SessionsController
     def user_params
       params.expect(user: [ :email, :password, :password_confirmation ])
     end
-
 end

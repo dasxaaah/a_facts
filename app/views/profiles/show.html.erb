@@ -4,20 +4,26 @@
 
         <div class="profile_info">
             <p class="profile_email"><%= @user.email %></p>
-
-            <%= link_to "Редактировать аккаунт",
-          edit_user_registration_path,
-          class: "profile_edit_link" %>
         </div>
-        <%= button_to "Выйти",
-            destroy_user_session_path,
-            method: :delete,
-            class: "profile_logout_button" %>
-
     </section>
 
+    <div class="profile_tabs">
+        <%= link_to "Работы",
+            profile_path(tab: "works"),
+            class: "profile_tab #{'profile_tab_active' if @active_tab == 'works'}" %>
+
+        <%= link_to "Избранное",
+            profile_path(tab: "favorites"),
+            class: "profile_tab #{'profile_tab_active' if @active_tab == 'favorites'}" %>
+
+        <%= link_to "Настройки",
+            profile_path(tab: "settings"),
+            class: "profile_tab #{'profile_tab_active' if @active_tab == 'settings'}" %>
+    </div>
+
+    <% if @active_tab == "works" %>
     <section class="profile_section">
-        <h2 class="profile_section_title">Мои посты</h2>
+        <h2 class="profile_section_title">Работы</h2>
 
         <% if @posts.any? %>
         <div class="profile_cards">
@@ -38,6 +44,7 @@
         <% end %>
     </section>
 
+    <% elsif @active_tab == "favorites" %>
     <section class="profile_section">
         <h2 class="profile_section_title">Избранные статьи</h2>
 
@@ -81,4 +88,22 @@
         <p class="profile_empty">Пока нет избранных уроков</p>
         <% end %>
     </section>
+    <% elsif @active_tab == "settings" %>
+    <section class="profile_section">
+        <h2 class="profile_section_title">Настройки</h2>
+
+        <div class="profile_settings">
+            <p class="profile_email"><%= @user.email %></p>
+
+            <%= link_to "Редактировать аккаунт",
+                edit_user_registration_path,
+                class: "profile_edit_link" %>
+
+            <%= button_to "Выйти",
+                destroy_user_session_path,
+                method: :delete,
+                class: "profile_logout_button" %>
+        </div>
+    </section>
+    <% end %>
 </div>

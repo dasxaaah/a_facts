@@ -3,7 +3,7 @@ class Api::V1::QuizzesController < ApplicationController
     quizzes = Quiz.all
 
     render json: quizzes.as_json(
-      only: [:id, :title, :category, :description],
+      only: [ :id, :title, :category, :description ],
       methods: []
     )
   end
@@ -12,10 +12,10 @@ class Api::V1::QuizzesController < ApplicationController
     quiz = Quiz.includes(:quiz_questions).find(params[:id])
 
     render json: quiz.as_json(
-      only: [:id, :title, :category, :description],
+      only: [ :id, :title, :category, :description ],
       include: {
         quiz_questions: {
-          only: [:id, :question, :option_a, :option_b, :option_c, :option_d, :correct_answer]
+          only: [ :id, :question, :option_a, :option_b, :option_c, :option_d, :correct_answer ]
         }
       }
     )

@@ -4,7 +4,7 @@ class Api::V1::WelcomeController < ApplicationController
     render json: posts
   end
 
-  def preview 
+  def preview
     posts = User.first.posts
     render json: posts
   end

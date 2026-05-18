@@ -1,19 +1,19 @@
 class Api::V1::SessionsController < Devise::SessionsController
   include JwtAuth
-  skip_before_action :verify_authenticity_token, only: [:authorize_by_jwt, :create, :destroy]
+  skip_before_action :verify_authenticity_token, only: [ :authorize_by_jwt, :create, :destroy ]
   skip_before_action :verify_signed_out_user, only: :destroy
-  before_action :load_user_by_email, only: [:create]
-  before_action :load_user_by_jti, only: [:authorize_by_jwt]
+  before_action :load_user_by_email, only: [ :create ]
+  before_action :load_user_by_jti, only: [ :authorize_by_jwt ]
 
   def authorize_by_jwt
     puts @user.to_json
 
     render json: {
-      messages: 'Authorized successfully',
+      messages: "Authorized successfully",
       is_success: true,
       email: @user.email
     }, status: :ok
-  end 
+  end
 
   def create
     if @user&.valid_password?(sign_in_params[:password])
@@ -36,7 +36,7 @@ class Api::V1::SessionsController < Devise::SessionsController
     if @user && @user.update_column(:jti, SecureRandom.uuid)
       render json: {
         messages: "Signed Out Successfully",
-        is_success: true,
+        is_success: true
       }, status: :ok
     else
       render json: {
@@ -54,10 +54,8 @@ class Api::V1::SessionsController < Devise::SessionsController
       unless @user
         render json: {
           messages: "Sign In Failed - Unauthorized",
-          is_success: false,
+          is_success: false
         }, status: :unauthorized
       end
   end
-
-  
 end

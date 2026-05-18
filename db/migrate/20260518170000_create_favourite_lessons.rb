@@ -7,6 +7,6 @@ class CreateFavouriteLessons < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :favourite_lessons, [:user_id, :lesson_id], unique: true
+    add_index :favourite_lessons, [ :user_id, :lesson_id ], unique: true
   end
 end
