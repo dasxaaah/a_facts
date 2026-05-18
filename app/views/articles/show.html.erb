@@ -47,7 +47,7 @@
         </aside>
 
         <main class="article_content">
-            <%= @article.body.to_s.html_safe %>
+            <%= sanitize(@article.body.to_s) %>
 
             <div class="article_tags_block">
                 <h2 class="article_tags_title">Теги</h2>

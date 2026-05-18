@@ -37,7 +37,7 @@
         </aside>
 
         <main class="lesson_content">
-            <%= @lesson.body.to_s.html_safe %>
+            <%= sanitize(@lesson.body.to_s) %>
             <div class="lesson_card_action">
                 <%= link_to "следующий урок", lesson_path(1), class: "lesson_card_button next_lesson_button" %> </div>
         </main>
