@@ -10,11 +10,6 @@
 <% end %>
 
 <div class="qa-field">
-    <%= form.label :title, "Заголовок" %>
-    <%= form.text_field :title, class: "qa-input", placeholder: "Кратко сформулируйте вопрос", required: true %>
-</div>
-
-<div class="qa-field">
     <p class="qa-label">Текст вопроса</p>
 
     <%= form.rich_text_area :body, class: "qa-rich-text" %>

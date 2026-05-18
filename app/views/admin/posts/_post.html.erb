@@ -2,7 +2,7 @@
     <%
 =begin%>
     <div>
-        <%= post.title %>
+        Пост #<%= post.id %>
     </div>
 
     <div>
@@ -12,7 +12,7 @@
 =end%>
 
 
-    <h2><%= link_to post.title, [:admin, post] %></h2>
+    <h2><%= link_to "Пост ##{post.id}", [:admin, post] %></h2>
     <p><%= post.body %></p>
 
 </div>

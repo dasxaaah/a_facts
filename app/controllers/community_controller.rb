@@ -10,4 +10,8 @@ class CommunityController < ApplicationController
     # @works = Work.all
     # @contests = Contest.all
   end
+
+  def show
+    @post = Post.find(params[:id])
+  end
 end

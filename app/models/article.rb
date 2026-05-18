@@ -2,6 +2,7 @@ class Article < ApplicationRecord
   mount_uploader :cover_image, ArticleCoverImageUploader
   CATEGORIES = %w[Разборы Технологии Личности Подборки].freeze
 
+  belongs_to :user
   validates :category, inclusion: { in: CATEGORIES }, allow_blank: true
   def reading_minutes
     words = body.to_s.split.size

@@ -23,25 +23,25 @@
 
 @font-face {
   font-family: 'Forma DJR Cyrillic';
-  src: font-url('FormaDJRCyrillicDeck-Regular-Testing.woff2') format('woff2'),
-    font-url('FormaDJRCyrillicDeck-Regular-Testing.woff') format('woff'),
-    font-url('FormaDJRCyrillicDeck-Regular-Testing.ttf') format('truetype');
+  src: url('FormaDJRCyrillicDeck-Regular-Testing.woff2') format('woff2'),
+    url('FormaDJRCyrillicDeck-Regular-Testing.woff') format('woff'),
+    url('FormaDJRCyrillicDeck-Regular-Testing.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Arial Narrow';
-  src: font-url('arialnarrow.woff2') format('woff2'),
-    font-url('arialnarrow.ttf') format('truetype');
+  src: url('arialnarrow.woff2') format('woff2'),
+    url('arialnarrow.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Arial Narrow Bold';
-  src: font-url('arialnarrow_bold.woff2') format('woff2'),
-    font-url('arialnarrow_bold.ttf') format('truetype');
+  src: url('arialnarrow_bold.woff2') format('woff2'),
+    url('arialnarrow_bold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }

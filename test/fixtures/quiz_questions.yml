@@ -7,6 +7,7 @@ one:
   option_c: MyString
   option_d: MyString
   correct_answer: MyString
+  quiz: one
 
 two:
   question: MyText
@@ -15,3 +16,4 @@ two:
   option_c: MyString
   option_d: MyString
   correct_answer: MyString
+  quiz: two

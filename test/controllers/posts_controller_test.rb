@@ -2,6 +2,7 @@ require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    sign_in users(:one)
     @post = posts(:one)
   end
 
@@ -17,10 +18,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create post" do
     assert_difference("Post.count") do
-      post posts_url, params: { post: { body: @post.body, title: @post.title } }
+      post posts_url, params: { post: { body: "New post body" } }
     end
 
-    assert_redirected_to post_url(Post.last)
+    assert_redirected_to community_index_url(tab: "discussions")
   end
 
   test "should show post" do
@@ -34,8 +35,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), params: { post: { body: @post.body, title: @post.title } }
-    assert_redirected_to post_url(@post)
+    patch post_url(@post), params: { post: { body: "Updated post body" } }
+    assert_redirected_to community_index_url(tab: "discussions")
   end
 
   test "should destroy post" do
@@ -43,6 +44,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_url(@post)
     end
 
-    assert_redirected_to posts_url
+    assert_redirected_to community_index_url(tab: "discussions")
   end
 end
