@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post "/subscribe", to: "subscribers#create"
   get "/about", to: "pages#about"
   get "/profile", to: "profiles#show", as: :profile
+  resources :projects, only: [ :create ]
 
 
   # Публичные разделы (для обычных пользователей)

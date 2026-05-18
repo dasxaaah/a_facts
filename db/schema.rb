@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_18_170000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_18_203000) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -124,6 +124,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_18_170000) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "kind", default: "text", null: false
+    t.string "status", default: "draft", null: false
+    t.string "title", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["status"], name: "index_projects_on_status"
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
   create_table "quiz_questions", force: :cascade do |t|
     t.string "correct_answer"
     t.datetime "created_at", null: false
@@ -183,6 +195,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_18_170000) do
   add_foreign_key "favourite_lessons", "lessons"
   add_foreign_key "favourite_lessons", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "projects", "users"
   add_foreign_key "quiz_questions", "quizzes"
   add_foreign_key "tutorials", "users"
 end

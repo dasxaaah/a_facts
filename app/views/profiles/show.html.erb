@@ -1,48 +1,227 @@
 <div class="profile_page">
-    <section class="profile_header">
-        <h1 class="profile_title">Профиль</h1>
+    <aside class="profile_sidebar">
+        <div class="profile_identity">
+            <div class="profile_avatar">
+                <%= image_tag "profile_icon.png", alt: "", class: "profile_avatar_icon" %>
+            </div>
 
-        <div class="profile_info">
-            <p class="profile_email"><%= @user.email %></p>
+            <p class="profile_name"><%= @user.email.split("@").first.upcase %></p>
+            <p class="profile_nickname"><%= @user.email %></p>
         </div>
-    </section>
 
-    <div class="profile_tabs">
-        <%= link_to "Работы",
-            profile_path(tab: "works"),
-            class: "profile_tab #{'profile_tab_active' if @active_tab == 'works'}" %>
+        <div class="profile_tabs">
+            <%= link_to "Работы",
+                profile_path(tab: "works"),
+                class: "profile_tab #{'profile_tab_active' if @active_tab == 'works'}" %>
 
-        <%= link_to "Избранное",
-            profile_path(tab: "favorites"),
-            class: "profile_tab #{'profile_tab_active' if @active_tab == 'favorites'}" %>
+            <%= link_to "Избранное",
+                profile_path(tab: "favorites"),
+                class: "profile_tab #{'profile_tab_active' if @active_tab == 'favorites'}" %>
 
-        <%= link_to "Настройки",
-            profile_path(tab: "settings"),
-            class: "profile_tab #{'profile_tab_active' if @active_tab == 'settings'}" %>
-    </div>
+            <%= link_to "Настройки",
+                profile_path(tab: "settings"),
+                class: "profile_tab #{'profile_tab_active' if @active_tab == 'settings'}" %>
+        </div>
+
+        <button class="profile_drafts_button <%= 'profile_drafts_button_active' if @show_drafts %>" type="button" data-profile-show-drafts>
+            Черновики
+        </button>
+    </aside>
+
+    <main class="profile_content">
 
     <% if @active_tab == "works" %>
     <section class="profile_section">
-        <h2 class="profile_section_title">Работы</h2>
+        <div class="profile_section_header">
+            <button class="profile_add_work_button" type="button" data-open-profile-work-modal>
+                Добавить работу
+            </button>
+        </div>
 
-        <% if @posts.any? %>
-        <div class="profile_cards">
-            <% @posts.each do |post| %>
-            <article class="profile_card">
-                <h3 class="profile_card_title">
-                    <%= link_to "Пост ##{post.id}", post_path(post) %>
-                </h3>
+        <div class="profile_drafts_folder <%= 'profile_drafts_folder_visible' if @show_drafts %>" data-profile-drafts-panel>
+            <div class="profile_works_grid profile_drafts_grid" data-profile-drafts-grid>
+                <% if @draft_projects.any? %>
+                    <% @draft_projects.each do |project| %>
+                    <article class="profile_work_card">
+                        <div class="profile_work_image">
+                            <% if project.media.attached? && project.media.content_type.start_with?("image/") %>
+                                <%= image_tag project.media, alt: project.title %>
+                            <% elsif project.media.attached? && project.media.content_type.start_with?("video/") %>
+                                <%= video_tag url_for(project.media), controls: true, muted: true %>
+                            <% else %>
+                                <div class="profile_work_text_preview">Текст</div>
+                            <% end %>
+                        </div>
 
-                <p class="profile_card_meta">
-                    <%= l(post.created_at, format: :short) rescue post.created_at.strftime("%d.%m.%Y") %>
-                </p>
+                        <h3 class="profile_work_title"><%= project.title %></h3>
+                    </article>
+                    <% end %>
+                <% else %>
+                    <p class="profile_empty" data-profile-drafts-empty>Пока нет черновиков</p>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="profile_works_grid <%= 'profile_published_grid_hidden' if @show_drafts %>" data-profile-works-grid data-profile-published-panel>
+            <% @published_projects.each do |project| %>
+            <article class="profile_work_card">
+                <div class="profile_work_image">
+                    <% if project.media.attached? && project.media.content_type.start_with?("image/") %>
+                        <%= image_tag project.media, alt: project.title %>
+                    <% elsif project.media.attached? && project.media.content_type.start_with?("video/") %>
+                        <%= video_tag url_for(project.media), controls: true, muted: true %>
+                    <% else %>
+                        <div class="profile_work_text_preview">Текст</div>
+                    <% end %>
+                </div>
+
+                <h3 class="profile_work_title"><%= project.title %></h3>
             </article>
             <% end %>
+
+            <article class="profile_work_card">
+                <div class="profile_work_image">
+                    <%= image_tag "work_1.jpg", alt: "Работа 1" %>
+                </div>
+
+                <h3 class="profile_work_title">MIrage</h3>
+            </article>
+
+            <article class="profile_work_card">
+                <div class="profile_work_image">
+                    <%= image_tag "work_2.jpg", alt: "Работа 2" %>
+                </div>
+
+                <h3 class="profile_work_title">DEAD HEAD // CGI SHORT</h3>
+            </article>
+
+            <article class="profile_work_card">
+                <div class="profile_work_image">
+                    <%= image_tag "work_3.jpg", alt: "Работа 3" %>
+                </div>
+
+                <h3 class="profile_work_title">Obelisco</h3>
+            </article>
         </div>
-        <% else %>
-        <p class="profile_empty">Пока нет постов</p>
-        <% end %>
     </section>
+
+    <div class="profile_work_modal" data-profile-work-modal>
+        <%= form_with model: @project, url: projects_path, local: true, html: { multipart: true, class: "profile_work_form", data: { profile_work_form: true } } do |f| %>
+        <%= f.hidden_field :status, value: "published", data: { profile_work_status_input: true } %>
+        <%= f.hidden_field :kind, value: "text", data: { profile_work_kind_input: true } %>
+
+        <div class="profile_work_modal_window">
+            <div class="profile_work_modal_header">
+                <button class="profile_work_modal_back" type="button" aria-label="Назад" data-close-profile-work-modal></button>
+
+                <h2 class="profile_work_modal_title">Новый проект</h2>
+
+                <div class="profile_work_modal_actions" data-profile-work-actions>
+                    <button class="profile_work_draft_button" type="button" data-profile-work-save-draft>Сохранить в черновик</button>
+                    <button class="profile_work_publish_button" type="button" data-profile-work-publish>Опубликовать</button>
+                </div>
+            </div>
+
+            <div class="profile_work_start" data-profile-work-start>
+                <div class="profile_work_start_inner">
+                    <p class="profile_work_start_text">Начните создавать новый проект</p>
+                    <p class="profile_work_start_size">ширина 1600 px</p>
+
+                    <div class="profile_work_type_buttons">
+                        <button class="profile_work_type_button" type="button" data-profile-work-type="photo">
+                            <%= image_tag "image_icon.png", alt: "", class: "profile_work_type_icon" %>
+                            <span>Фото</span>
+                        </button>
+
+                        <button class="profile_work_type_button" type="button" data-profile-work-type="video">
+                            <%= image_tag "file_icon.png", alt: "", class: "profile_work_type_icon" %>
+                            <span>Видео</span>
+                        </button>
+
+                        <button class="profile_work_type_button" type="button" data-profile-work-type="text">
+                            <%= image_tag "comment_icon.png", alt: "", class: "profile_work_type_icon" %>
+                            <span>Текст</span>
+                        </button>
+                    </div>
+
+                    <%= file_field_tag "project[media]",
+                        accept: "image/*",
+                        id: "project_photo_media",
+                        class: "profile_work_file_input",
+                        data: { profile_work_photo_input: true } %>
+                    <%= file_field_tag "project[media]",
+                        accept: "video/*",
+                        id: "project_video_media",
+                        class: "profile_work_file_input",
+                        data: { profile_work_video_input: true } %>
+                </div>
+            </div>
+
+            <div class="profile_work_editor" data-profile-work-editor>
+                <div class="profile_work_editor_main">
+                    <div class="profile_work_preview" data-profile-work-preview>
+                        <p class="profile_work_preview_empty">Выберите файл или начните с текста</p>
+                    </div>
+
+                    <%= f.text_area :description,
+                        class: "profile_work_description",
+                        placeholder: "Описание проекта",
+                        data: { profile_work_description: true } %>
+                </div>
+
+                <aside class="profile_work_editor_panel">
+                    <label class="profile_work_field">
+                        <span>Название проекта</span>
+                        <%= f.text_field :title,
+                            class: "profile_work_title_input",
+                            placeholder: "Введите название",
+                            data: { profile_work_title_input: true } %>
+                    </label>
+
+                    <p class="profile_work_panel_title">Добавить</p>
+
+                    <div class="profile_work_panel_buttons">
+                        <button class="profile_work_type_button profile_work_type_button_small" type="button" data-profile-work-type="photo">
+                            <%= image_tag "image_icon.png", alt: "", class: "profile_work_type_icon" %>
+                            <span>Фото</span>
+                        </button>
+
+                        <button class="profile_work_type_button profile_work_type_button_small" type="button" data-profile-work-type="video">
+                            <%= image_tag "file_icon.png", alt: "", class: "profile_work_type_icon" %>
+                            <span>Видео</span>
+                        </button>
+
+                        <button class="profile_work_type_button profile_work_type_button_small" type="button" data-profile-work-type="text">
+                            <%= image_tag "comment_icon.png", alt: "", class: "profile_work_type_icon" %>
+                            <span>Текст</span>
+                        </button>
+                    </div>
+
+                    <p class="profile_work_panel_title">Настройки</p>
+
+                    <div class="profile_work_setting">
+                        <span>Фон</span>
+                        <div class="profile_work_color_control">
+                            <span data-profile-work-color-code>#000000</span>
+                            <label class="profile_work_color_button" aria-label="Выбрать цвет">
+                                <input type="color" value="#000000" data-profile-work-color-input>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="profile_work_setting profile_work_setting_column">
+                        <div class="profile_work_setting_row">
+                            <span>Отступы</span>
+                            <span data-profile-work-line-height-value>1.4</span>
+                        </div>
+
+                        <input class="profile_work_range" type="range" min="1" max="2.5" step="0.1" value="1.4" data-profile-work-line-height>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <% end %>
+    </div>
 
     <% elsif @active_tab == "favorites" %>
     <section class="profile_section">
@@ -106,4 +285,5 @@
         </div>
     </section>
     <% end %>
+    </main>
 </div>
