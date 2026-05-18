@@ -9,9 +9,12 @@
         <div class="article_header_main">
             <h1 class="article_title"><%= @article.title %></h1>
 
-            <button class="article_favorite_button" type="button">
-                В избранное
-            </button>
+            <% is_favourite = FavouriteArticle.exists?(user_id: current_user.id, article_id: @article.id) %>
+
+            <%= button_to is_favourite ? "В избранном" : "В избранное",
+                toggle_favourite_article_path(@article),
+                method: :post,
+                class: "article_favorite_button" %>
         </div>
 
         <div class="article_meta">

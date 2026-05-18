@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favourite_posts
   has_many :favourites, through: :favourite_posts, source: :post
+  has_many :favourite_articles, dependent: :destroy
+  has_many :favourited_articles, through: :favourite_articles, source: :article
 end
