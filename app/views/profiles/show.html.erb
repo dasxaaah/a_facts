@@ -231,9 +231,51 @@
     <section class="profile_section profile_section_with_bottom_space">
         <div class="profile_section_header">
             <h1 class="profile_grid_title">Избранное</h1>
+        </div>
+
+        <div class="profile_board_items_grid profile_favorites_items_grid">
+            <% @favourite_articles.each do |article| %>
+                <%= link_to article_path(article), class: "profile_board_item" do %>
+                    <span class="profile_board_item_badge profile_board_item_badge_article">Статья</span>
+
+                    <div class="profile_board_item_image">
+                        <% if article.cover_image.present? %>
+                            <%= image_tag article.cover_image.url, alt: article.title %>
+                        <% else %>
+                            <%= image_tag "contest_preview_1.jpg", alt: article.title %>
+                        <% end %>
+                    </div>
+
+                    <h3 class="profile_board_item_title"><%= article.title %></h3>
+                <% end %>
+            <% end %>
+
+            <% @favourite_lessons.each do |lesson| %>
+                <%= link_to lesson_path(lesson), class: "profile_board_item" do %>
+                    <span class="profile_board_item_badge profile_board_item_badge_lesson">Урок</span>
+
+                    <div class="profile_board_item_image">
+                        <% if lesson.cover_image.present? %>
+                            <%= image_tag lesson.cover_image.url, alt: lesson.title %>
+                        <% else %>
+                            <%= image_tag "meetup_1.jpg", alt: lesson.title %>
+                        <% end %>
+                    </div>
+
+                    <h3 class="profile_board_item_title"><%= lesson.title %></h3>
+                <% end %>
+            <% end %>
+
+            <% if @favourite_articles.empty? && @favourite_lessons.empty? %>
+                <p class="profile_favorites_empty">Вы пока не добавили статьи или уроки в избранное.</p>
+            <% end %>
+        </div>
+
+        <div class="profile_section_header profile_boards_header">
+            <h2 class="profile_grid_title">Доски</h2>
 
             <button class="profile_add_work_button" type="button">
-                Добавить
+                Создать
             </button>
         </div>
 

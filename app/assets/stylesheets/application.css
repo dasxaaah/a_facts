@@ -1743,10 +1743,14 @@ h3 {
   border-radius: 10px;
   border: 1px solid #282828;
   font-family: var(--forma);
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .articles_filter_item.active {
+  background-color: var(--yellow);
   border-color: var(--yellow);
+  color: var(--black);
 }
 .tutorial_page {
   width: 96%;
@@ -1898,21 +1902,53 @@ h3 {
   color: var(--white);
 }
 .tutorial_cards {
-  margin-left: 2rem;
-  padding: 2rem 0 0 4rem;
-  border-left: 4px solid #282828;
+  padding: 2rem 7rem 0 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   gap: 2rem;
 }
 .lesson_card {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: row;
   border-radius: 16px;
   background-color: #282828;
 }
+
+.lesson_card::before,
+.glossary_card::before {
+  content: '';
+  position: absolute;
+  top: -18rem;
+  right: -6rem;
+  bottom: 2.2rem;
+  width: 6rem;
+  border-right: 4px solid #282828;
+  border-bottom: 4px solid #282828;
+  border-radius: 0 0 18px 0;
+  pointer-events: none;
+}
+
+.tutorial_cards > .lesson_card:first-child::before {
+  top: 50%;
+}
+
+.lesson_card::after,
+.glossary_card::after {
+  content: '';
+  position: absolute;
+  right: 0rem;
+  bottom: 2.2rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--green);
+  transform: translate(50%, 50%);
+  pointer-events: none;
+}
+
 .lesson_card_image {
   width: 40%;
 }
@@ -1947,6 +1983,7 @@ h3 {
   width: fit-content;
 }
 .glossary_card {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -2233,6 +2270,7 @@ h3 {
   border-radius: 10px;
   border: 1px solid #282828;
   font-family: var(--forma);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -3579,6 +3617,21 @@ trix-editor,
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.8rem;
+}
+
+.profile_favorites_items_grid {
+  margin-bottom: 4.5rem;
+}
+
+.profile_boards_header {
+  margin-bottom: 1.5rem;
+}
+
+.profile_favorites_empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #a6a6a6;
+  font-size: 1rem;
 }
 
 .profile_board_card {
