@@ -12,6 +12,30 @@ import '@rails/actiontext'
 // const context = require.context('./controllers', true, /\.js$/)
 // application.load(definitionsFromContext(context))
 document.addEventListener('turbo:load', () => {
+  const menu = document.querySelector('.menu')
+  const mobileMenuToggle = document.querySelector('[data-mobile-menu-toggle]')
+
+  if (!menu || !mobileMenuToggle) return
+
+  mobileMenuToggle.addEventListener('click', (event) => {
+    event.stopPropagation()
+    menu.classList.toggle('menu_mobile_open')
+  })
+
+  document.addEventListener('click', (event) => {
+    if (!menu.contains(event.target)) {
+      menu.classList.remove('menu_mobile_open')
+    }
+  })
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      menu.classList.remove('menu_mobile_open')
+    }
+  })
+})
+
+document.addEventListener('turbo:load', () => {
   const input = document.getElementById('community_post_image_input')
   const preview = document.getElementById('community_image_preview')
 
