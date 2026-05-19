@@ -36,15 +36,38 @@ document.addEventListener('turbo:load', () => {
   const openButtons = document.querySelectorAll('[data-open-community-modal]')
   const closeButtons = document.querySelectorAll('[data-close-community-modal]')
   const input = document.getElementById('community_post_image_input')
+  const openImagePickerButtons = document.querySelectorAll('[data-community-open-image-picker]')
+  const openFilePickerButtons = document.querySelectorAll('[data-community-open-file-picker]')
+  const fileInput = document.querySelector('[data-community-file-input]')
   const preview = document.getElementById('community_image_preview')
 
   if (!modal) return
 
+  const openCommunityModal = () => {
+    modal.classList.add('community_modal_open')
+    document.body.classList.add('modal_open')
+  }
+
   openButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      modal.classList.add('community_modal_open')
-      document.body.classList.add('modal_open')
+      openCommunityModal()
     })
+  })
+
+  openImagePickerButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      input?.click()
+    })
+  })
+
+  openFilePickerButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      fileInput?.click()
+    })
+  })
+
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files[0]) openCommunityModal()
   })
 
   closeButtons.forEach((button) => {
@@ -54,6 +77,7 @@ document.addEventListener('turbo:load', () => {
 
       if (preview) preview.innerHTML = ''
       if (input) input.value = ''
+      if (fileInput) fileInput.value = ''
     })
   })
 
@@ -69,8 +93,47 @@ document.addEventListener('turbo:load', () => {
       image.className = 'community_ask_preview_image'
 
       preview.appendChild(image)
+      openCommunityModal()
     })
   }
+})
+
+document.addEventListener('turbo:load', () => {
+  const postsContainer = document.querySelector('[data-community-posts]')
+  const loadMoreButton = document.querySelector('[data-community-load-more]')
+
+  loadMoreButton?.addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    const nextUrl = loadMoreButton.getAttribute('href')
+    if (!nextUrl || !postsContainer) return
+
+    loadMoreButton.textContent = 'Загрузка...'
+    loadMoreButton.setAttribute('aria-busy', 'true')
+
+    try {
+      const response = await fetch(nextUrl, {
+        headers: { Accept: 'text/html' }
+      })
+      const html = await response.text()
+      const doc = new DOMParser().parseFromString(html, 'text/html')
+      const nextPosts = doc.querySelectorAll('[data-community-posts] .community_post_card')
+      const nextButton = doc.querySelector('[data-community-load-more]')
+
+      nextPosts.forEach((post) => postsContainer.appendChild(post))
+
+      if (nextButton) {
+        loadMoreButton.setAttribute('href', nextButton.getAttribute('href'))
+        loadMoreButton.textContent = 'Загрузить ещё'
+        loadMoreButton.removeAttribute('aria-busy')
+      } else {
+        loadMoreButton.closest('.community_load_more')?.remove()
+      }
+    } catch {
+      loadMoreButton.textContent = 'Попробовать ещё раз'
+      loadMoreButton.removeAttribute('aria-busy')
+    }
+  })
 })
 
 document.addEventListener('turbo:load', () => {
@@ -85,6 +148,7 @@ document.addEventListener('turbo:load', () => {
   const publishedPanel = document.querySelector('[data-profile-published-panel]')
   const draftsPanel = document.querySelector('[data-profile-drafts-panel]')
   const draftsButton = document.querySelector('[data-profile-show-drafts]')
+  const gridTitle = document.querySelector('[data-profile-grid-title]')
   const typeButtons = document.querySelectorAll('[data-profile-work-type]')
   const photoInput = document.querySelector('[data-profile-work-photo-input]')
   const videoInput = document.querySelector('[data-profile-work-video-input]')
@@ -99,6 +163,86 @@ document.addEventListener('turbo:load', () => {
   const lineHeightValue = document.querySelector('[data-profile-work-line-height-value]')
   const publishButton = document.querySelector('[data-profile-work-publish]')
   const saveDraftButton = document.querySelector('[data-profile-work-save-draft]')
+  const boardView = document.querySelector('[data-profile-board-view]')
+  const openBoardButtons = document.querySelectorAll('[data-open-profile-board]')
+  const closeBoardButton = document.querySelector('[data-close-profile-board]')
+  const boardTitle = document.querySelector('[data-profile-board-view-title]')
+  const boardCount = document.querySelector('[data-profile-board-count]')
+  const boardFilter = document.querySelector('[data-profile-board-filter]')
+  const boardItems = document.querySelectorAll('[data-profile-board-item]')
+  const settingsEditButtons = document.querySelectorAll('[data-profile-settings-edit]')
+
+  const updateBoardCount = () => {
+    if (!boardCount) return
+
+    const visibleItems = Array.from(boardItems).filter((item) => !item.hidden)
+    boardCount.textContent = visibleItems.length
+  }
+
+  const applyBoardFilter = () => {
+    const filter = boardFilter?.value || 'all'
+
+    boardItems.forEach((item) => {
+      item.hidden = filter !== 'all' && item.dataset.profileBoardType !== filter
+    })
+
+    updateBoardCount()
+  }
+
+  openBoardButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      if (boardTitle) boardTitle.textContent = button.dataset.profileBoardName || 'Доска'
+      if (boardFilter) boardFilter.value = 'all'
+      boardItems.forEach((item) => {
+        item.hidden = false
+      })
+      updateBoardCount()
+      boardView?.classList.add('profile_board_view_open')
+      profilePage?.classList.add('profile_page_modal_open')
+    })
+  })
+
+  closeBoardButton?.addEventListener('click', () => {
+    boardView?.classList.remove('profile_board_view_open')
+    profilePage?.classList.remove('profile_page_modal_open')
+  })
+
+  boardFilter?.addEventListener('change', applyBoardFilter)
+
+  settingsEditButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const form = button.closest('[data-profile-settings-form]')
+      const row = button.closest('.profile_settings_form_row')
+      if (!form) return
+
+      const isEditing = row?.classList.contains('profile_settings_form_row_editing')
+      const inputs = row?.querySelectorAll('[data-profile-settings-input]') || []
+      const passwordPreview = row?.querySelector('[data-profile-settings-password-preview]')
+      const passwordInputs = row?.querySelector('[data-profile-settings-password-inputs]')
+
+      if (isEditing) {
+        form.requestSubmit()
+        return
+      }
+
+      document.querySelectorAll('.profile_settings_form_row_editing').forEach((editingRow) => {
+        editingRow.classList.remove('profile_settings_form_row_editing')
+      })
+
+      row?.classList.add('profile_settings_form_row_editing')
+      button.setAttribute('aria-label', 'Сохранить')
+      if (passwordPreview) passwordPreview.hidden = true
+      if (passwordInputs) passwordInputs.classList.add('profile_settings_password_inputs_visible')
+
+      inputs.forEach((input) => {
+        input.removeAttribute('readonly')
+        input.disabled = false
+      })
+
+      inputs[0]?.focus()
+      inputs[0]?.select?.()
+    })
+  })
 
   if (!modal) return
 
@@ -180,12 +324,14 @@ document.addEventListener('turbo:load', () => {
     publishedPanel?.classList.add('profile_published_grid_hidden')
     draftsPanel?.classList.add('profile_drafts_folder_visible')
     draftsButton?.classList.add('profile_drafts_button_active')
+    if (gridTitle) gridTitle.textContent = 'Черновики'
   }
 
   const showPublishedPanel = () => {
     publishedPanel?.classList.remove('profile_published_grid_hidden')
     draftsPanel?.classList.remove('profile_drafts_folder_visible')
     draftsButton?.classList.remove('profile_drafts_button_active')
+    if (gridTitle) gridTitle.textContent = 'Работы'
   }
 
   openButtons.forEach((button) => {

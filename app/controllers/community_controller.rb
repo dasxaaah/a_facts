@@ -4,7 +4,9 @@ class CommunityController < ApplicationController
   def index
     @active_tab = params[:tab].presence || "discussions"
 
-    @posts = Post.order(id: :desc)
+    @posts = Post.includes(:user)
+                 .order(id: :desc)
+                 .paginate(page: params[:page], per_page: 10)
 
     # @meetups = Meetup.all
     # @works = Work.all

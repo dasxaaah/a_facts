@@ -1,29 +1,29 @@
 <footer class="footer">
     <div class="footer_inner">
-        <div class="footer_center">
+        <%= link_to root_path, class: "footer_logo", aria: { label: "AFACTS" } do %>
+            <%= image_tag "new_logo.png", alt: "AFACTS", class: "footer_logo_img" %>
+        <% end %>
+
+        <nav class="footer_nav" aria-label="Навигация в футере">
             <%= link_to "Главная", root_path, class: "footer_link footer_link_home" %>
             <%= link_to "О нас", about_path, class: "footer_link footer_link_about" %>
             <%= link_to "Учебник", tutorials_path, class: "footer_link footer_link_tutorial" %>
             <%= link_to "Статьи", articles_path, class: "footer_link footer_link_articles" %>
             <%= link_to "Коммьюнити", community_index_path, class: "footer_link footer_link_community" %>
+        </nav>
+
+        <div class="footer_creators">
+            <p>Наранзаяа Оюунбаатар</p>
+            <p>Мария Скрипнюк</p>
+            <p>Дарья Якутина</p>
         </div>
 
-        <div class="footer_socials">
-            <h3 class="footer_socials_title">Соц сети</h3>
-
-            <div class="footer_socials_links">
-                <%= link_to "Телеграм", "https://t.me/https://t.me/a_ffacts", class: "footer_link footer_link_social", target: "_blank", rel: "noopener" %>
-                <%= link_to "Дзен", "https://dzen.ru/https://dzen.ru/a_ffacts", class: "footer_link footer_link_social", target: "_blank", rel: "noopener" %>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="footer_subscribe">
-        <form action="http://localhost:3000/api/v1/subscribers.json" accept-charset="UTF-8" method="post" id="footer_subscription_form" class="footer_subscribe_form">
-            <input class="footer_subscribe_input" type="email" placeholder="e-mail" name="subscriber[email]" id="footer_subscriber_email" />
-
-            <input class="footer_subscribe_button" type="submit" name="commit" value="Подписаться" />
-        </form>
+        <%= link_to "https://t.me/a_ffacts",
+            class: "footer_telegram_link",
+            target: "_blank",
+            rel: "noopener",
+            aria: { label: "Telegram" } do %>
+            <span class="footer_telegram_icon"></span>
+        <% end %>
     </div>
 </footer>

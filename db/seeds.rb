@@ -8,10 +8,19 @@ QA_USERS = [
   "user5@gmail.com"
 ]
 
+QA_USER_PROFILES = {
+  "user1@gmail.com" => { name: "Anna", nickname: "node_artist" },
+  "user2@gmail.com" => { name: "Rina", nickname: "comp_rookie" },
+  "user3@gmail.com" => { name: "Misha", nickname: "render_pass" },
+  "user4@gmail.com" => { name: "Sasha", nickname: "matchmove" },
+  "user5@gmail.com" => { name: "Lena", nickname: "vfx_notes" }
+}
+
 QA_QUESTIONS = [
   {
     title: "Вопрос: Какой софт лучше для 3D-трекинга в шоте с параллаксом?",
-    body:  "Сцена с handheld камерой, есть parallax. Думала о PFTrack/3DEqualizer. Нужен совет по пайплайну."
+    body:  "Сцена с handheld камерой, есть parallax. Думала о PFTrack/3DEqualizer. Нужен совет по пайплайну.",
+    image: "The-Matrix-053.jpg"
   },
   {
     title: "Вопрос: Чем матчить освещение для CG-объекта в съёмочном материале?",
@@ -19,7 +28,84 @@ QA_QUESTIONS = [
   },
   {
     title: "Вопрос: Чем лучше заменить keylight в AE для сложных волос?",
-    body:  "Фон неравномерный, spill сильный. Стоит ли прыгать в Nuke, или хватит AE+plugins?"
+    body:  "Фон неравномерный, spill сильный. Стоит ли прыгать в Nuke, или хватит AE+plugins?",
+    image: "The-French-Dispatch-133.jpg"
+  },
+  {
+    title: "Вопрос: Как собрать clean plate, если актёр перекрывает половину кадра?",
+    body:  "Есть несколько дублей, но камера немного плавает. Как лучше собрать чистую подложку без заметных швов?"
+  },
+  {
+    title: "Вопрос: Почему после denoise появляется пластиковая кожа?",
+    body:  "Снимаю шум перед трекингом, но финальная картинка выглядит слишком мыльной. Где лучше ставить denoise в композе?",
+    image: "Last-Night-in-Soho-1508.jpg"
+  },
+  {
+    title: "Вопрос: Как правильно передавать depth pass из Blender в Nuke?",
+    body:  "Depth приходит почти белым, ZDefocus работает странно. Нужно нормализовать pass или проблема в настройках рендера?"
+  },
+  {
+    title: "Вопрос: Какой формат лучше для обмена между Houdini и Nuke?",
+    body:  "Нужно передать дым и несколько utility pass. EXR sequence подходит или лучше собирать отдельные слои?",
+    image: "The-Midnight-Sky-220.jpg"
+  },
+  {
+    title: "Вопрос: Как понять, что трекинг камеры уже достаточно точный?",
+    body:  "Solve error маленький, но CG всё равно чуть скользит. На какие признаки смотреть перед экспортом?"
+  },
+  {
+    title: "Вопрос: Где лучше делать glow для магического портала?",
+    body:  "Портал рендерится из Houdini. Делать glow в 3D или оставить чистую маску и собрать свечение в Nuke?",
+    image: "Weathering-With-You-175.jpg"
+  },
+  {
+    title: "Вопрос: Как подготовить референсы для breakdown?",
+    body:  "Нужно показать процесс в портфолио: plate, roto, comp, final. Какой порядок кадров выглядит профессиональнее?"
+  },
+  {
+    title: "Вопрос: Почему premult ломает края после color correction?",
+    body:  "После grade по keyed plate появляются тёмные контуры. Где правильно делать unpremult/premult?",
+    image: "John-Wick-Chapter-2-208.jpg"
+  },
+  {
+    title: "Вопрос: Как работать с motion blur на быстрых объектах?",
+    body:  "CG-объект двигается быстро, а motion blur в рендере не совпадает с plate. Лучше править shutter или добавлять blur в композе?"
+  },
+  {
+    title: "Вопрос: Какие pass нужны для базового CGI-композа?",
+    body:  "Есть beauty, diffuse, specular, shadow, AO. Хватит ли этого для учебного шота или нужно обязательно добавить normals и position?",
+    image: "Domino-064.jpg"
+  },
+  {
+    title: "Вопрос: Как сделать экран телефона реалистичным?",
+    body:  "Нужно вставить интерфейс в телефон в руке. Есть трекинг, но картинка выглядит наклеенной."
+  },
+  {
+    title: "Вопрос: Как не потерять детали в тёмных сценах?",
+    body:  "После grade всё проваливается в чёрный. Как проверять, что детали ещё читаются на разных мониторах?",
+    image: "Black-Narcissus-026.jpg"
+  },
+  {
+    title: "Вопрос: Как организовать версии comp-файлов?",
+    body:  "У меня уже v12_final_final. Как лучше называть версии, чтобы не запутаться и быстро откатываться?"
+  },
+  {
+    title: "Вопрос: Как сделать believable screen replacement?",
+    body:  "Есть монитор с отражениями. Нужно оставить glare и блики, но заменить само изображение.",
+    image: "The-Strange-Color-of-Your-Bodys-Tears-130.jpg"
+  },
+  {
+    title: "Вопрос: Что показывать в первом VFX showreel?",
+    body:  "Есть несколько учебных работ: roto, keying, tracking, маленький 3D-интегрейшн. Что лучше поставить первым?"
+  },
+  {
+    title: "Вопрос: Как выбрать между After Effects и Nuke для простого композа?",
+    body:  "Шот несложный, но хочется привыкнуть к node-based workflow. Есть ли смысл сразу делать в Nuke?",
+    image: "5-Centimeters-Per-Second-046.jpg"
+  },
+  {
+    title: "Вопрос: Как аккуратно добавить grain после композа?",
+    body:  "CG слишком чистый, а plate зернистый. Нужно ли match grain делать в самом конце или раньше?"
   }
 ]
 
@@ -37,6 +123,19 @@ QA_THREADS = {
     "Spill убирайте отдельно, часто проще через Keymix + despill."
   ]
 }
+
+QA_REPLY_POOL = [
+  "Попробуй сначала упростить шот: стабилизировать plate, проверить lens distortion и только потом собирать финальный comp.",
+  "Я бы начал с короткого теста на 20-30 кадров, чтобы быстро понять, где именно ломается пайплайн.",
+  "Если есть возможность, приложи пару кадров до/после. Так проще понять, это проблема трекинга, keying или grade.",
+  "В Nuke это обычно удобнее контролировать через отдельные pass и маски, а не одним большим эффектом.",
+  "Смотри на края и совпадение зерна. Если они читаются отдельно от plate, зритель сразу заметит вставку.",
+  "Мне помогло делать несколько маленьких корректировок вместо одной сильной: меньше артефактов на краях.",
+  "Проверь порядок premult/unpremult. Очень часто тёмная обводка появляется именно из-за этого.",
+  "Для учебной работы можно оставить простой вариант, но обязательно покажи breakdown, чтобы было видно решение.",
+  "Я бы сохранил исходный plate отдельно и не применял destructive edits, чтобы можно было быстро откатиться.",
+  "Если solve вроде хороший, но объект скользит, проверь scale сцены и точки на переднем плане."
+]
 
 ARTICLES_DATA = [
   {
@@ -2448,6 +2547,9 @@ end
 def create_base_users
   QA_USERS.each do |email|
     user = User.find_or_initialize_by(email: email)
+    profile = QA_USER_PROFILES.fetch(email, {})
+    user.name = profile[:name] if user.respond_to?(:name=)
+    user.nickname = profile[:nickname] if user.respond_to?(:nickname=)
     user.password = "1234qwer"
     user.password_confirmation = "1234qwer" if user.respond_to?(:password_confirmation=)
     user.save!
@@ -2466,12 +2568,26 @@ def create_admin_user
   admin
 end
 
+def upload_post_image(filename = nil)
+  path = if filename.present?
+    Rails.root.join("public/autoupload", filename)
+  else
+    Dir.glob(Rails.root.join("public/autoupload/*.{jpg,jpeg,png,webp}")).sample
+  end
+
+  return nil unless path && File.exist?(path)
+
+  uploader = PostImageUploader.new(Post.new, :post_image)
+  File.open(path) { |file| uploader.cache!(file) }
+  uploader
+end
+
 def upload_random_post_image
-  path = Dir.glob(Rails.root.join("public/autoupload/posts/*")).sample
+  path = Dir.glob(Rails.root.join("public/autoupload/*.{jpg,jpeg,png,webp}")).sample
   return nil unless path
 
   uploader = PostImageUploader.new(Post.new, :post_image)
-  uploader.cache!(File.open(path))
+  File.open(path) { |file| uploader.cache!(file) }
   uploader
 end
 
@@ -2480,24 +2596,32 @@ def seed_posts_with_comments
 
   authors = User.where(email: QA_USERS).to_a
   commenters = authors
+  Post.where(user: authors).destroy_all
 
   QA_QUESTIONS.each_with_index do |q, index|
     author = authors[index % authors.size]
 
-    post = Post.create!(
-      title: q[:title],
-      body:  q[:body],
-      user:  author,
-      post_image: upload_random_post_image
-    )
+    post = Post.new
+    post.body = q[:body]
+    post.user = author
+    post.post_type = 1 if post.respond_to?(:post_type=)
+    post.post_image = upload_post_image(q[:image]) if q[:image].present?
+    post.save!
+    post.comments.destroy_all
+    post.likes.destroy_all
 
-    thread_texts = QA_THREADS[index] || []
+    thread_texts = QA_THREADS[index].presence || QA_REPLY_POOL.rotate(index).first((index % 3) + 1)
     thread_texts.each_with_index do |text, j|
       user = commenters[(index + j + 1) % commenters.size]
       Comment.create!(post: post, user: user, body: text)
     end
 
-    puts "Post: #{post.title} (author=#{post.user.email}, comments=#{post.comments.count})"
+    like_count = (index * 2 + 3) % commenters.size + 1
+    commenters.reject { |user| user == author }.rotate(index).first(like_count).each do |user|
+      Like.find_or_create_by!(likeable: post, user: user)
+    end
+
+    puts "Post: #{q[:title]} (author=#{post.user.email}, comments=#{post.comments.count}, likes=#{post.likes.count})"
   end
 end
 

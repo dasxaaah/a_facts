@@ -15,6 +15,21 @@ class PostsController < ApplicationController
     FavouritePost.create(user_id: current_user.id, post_id: @post.id)
   end
 
+  def toggle_like
+    like = @post.likes.find_by(user: current_user)
+
+    if like
+      like.destroy
+    else
+      @post.likes.create(user: current_user)
+    end
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_back fallback_location: community_index_path(tab: "discussions") }
+    end
+  end
+
   def new
     @post = Post.new
   end

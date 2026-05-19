@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post "/subscribe", to: "subscribers#create"
   get "/about", to: "pages#about"
   get "/profile", to: "profiles#show", as: :profile
+  patch "/profile", to: "profiles#update"
   resources :projects, only: [ :create ]
 
 
@@ -34,7 +35,11 @@ Rails.application.routes.draw do
   end
   resources :community, only: [ :index, :show ], controller: "community"
   resources :posts do
-  resources :comments, only: [ :create, :destroy ]
+    member do
+      post :toggle_like
+    end
+
+    resources :comments, only: [ :create, :destroy ]
   end
 
   # Урок

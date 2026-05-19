@@ -54,6 +54,7 @@ gem "mini_magick"
 gem "russian"
 gem "jwt"
 gem "devise-jwt"
+gem "will_paginate"
 
 group :production do
   gem "pg"

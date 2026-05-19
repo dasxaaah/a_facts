@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_18_203000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -113,6 +113,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_18_203000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "likeable_id", null: false
+    t.string "likeable_type", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
+    t.index ["user_id", "likeable_type", "likeable_id"], name: "index_likes_on_user_id_and_likeable_type_and_likeable_id", unique: true
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "author"
     t.text "body"
@@ -178,6 +188,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_18_203000) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "jti", null: false
+    t.string "name"
+    t.string "nickname"
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"

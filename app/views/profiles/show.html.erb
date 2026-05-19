@@ -5,8 +5,8 @@
                 <%= image_tag "profile_icon.png", alt: "", class: "profile_avatar_icon" %>
             </div>
 
-            <p class="profile_name"><%= @user.email.split("@").first.upcase %></p>
-            <p class="profile_nickname"><%= @user.email %></p>
+            <p class="profile_name"><%= (@user.name.presence || @user.email.split("@").first).upcase %></p>
+            <p class="profile_nickname">@<%= @user.nickname.presence || @user.email.split("@").first %></p>
         </div>
 
         <div class="profile_tabs">
@@ -23,16 +23,20 @@
                 class: "profile_tab #{'profile_tab_active' if @active_tab == 'settings'}" %>
         </div>
 
-        <button class="profile_drafts_button <%= 'profile_drafts_button_active' if @show_drafts %>" type="button" data-profile-show-drafts>
-            Черновики
-        </button>
+        <% if @active_tab == "works" %>
+            <button class="profile_drafts_button <%= 'profile_drafts_button_active' if @show_drafts %>" type="button" data-profile-show-drafts>
+                Черновики
+            </button>
+        <% end %>
     </aside>
 
     <main class="profile_content">
 
     <% if @active_tab == "works" %>
-    <section class="profile_section">
+    <section class="profile_section profile_section_with_bottom_space">
         <div class="profile_section_header">
+            <h1 class="profile_grid_title" data-profile-grid-title><%= @show_drafts ? "Черновики" : "Работы" %></h1>
+
             <button class="profile_add_work_button" type="button" data-open-profile-work-modal>
                 Добавить работу
             </button>
@@ -224,59 +228,291 @@
     </div>
 
     <% elsif @active_tab == "favorites" %>
-    <section class="profile_section">
-        <h2 class="profile_section_title">Избранные статьи</h2>
+    <section class="profile_section profile_section_with_bottom_space">
+        <div class="profile_section_header">
+            <h1 class="profile_grid_title">Избранное</h1>
 
-        <% if @favourite_articles.any? %>
-        <div class="profile_cards">
-            <% @favourite_articles.each do |article| %>
-            <article class="profile_card">
-                <h3 class="profile_card_title">
-                    <%= link_to article.title, article_path(article) %>
-                </h3>
-
-                <p class="profile_card_meta">
-                    <%= article.category %> · <%= article.reading_minutes %> мин
-                </p>
-            </article>
-            <% end %>
+            <button class="profile_add_work_button" type="button">
+                Добавить
+            </button>
         </div>
-        <% else %>
-        <p class="profile_empty">Пока нет избранных статей</p>
-        <% end %>
+
+        <div class="profile_boards_grid">
+            <button class="profile_board_card" type="button" data-open-profile-board data-profile-board-name="Учеба">
+                <div class="profile_board_collage">
+                    <%= image_tag "film01.jpg", alt: "" %>
+                    <%= image_tag "work_1.jpg", alt: "" %>
+                    <%= image_tag "work_2.jpg", alt: "" %>
+                    <%= image_tag "contest_preview_1.jpg", alt: "" %>
+                </div>
+
+                <h3 class="profile_board_title">Учеба</h3>
+            </button>
+
+            <button class="profile_board_card" type="button" data-open-profile-board data-profile-board-name="Разборы сцен">
+                <div class="profile_board_collage">
+                    <%= image_tag "work_2.jpg", alt: "" %>
+                    <%= image_tag "contest_preview_2.jpg", alt: "" %>
+                    <%= image_tag "work_3.jpg", alt: "" %>
+                    <%= image_tag "home_collage_center.jpg", alt: "" %>
+                </div>
+
+                <h3 class="profile_board_title">Разборы сцен</h3>
+            </button>
+
+            <button class="profile_board_card" type="button" data-open-profile-board data-profile-board-name="Техника">
+                <div class="profile_board_collage">
+                    <%= image_tag "work_3.jpg", alt: "" %>
+                    <%= image_tag "contest_preview_3.jpg", alt: "" %>
+                    <%= image_tag "slider_1.jpg", alt: "" %>
+                    <%= image_tag "home_icons_banner.jpg", alt: "" %>
+                </div>
+
+                <h3 class="profile_board_title">Техника</h3>
+            </button>
+        </div>
     </section>
 
-    <section class="profile_section">
-        <h2 class="profile_section_title">Избранные уроки</h2>
+    <div class="profile_board_view" data-profile-board-view>
+        <div class="profile_board_view_window">
+            <div class="profile_board_view_header">
+                <div>
+                    <button class="profile_work_modal_back" type="button" aria-label="Назад" data-close-profile-board></button>
+                    <h2 class="profile_board_view_title" data-profile-board-view-title>Техника</h2>
+                    <p class="profile_board_view_count"><span data-profile-board-count>4</span> добавления</p>
+                </div>
 
-        <% if @favourite_lessons.any? %>
-        <div class="profile_cards">
-            <% @favourite_lessons.each do |lesson| %>
-            <article class="profile_card">
-                <h3 class="profile_card_title">
-                    <%= link_to lesson.title, lesson_path(lesson) %>
-                </h3>
+                <label class="profile_board_filter">
+                    <span class="profile_board_filter_label">Фильтр</span>
+                    <select data-profile-board-filter>
+                        <option value="all">Все</option>
+                        <option value="article">Статья</option>
+                        <option value="work">Работа</option>
+                        <option value="lesson">Урок</option>
+                    </select>
+                </label>
+            </div>
 
-                <p class="profile_card_meta">
-                    <%= lesson.module_name %> · Урок <%= lesson.lesson_number %>
-                </p>
-            </article>
-            <% end %>
+            <div class="profile_board_items_grid" data-profile-board-items>
+                <% @favourite_articles.each do |article| %>
+                    <%= link_to article_path(article), class: "profile_board_item", data: { profile_board_item: true, profile_board_type: "article" } do %>
+                        <span class="profile_board_item_badge profile_board_item_badge_article">Статья</span>
+
+                        <div class="profile_board_item_image">
+                            <% if article.cover_image.present? %>
+                                <%= image_tag article.cover_image.url, alt: article.title %>
+                            <% else %>
+                                <%= image_tag "contest_preview_1.jpg", alt: article.title %>
+                            <% end %>
+                        </div>
+
+                        <h3 class="profile_board_item_title"><%= article.title %></h3>
+                    <% end %>
+                <% end %>
+
+                <% @published_projects.each do |project| %>
+                    <article class="profile_board_item" data-profile-board-item data-profile-board-type="work">
+                        <span class="profile_board_item_badge profile_board_item_badge_work">Работа</span>
+
+                        <div class="profile_board_item_image">
+                            <% if project.media.attached? && project.media.content_type.start_with?("image/") %>
+                                <%= image_tag project.media, alt: project.title %>
+                            <% elsif project.media.attached? && project.media.content_type.start_with?("video/") %>
+                                <%= video_tag url_for(project.media), muted: true %>
+                            <% else %>
+                                <%= image_tag "work_2.jpg", alt: project.title %>
+                            <% end %>
+                        </div>
+
+                        <h3 class="profile_board_item_title"><%= project.title %></h3>
+                    </article>
+                <% end %>
+
+                <% @favourite_lessons.each do |lesson| %>
+                    <%= link_to lesson_path(lesson), class: "profile_board_item", data: { profile_board_item: true, profile_board_type: "lesson" } do %>
+                        <span class="profile_board_item_badge profile_board_item_badge_lesson">Урок</span>
+
+                        <div class="profile_board_item_image">
+                            <% if lesson.cover_image.present? %>
+                                <%= image_tag lesson.cover_image.url, alt: lesson.title %>
+                            <% else %>
+                                <%= image_tag "meetup_1.jpg", alt: lesson.title %>
+                            <% end %>
+                        </div>
+
+                        <h3 class="profile_board_item_title"><%= lesson.title %></h3>
+                    <% end %>
+                <% end %>
+
+                <% if @favourite_articles.empty? && @published_projects.empty? && @favourite_lessons.empty? %>
+                    <article class="profile_board_item" data-profile-board-item data-profile-board-type="article">
+                        <span class="profile_board_item_badge profile_board_item_badge_article">Статья</span>
+                        <div class="profile_board_item_image">
+                            <%= image_tag "contest_preview_1.jpg", alt: "" %>
+                        </div>
+                        <h3 class="profile_board_item_title">Как работает 3D-сканирование</h3>
+                    </article>
+
+                    <article class="profile_board_item" data-profile-board-item data-profile-board-type="work">
+                        <span class="profile_board_item_badge profile_board_item_badge_work">Работа</span>
+                        <div class="profile_board_item_image">
+                            <%= image_tag "work_2.jpg", alt: "" %>
+                        </div>
+                        <h3 class="profile_board_item_title">DEAD HEAD // CGI SHORT</h3>
+                    </article>
+
+                    <article class="profile_board_item" data-profile-board-item data-profile-board-type="article">
+                        <span class="profile_board_item_badge profile_board_item_badge_article">Статья</span>
+                        <div class="profile_board_item_image">
+                            <%= image_tag "work_1.jpg", alt: "" %>
+                        </div>
+                        <h3 class="profile_board_item_title">За кулисами: сцены из «Безумного Макса»</h3>
+                    </article>
+
+                    <article class="profile_board_item" data-profile-board-item data-profile-board-type="lesson">
+                        <span class="profile_board_item_badge profile_board_item_badge_lesson">Урок</span>
+                        <div class="profile_board_item_image">
+                            <%= image_tag "meetup_1.jpg", alt: "" %>
+                        </div>
+                        <h3 class="profile_board_item_title">On-set VFX</h3>
+                    </article>
+                <% end %>
+            </div>
         </div>
-        <% else %>
-        <p class="profile_empty">Пока нет избранных уроков</p>
-        <% end %>
-    </section>
+    </div>
     <% elsif @active_tab == "settings" %>
     <section class="profile_section">
-        <h2 class="profile_section_title">Настройки</h2>
+        <div class="profile_settings_panel">
+            <section class="profile_settings_group">
+                <h2 class="profile_settings_group_title">Детали аккаунта</h2>
 
-        <div class="profile_settings">
-            <p class="profile_email"><%= @user.email %></p>
+                <%= form_with model: @user, url: profile_path, method: :patch, local: true, class: "profile_settings_account_form", data: { profile_settings_form: true } do |f| %>
+                    <div class="profile_settings_row profile_settings_form_row">
+                        <label class="profile_settings_field">
+                            <span>Имя:</span>
+                            <%= f.text_field :name,
+                                value: @user.name.presence || @user.email.split("@").first.capitalize,
+                                readonly: true,
+                                data: { profile_settings_input: true } %>
+                        </label>
 
-            <%= link_to "Редактировать аккаунт",
-                edit_user_registration_path,
-                class: "profile_edit_link" %>
+                        <button class="profile_settings_edit_button" type="button" aria-label="Редактировать имя" data-profile-settings-edit></button>
+                    </div>
+
+                    <div class="profile_settings_row profile_settings_form_row">
+                        <label class="profile_settings_field">
+                            <span>Ник:</span>
+                            <%= f.text_field :nickname,
+                                value: @user.nickname.presence || @user.email.split("@").first,
+                                readonly: true,
+                                data: { profile_settings_input: true } %>
+                        </label>
+
+                        <button class="profile_settings_edit_button" type="button" aria-label="Редактировать ник" data-profile-settings-edit></button>
+                    </div>
+
+                    <div class="profile_settings_row profile_settings_form_row">
+                        <label class="profile_settings_field">
+                            <span>Почта:</span>
+                            <%= f.email_field :email,
+                                readonly: true,
+                                data: { profile_settings_input: true } %>
+                        </label>
+
+                        <button class="profile_settings_edit_button" type="button" aria-label="Редактировать почту" data-profile-settings-edit></button>
+                    </div>
+
+                    <div class="profile_settings_row profile_settings_form_row profile_settings_password_row">
+                        <div class="profile_settings_field profile_settings_password_field">
+                            <span>Пароль:</span>
+
+                            <div class="profile_settings_password_preview" data-profile-settings-password-preview>**************</div>
+
+                            <div class="profile_settings_password_inputs" data-profile-settings-password-inputs>
+                                <%= f.password_field :password,
+                                    placeholder: "Новый пароль",
+                                    autocomplete: "new-password",
+                                    disabled: true,
+                                    data: { profile_settings_input: true } %>
+                                <%= f.password_field :password_confirmation,
+                                    placeholder: "Повторите пароль",
+                                    autocomplete: "new-password",
+                                    disabled: true,
+                                    data: { profile_settings_input: true } %>
+                            </div>
+                        </div>
+
+                        <button class="profile_settings_edit_button" type="button" aria-label="Редактировать пароль" data-profile-settings-edit></button>
+                    </div>
+                <% end %>
+            </section>
+
+            <section class="profile_settings_group">
+                <h2 class="profile_settings_group_title">Тема оформления</h2>
+
+                <label class="profile_settings_row profile_settings_choice">
+                    <span>Темная</span>
+                    <input type="radio" name="profile_theme" checked>
+                    <span class="profile_settings_radio"></span>
+                </label>
+
+                <label class="profile_settings_row profile_settings_choice">
+                    <span>Светлая</span>
+                    <input type="radio" name="profile_theme">
+                    <span class="profile_settings_radio"></span>
+                </label>
+            </section>
+
+            <section class="profile_settings_group">
+                <h2 class="profile_settings_group_title">Геймификация</h2>
+
+                <label class="profile_settings_row profile_settings_choice">
+                    <span>Показывать мои звания и бейджи</span>
+                    <input type="checkbox" checked>
+                    <span class="profile_settings_switch"></span>
+                </label>
+
+                <label class="profile_settings_row profile_settings_choice">
+                    <span>Показывать прогресс в учебнике публично</span>
+                    <input type="checkbox" checked>
+                    <span class="profile_settings_switch"></span>
+                </label>
+
+                <label class="profile_settings_row profile_settings_choice">
+                    <span>Участие в рейтингах</span>
+                    <input type="checkbox">
+                    <span class="profile_settings_switch"></span>
+                </label>
+            </section>
+
+            <section class="profile_settings_group">
+                <h2 class="profile_settings_group_title">Подписка</h2>
+
+                <div class="profile_settings_row">
+                    <span>Текущий тариф: Бесплатный/Premium/Pro</span>
+                </div>
+
+                <div class="profile_settings_row">
+                    <span>Дата окончания: 22.03.26</span>
+                </div>
+
+                <div class="profile_settings_row">
+                    <span>Способы оплаты: MIR*1345</span>
+                </div>
+
+                <div class="profile_settings_row profile_settings_subscription_row">
+                    <span>Управление подпиской</span>
+                    <button class="profile_settings_pay_button" type="button">Оплатить 199₽</button>
+                </div>
+            </section>
+
+            <% if @user.errors.any? %>
+                <div class="profile_settings_errors">
+                    <% @user.errors.full_messages.each do |message| %>
+                        <p><%= message %></p>
+                    <% end %>
+                </div>
+            <% end %>
 
             <%= button_to "Выйти",
                 destroy_user_session_path,

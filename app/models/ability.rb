@@ -8,6 +8,7 @@ class Ability
 
     # базовые права для всех авторизованных
     can :read, :all
+    can :toggle_like, Post
 
     if user.admin?
       # админ может всё

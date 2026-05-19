@@ -29,21 +29,60 @@
 
             <div class="community_ask_block">
                 <button class="community_ask_trigger" type="button" data-open-community-modal>
-                    <div class="community_ask_icon">
+                    <span class="community_ask_icon">
                         <%= image_tag "profile_icon.png", alt: "", class: "community_ask_icon_img" %>
-                    </div>
+                    </span>
 
                     <span class="community_ask_placeholder">Задай любой вопрос</span>
+                    <span class="community_ask_smile" aria-hidden="true"></span>
                 </button>
+
+                <div class="community_ask_bottom">
+                    <div class="community_ask_files">
+                        <button class="community_ask_action" type="button" data-community-open-file-picker>
+                            <span class="community_ask_file_icon" aria-hidden="true"></span>
+                            <span>Файл</span>
+                        </button>
+
+                        <button class="community_ask_action" type="button" data-community-open-image-picker>
+                            <span class="community_ask_image_icon" aria-hidden="true"></span>
+                            <span>Изображение</span>
+                        </button>
+
+                        <input class="community_hidden_input" type="file" data-community-file-input>
+                    </div>
+
+                    <button class="community_ask_submit" type="button" data-open-community-modal>
+                        Отправить
+                    </button>
+                </div>
             </div>
 
 
 
-            <div class="community_posts">
+            <div class="community_posts" data-community-posts>
                 <% @posts.each do |post| %>
+                <%
+                    avatar_images = %w[community_avatar_1.png community_avatar_2.png community_avatar_3.png]
+                    display_name = post.user&.name.presence || post.user&.nickname.presence || post.user&.email.to_s.split("@").first.presence || "Пользователь"
+                    avatar_image = post.user&.email == "user0@example.com" ? "community_avatar_4.png" : avatar_images[post.user_id.to_i % avatar_images.length]
+                %>
                 <article class="community_post_card">
-                    <div class="community_post_meta">
-                        <span class="community_post_author"><%= post.user.email %></span>
+                    <div class="community_post_header">
+                        <div class="community_post_author_block">
+                            <%= image_tag avatar_image, alt: "", class: "community_post_avatar" %>
+
+                            <div class="community_post_author_texts">
+                                <span class="community_post_author"><%= display_name %></span>
+                                <span class="community_post_time"><%= time_ago_in_words(post.created_at) %> назад</span>
+                            </div>
+                        </div>
+
+                        <div class="community_post_tags">
+                            <span>#ноды</span>
+                            <span>#nuke</span>
+                            <span>#after effects</span>
+                        </div>
                     </div>
 
                     <p class="community_post_text"><%= post.body %></p>
@@ -55,9 +94,18 @@
                     <% end %>
 
                     <div class="community_post_footer">
-                        <div class="community_post_comments_info">
-                            <%= image_tag "comment_icon.png", alt: "", class: "community_post_comments_icon" %>
-                            <span class="community_post_comments_count"><%= post.comments.count %></span>
+                        <div class="community_post_stats">
+                            <div class="community_post_stat">
+                                <%= image_tag "community_icon_view.svg", alt: "", class: "community_post_stat_icon" %>
+                                <span><%= number_to_human((post.id.to_i * 137) + 480, units: { thousand: "K" }, format: "%n%u") %></span>
+                            </div>
+
+                            <%= render "posts/like_button", post: post %>
+
+                            <div class="community_post_comments_info">
+                                <%= image_tag "community_icon_comment.svg", alt: "", class: "community_post_stat_icon community_post_comments_icon" %>
+                                <span class="community_post_comments_count"><%= post.comments.count %></span>
+                            </div>
                         </div>
 
                         <%= link_to "Ответить", post_path(post), class: "community_reply_button" %>
@@ -65,6 +113,15 @@
                 </article>
                 <% end %>
             </div>
+
+            <% if @posts.next_page %>
+                <div class="community_load_more">
+                    <%= link_to "Загрузить ещё",
+                        community_index_path(tab: "discussions", page: @posts.next_page),
+                        class: "community_load_more_button",
+                        data: { community_load_more: true } %>
+                </div>
+            <% end %>
         </div>
 
         <div class="community_side_col">

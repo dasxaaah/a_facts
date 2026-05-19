@@ -1,0 +1,15 @@
+<% liked = post.likes.exists?(user: current_user) %>
+
+<div id="<%= dom_id(post, :like_button) %>">
+    <%= button_to toggle_like_post_path(post),
+        method: :post,
+        class: "community_post_like_button #{'community_post_like_button_active' if liked}",
+        form: { class: "community_post_like_form" },
+        aria: { label: liked ? "Убрать лайк" : "Поставить лайк" } do %>
+        <svg class="community_post_stat_icon community_post_like_icon" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+            <path class="community_post_like_shape" d="M21.7005 25H7.5C6.11929 25 5 23.8807 5 22.5V12.5H9.91204C10.7479 12.5 11.5285 12.0822 11.9922 11.3868L15.1368 6.66987C15.8322 5.62663 17.0031 5 18.2569 5H18.5244C19.2968 5 19.8844 5.69358 19.7574 6.4555L18.75 12.5H23.2005C24.7781 12.5 25.9613 13.9433 25.6519 15.4903L24.1519 22.9903C23.9182 24.1589 22.8922 25 21.7005 25Z" />
+            <path class="community_post_like_line" d="M10 12.5V25" />
+        </svg>
+        <span class="community_post_like_count"><%= post.likes.count %></span>
+    <% end %>
+</div>
