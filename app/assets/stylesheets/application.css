@@ -472,7 +472,7 @@ h3 {
   background-color: var(--black);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .footer {
     padding: 3rem 5%;
   }
@@ -1786,6 +1786,15 @@ h3 {
   font-family: var(--arialbold);
   font-size: 1.2rem;
 }
+
+.tutorial_sidebar_title {
+  border: none;
+  background: transparent;
+  color: var(--white);
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
 .article_toc_link {
   background-color: #5a585d;
   color: var(--white);
@@ -1885,7 +1894,7 @@ h3 {
   display: flex;
   gap: 16px;
   margin-left: 3rem;
-  margin-top: 10rem;
+  margin-top: 14rem;
 }
 
 .articles_filter_item {
@@ -1910,7 +1919,7 @@ h3 {
 }
 .tutorial_page {
   width: 96%;
-  padding: 10rem 2% 2rem 2%;
+  padding: 14rem 2% 2rem 2%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -2413,7 +2422,7 @@ h3 {
   margin-bottom: 2rem;
   flex-wrap: wrap;
   width: 84%;
-  padding: 10rem 8% 2rem 8%;
+  padding: 14rem 8% 2rem 8%;
 }
 
 .community_tab {
@@ -3224,7 +3233,7 @@ trix-editor,
 .profile_page {
   width: 100%;
   min-height: 100vh;
-  padding: 9rem 3% 4rem;
+  padding: 14em 3% 4rem;
   box-sizing: border-box;
   color: var(--white);
   display: grid;
@@ -4236,7 +4245,7 @@ trix-editor,
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .articles_filter {
     width: 100%;
     margin: 12rem 0 1.5rem;
@@ -4272,6 +4281,368 @@ trix-editor,
   .article_card_image {
     aspect-ratio: 4 / 3;
     overflow: hidden;
+  }
+
+  .article_header_main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    box-sizing: border-box;
+    padding: 1.5rem 5%;
+  }
+
+  .lesson_header,
+  .lesson_header_main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    box-sizing: border-box;
+    padding: 1.5rem 5%;
+  }
+
+  .article_layout,
+  .lesson_layout {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 5%;
+    box-sizing: border-box;
+  }
+
+  .article_sidebar,
+  .article_content,
+  .lesson_sidebar,
+  .lesson_content {
+    width: 100%;
+  }
+
+  .article_sidebar,
+  .lesson_sidebar {
+    position: static;
+    height: auto;
+    box-sizing: border-box;
+  }
+
+  .article_title,
+  .lesson_title {
+    font-size: 2rem;
+  }
+
+  .lesson_header_actions {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .tutorial_page {
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    padding: 10rem 5% 2rem;
+    box-sizing: border-box;
+  }
+
+  .tutorial_sidebar,
+  .tutorial_main {
+    width: 100%;
+  }
+
+  .tutorial_sidebar {
+    position: static;
+    height: auto;
+    box-sizing: border-box;
+    background-color: #151515;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .tutorial_sidebar_header {
+    gap: 0;
+  }
+
+  .tutorial_sidebar_title {
+    position: relative;
+    width: 100%;
+    min-height: 80px;
+    padding: 0 4.5rem 0 1.25rem;
+    box-sizing: border-box;
+    color: var(--white);
+    font-size: 1.5rem;
+  }
+
+  .tutorial_sidebar_title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 1.6rem;
+    width: 22px;
+    height: 22px;
+    border-right: 3px solid var(--white);
+    border-bottom: 3px solid var(--white);
+    transform: translateY(-70%) rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+
+  .tutorial_sidebar_open .tutorial_sidebar_title::after {
+    transform: translateY(-30%) rotate(225deg);
+  }
+
+  .tutorial_sidebar_nav {
+    display: none;
+    padding: 0 1.25rem 1.5rem;
+    gap: 1.6rem;
+    overflow: visible;
+  }
+
+  .tutorial_sidebar_open .tutorial_sidebar_nav {
+    display: flex;
+  }
+
+  .tutorial_sidebar_link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 0;
+    color: #9e9e9e;
+    font-family: var(--arialbold);
+    font-size: 1.15rem;
+  }
+
+  .tutorial_sidebar_link_active {
+    color: var(--white);
+  }
+
+  .tutorial_sidebar_link_active .tutorial_sidebar_module {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 0.7rem;
+    border-radius: 8px;
+    background-color: var(--green);
+    color: var(--black);
+  }
+
+  .tutorial_module_meta {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .tutorial_module_intro,
+  .tutorial_module_status {
+    width: 100%;
+  }
+
+  .tutorial_cards {
+    padding: 2rem 4rem 0 0;
+  }
+
+  .lesson_card::before,
+  .glossary_card::before {
+    top: -22rem;
+    right: -3rem;
+    width: 3rem;
+  }
+
+  .article_meta {
+    align-items: stretch;
+  }
+
+  .article_meta_tag,
+  .article_meta_item,
+  .article_meta_date {
+    min-height: 44px;
+    padding: 0.7rem 0.3rem;
+    box-sizing: border-box;
+    font-size: 0.85rem;
+  }
+
+  .article_related_block {
+    padding: 5%;
+    overflow: hidden;
+  }
+
+  .article_related_grid {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.6rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .article_related_grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .article_related_grid .article_card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  .home_articles_grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .home_articles {
+    margin-top: 12rem;
+  }
+
+  .home_community {
+    margin-top: 4rem;
+  }
+
+  .home_banner_full,
+  .home_banner_full img {
+    min-height: 10vh;
+  }
+
+  .home_slider_track {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .home_slider_track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home_slider_card {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  .home_articles .home_section_head,
+  .home_community .home_section_head {
+    display: contents;
+  }
+
+  .home_articles .home_section_title,
+  .home_community .home_section_title {
+    order: 1;
+  }
+
+  .home_articles_grid,
+  .home_community_block {
+    order: 2;
+  }
+
+  .home_button_article,
+  .home_button_community {
+    order: 3;
+    width: fit-content;
+    align-self: center;
+    padding: 0.95rem 1.4rem;
+    font-size: 1rem;
+  }
+
+  .home_articles_grid .article_card:nth-of-type(n + 5) {
+    display: none;
+  }
+
+  .home_community_block,
+  .home_collage {
+    display: flex;
+  }
+
+  .home_collage {
+    width: 100%;
+    padding: 5%;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .home_collage_col_left,
+  .home_collage_col_center,
+  .home_collage_col_right {
+    flex: none;
+  }
+
+  .home_collage_col_left {
+    order: 1;
+    width: calc(50% - 0.5rem);
+  }
+
+  .home_collage_col_right {
+    order: 2;
+    width: calc(50% - 0.5rem);
+  }
+
+  .home_collage_col_center {
+    order: 3;
+    width: 100%;
+  }
+
+  .home_collage_card_title {
+    font-size: 1.2rem;
+  }
+
+  .home_community_block {
+    flex-direction: column;
+  }
+
+  .home_hero_card {
+    width: 80vw;
+    left: 10vw;
+    top: 55vh;
+  }
+
+  .home_hero {
+    min-height: 80vh;
+    background-position: center center;
+  }
+
+  .home_subscribe_card {
+    width: 80vw;
+    left: 10vw;
+  }
+
+  .home_subscribe {
+    height: 50vh;
+  }
+
+  .community_layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 5% 2rem;
+  }
+
+  .community_side_col {
+    order: 1;
+  }
+
+  .community_main_col {
+    order: 2;
+  }
+
+  .community_contest_card {
+    position: static;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .community_meetup_layout {
+    grid-template-columns: 1fr;
+    padding: 0 5% 2rem;
+  }
+
+  .community_meetup_card {
+    width: 100%;
+  }
+
+  .community_works_layout {
+    grid-template-columns: 1fr;
+    padding: 0 5% 2rem;
+  }
+
+  .community_work_card,
+  .community_contest_card_main {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .community_post_card {
@@ -4322,6 +4693,11 @@ trix-editor,
   }
 
   .profile_boards_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile_board_items_grid,
+  .profile_favorites_items_grid {
     grid-template-columns: 1fr;
   }
 

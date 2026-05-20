@@ -36,6 +36,24 @@ document.addEventListener('turbo:load', () => {
 })
 
 document.addEventListener('turbo:load', () => {
+  const tutorialSidebar = document.querySelector('.tutorial_sidebar')
+  const tutorialSidebarToggle = document.querySelector('[data-tutorial-sidebar-toggle]')
+  const tutorialSidebarLinks = document.querySelectorAll('.tutorial_sidebar_link')
+
+  if (!tutorialSidebar || !tutorialSidebarToggle) return
+
+  tutorialSidebarToggle.addEventListener('click', () => {
+    tutorialSidebar.classList.toggle('tutorial_sidebar_open')
+  })
+
+  tutorialSidebarLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      tutorialSidebar.classList.remove('tutorial_sidebar_open')
+    })
+  })
+})
+
+document.addEventListener('turbo:load', () => {
   const input = document.getElementById('community_post_image_input')
   const preview = document.getElementById('community_image_preview')
 
