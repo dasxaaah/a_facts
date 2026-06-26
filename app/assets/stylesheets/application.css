@@ -2593,6 +2593,11 @@ a[class*='_button']:not(.lesson_card_button_disabled):hover,
   text-transform: uppercase;
   width: fit-content;
 }
+.lesson_card_button_first {
+  background-color: transparent;
+  border: 1px solid var(--green);
+  color: var(--white);
+}
 .lesson_card_button_disabled {
   opacity: 0.45;
   pointer-events: none;

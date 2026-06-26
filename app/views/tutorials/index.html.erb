@@ -147,7 +147,9 @@
                             </div>
                             <div class="lesson_card_action">
                                 <% if lesson_record %>
-                                <%= link_to "Пройти", lesson_path(lesson_record), class: "lesson_card_button" %>
+                                <%= link_to module_index.zero? && lesson_index.zero? ? "Пройдено" : "Пройти",
+                                    lesson_path(lesson_record),
+                                    class: ["lesson_card_button", ("lesson_card_button_first" if module_index.zero? && lesson_index.zero?)] %>
                                 <% else %>
                                 <span class="lesson_card_button lesson_card_button_disabled">Скоро</span>
                                 <% end %>
