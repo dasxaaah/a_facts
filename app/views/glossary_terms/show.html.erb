@@ -1,0 +1,61 @@
+<div class="glossary_page">
+    <%= link_to "", tutorials_path, class: "glossary_back_link", aria: { label: "Назад к учебнику" } %>
+
+    <main class="glossary_layout">
+        <section class="glossary_focus">
+            <% if @term %>
+            <article class="glossary_term_card">
+                <div class="glossary_term_badges">
+                    <span class="glossary_term_badge glossary_term_module">Глоссарий</span>
+                    <span class="glossary_term_badge glossary_term_position"><%= @term_position %>/<%= @module_terms.size %></span>
+                </div>
+
+                <div class="glossary_term_media">
+                    <%= image_tag glossary_term_media_image(@term), alt: @term.term %>
+                </div>
+
+                <div class="glossary_term_body">
+                    <h1 class="glossary_term_title"><%= @term.term %></h1>
+                    <p class="glossary_term_definition"><%= @term.definition %></p>
+
+                    <div class="glossary_term_nav">
+                        <% if @previous_term %>
+                        <%= link_to "<", glossary_term_path(@previous_term), class: "glossary_term_arrow", aria: { label: "Предыдущий термин" } %>
+                        <% else %>
+                        <span class="glossary_term_arrow glossary_term_arrow_disabled">&lt;</span>
+                        <% end %>
+
+                        <% if @next_term %>
+                        <%= link_to ">", glossary_term_path(@next_term), class: "glossary_term_arrow", aria: { label: "Следующий термин" } %>
+                        <% else %>
+                        <span class="glossary_term_arrow glossary_term_arrow_disabled">&gt;</span>
+                        <% end %>
+                    </div>
+                </div>
+            </article>
+            <% else %>
+            <div class="glossary_empty">Термины пока не добавлены.</div>
+            <% end %>
+        </section>
+
+        <aside class="glossary_terms_sidebar">
+            <h2 class="glossary_terms_sidebar_title">Глоссарий <%= @module_number %> модуль</h2>
+
+            <nav class="glossary_terms_nav">
+                <% @module_terms.each do |term| %>
+                <%= link_to term.term,
+                    glossary_term_path(term),
+                    class: "glossary_terms_link #{'glossary_terms_link_active' if @term == term}" %>
+                <% end %>
+            </nav>
+        </aside>
+    </main>
+
+    <% if @module_number < 6 %>
+    <div class="glossary_next_module_action">
+        <%= link_to "Следующий модуль",
+            tutorials_path(anchor: "module_#{@module_number + 1}"),
+            class: "home_button glossary_next_module_button" %>
+    </div>
+    <% end %>
+</div>

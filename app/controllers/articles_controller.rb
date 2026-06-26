@@ -4,9 +4,11 @@ class ArticlesController < ApplicationController
   def index
     @categories = Article::CATEGORIES
     @selected_category = params[:category].presence
+    @selected_filters = Array(params[:filters]).reject(&:blank?)
 
     @articles = Article.order(id: :desc)
-    @articles = @articles.where(category: @selected_category) if @selected_category
+    @articles = @articles.where(category: @selected_category) if @selected_category && @selected_filters.blank?
+    @articles = @articles.select { |article| (article.subcategories & @selected_filters).any? } if @selected_filters.any?
   end
 
   def show

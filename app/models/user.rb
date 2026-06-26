@@ -17,4 +17,5 @@ class User < ApplicationRecord
   has_many :favourited_lessons, through: :favourite_lessons, source: :lesson
   has_many :projects, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :contest_submissions, dependent: :destroy
 end

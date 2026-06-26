@@ -44,6 +44,9 @@ set_meta_tags(
             <article class="article_card">
                 <div class="article_card_meta">
                     <span class="article_card_tag">
+                        <% if (icon = category_icon(article.category)) %>
+                        <%= image_tag icon, class: "category_icon", alt: "" %>
+                        <% end %>
                         <%= article.category %>
                     </span>
 
@@ -81,39 +84,126 @@ set_meta_tags(
         </div>
 
         <div class="home_community_block">
-            <div class="community_contest_card_main">
-                <div class="community_contest_texts">
-                    <h3 class="community_contest_title">Конкурс недели</h3>
-                    <p class="community_contest_text">
-                        Создай эффект магического портала, используя любые инструменты, а&nbsp;пользователи выберут победителя. </p>
-                </div>
+            <div class="home_community_posts_col">
+                <% if @home_posts.present? %>
+                <% @home_posts.each do |post| %>
+                <%
+                    avatar_images = %w[community_avatar_1.png community_avatar_2.png community_avatar_3.png]
+                    display_name = post.user&.name.presence || post.user&.nickname.presence || post.user&.email.to_s.split("@").first.presence || "Пользователь"
+                    avatar_image = post.user&.email == "user0@example.com" ? "community_avatar_4.png" : avatar_images[post.user_id.to_i % avatar_images.length]
+                %>
+                <article class="community_post_card">
+                    <div class="community_post_content">
+                        <div class="community_post_header">
+                            <div class="community_post_author_block">
+                                <%= image_tag avatar_image, alt: "", class: "community_post_avatar" %>
 
-                <div class="community_contest_image">
-                    <%= image_tag "contest_preview_3.jpg", alt: "Конкурс недели" %>
-                </div>
+                                <div class="community_post_author_texts">
+                                    <span class="community_post_author"><%= display_name %></span>
+                                    <span class="community_post_time"><%= time_ago_in_words(post.created_at) %> назад</span>
+                                </div>
+                            </div>
 
-                <button class="community_button community_button_secondary" type="button">
-                    Участвовать
-                </button>
+                            <div class="community_post_tags">
+                                <span>#ноды</span>
+                                <span>#nuke</span>
+                                <span>#after effects</span>
+                            </div>
+                        </div>
+
+                        <p class="community_post_text"><%= post.body.to_plain_text.truncate(180) %></p>
+
+                        <% if post.post_image_available? %>
+                        <div class="community_post_image">
+                            <%= image_tag post.post_image.url, alt: "Изображение к вопросу" %>
+                        </div>
+                        <% end %>
+
+                        <div class="community_post_footer">
+                            <div class="community_post_stats">
+                                <div class="community_post_stat">
+                                    <%= image_tag "community_icon_view.svg", alt: "", class: "community_post_stat_icon" %>
+                                    <span><%= number_to_human((post.id.to_i * 137) + 480, units: { thousand: "K" }, format: "%n%u") %></span>
+                                </div>
+
+                                <%= render "posts/like_button", post: post %>
+
+                                <div class="community_post_comments_info">
+                                    <%= image_tag "community_icon_comment.svg", alt: "", class: "community_post_stat_icon community_post_comments_icon" %>
+                                    <span class="community_post_comments_count"><%= post.comments.count %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+                <% end %>
+                <% else %>
+                <article class="community_post_card">
+                    <p class="community_post_text">Пока вопросов нет. Будьте первым, кто начнет обсуждение.</p>
+                </article>
+                <% end %>
             </div>
-            <div class="community_contest_card_main">
-                <div class="community_contest_texts">
-                    <h3 class="community_contest_title">оживший объект</h3>
-                    <p class="community_contest_text">
-                        Создай эффект магического портала, используя любые инструменты, а&nbsp;пользователи выберут победителя.
+
+            <div class="home_community_contests_col">
+                <div class="community_contest_card">
+                    <div class="community_contest_top">
+                        <span class="community_contest_badge">конкурс недели</span>
+                        <span class="community_contest_deadline">Осталось: 3 дн</span>
+                    </div>
+                    <div class="community_contest_texts">
+                        <h3 class="community_contest_title">лучший портал</h3>
+                        <p class="community_contest_text">
+                            Создай эффект магического портала, используя любые инструменты, а&nbsp;пользователи выберут победителя.
+                        </p>
+                    </div>
+
+                    <%= render "community/contest_gallery",
+                        contest_slug: "contest_portal",
+                        submissions: @contest_submissions_by_slug["contest_portal"],
+                        title: "лучший портал",
+                        description: "Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.",
+                        images: [
+                            "/autoupload/contests/contest_portal_1.jpg",
+                            "/autoupload/contests/contest_portal_2.jpg",
+                            "/autoupload/contests/contest_portal_3.jpg",
+                            "/autoupload/contests/contest_portal_4.jpg",
+                            "/autoupload/contests/contest_portal_5.jpg",
+                            "/autoupload/contests/contest_portal_6.jpg",
+                            "/autoupload/contests/contest_portal_7.jpg",
+                            "/autoupload/contests/contest_portal_8.jpg",
+                            "/autoupload/contests/contest_portal_9.jpg",
+                            "/autoupload/contests/contest_portal_10.jpg",
+                            "/autoupload/contests/contest_portal_11.jpg",
+                            "/autoupload/contests/contest_portal_12.jpg",
+                            "/autoupload/contests/contest_portal_13.jpg",
+                            "/autoupload/contests/contest_portal_14.jpg"
+                        ] %>
+
+                    <button class="community_button community_button_secondary" type="button" data-contest-upload-button="contest_portal">
+                        Загрузить кейс
+                    </button>
                 </div>
-                <div class="community_contest_image">
-                    <%= image_tag "contest_preview_4.jpg", alt: "Конкурс недели" %>
-                </div>
-                <button class="community_button community_button_secondary" type="button">
-                    Участвовать
-                </button>
             </div>
         </div>
     </section>
 
+    <div class="contest_gallery_modal" data-contest-gallery-modal>
+        <div class="contest_gallery_modal_overlay" data-close-contest-gallery></div>
+
+        <div class="contest_gallery_modal_window">
+            <button class="contest_gallery_modal_close" type="button" data-close-contest-gallery>×</button>
+            <h2 class="contest_gallery_modal_title" data-contest-gallery-modal-title></h2>
+            <p class="contest_gallery_modal_description" data-contest-gallery-modal-description></p>
+            <div class="contest_gallery_modal_grid" data-contest-gallery-modal-grid></div>
+        </div>
+    </div>
+
     <section class="home_banner_full">
-        <%= image_tag "home_full_banner.jpg", alt: "AFACTS banner", class: "home_banner_full_image" %>
+        <picture>
+            <source media="(max-width: 768px)" srcset="<%= asset_path("home_full_banner_mini.png") %>">
+            <%= image_tag "home_full_banner.jpg", alt: "AFACTS banner", class: "home_banner_full_image" %>
+        </picture>
     </section>
 
     <section class="home_collage">
@@ -153,42 +243,59 @@ set_meta_tags(
                 <form action="<%= api_v1_subscribers_path %>" accept-charset="UTF-8" method="post" id="subscription_form" class="home_subscribe_form">
                     <input class="home_subscribe_input" type="email" placeholder="e-mail" name="subscriber[email]" id="subscriber_email" />
 
-                    <input class="home_subscribe_submit" type="submit" name="commit" value="Подписаться" />
+                    <input class="home_button home_subscribe_submit" type="submit" name="commit" value="Подписаться" />
                 </form>
             </div>
         </div>
     </section>
 
-    <section class="home_slider_section">
+    <section class="home_slider_section" data-controller="home-slider">
         <div class="home_section_head">
             <h2 class="home_section_title">Работы учеников </h2>
-
-            <%
-=begin%>
-            <div class="home_slider_controls">
-                <button class="home_slider_button home_slider_button_prev" type="button">←</button>
-                <button class="home_slider_button home_slider_button_next" type="button">→</button>
-            </div>
-            <%
-=end%>
         </div>
 
-        <div class="home_slider_track">
-            <article class="home_slider_card">
-                <%= image_tag "slider_1.jpg", alt: "Подборка 1", class: "home_slider_card_image" %>
-                <h3 class="home_slider_card_title">MIRAGE</h3>
-            </article>
+        <div class="home_slider_body">
+            <div class="home_slider_controls">
+                <button class="home_slider_button home_slider_button_prev" type="button" aria-label="Предыдущая работа" data-action="home-slider#previous">
+                    <%= image_tag "slider_arrow.svg", alt: "", class: "home_slider_button_icon" %>
+                </button>
+                <button class="home_slider_button home_slider_button_next" type="button" aria-label="Следующая работа" data-action="home-slider#next">
+                    <%= image_tag "slider_arrow.svg", alt: "", class: "home_slider_button_icon" %>
+                </button>
+            </div>
 
-            <article class="home_slider_card">
-                <%= image_tag "slider_2.jpg", alt: "Подборка 2", class: "home_slider_card_image" %>
-                <h3 class="home_slider_card_title">DEAD HEAD // CGI SHORT</h3>
-            </article>
+            <div class="home_slider_track" data-home-slider-target="track">
+                <article class="home_slider_card">
+                    <%= image_tag "slider_1.jpg", alt: "Подборка 1", class: "home_slider_card_image" %>
+                    <h3 class="home_slider_card_title">MIRAGE</h3>
+                </article>
 
-            <article class="home_slider_card">
-                <%= image_tag "slider_3.jpg", alt: "Подборка 3", class: "home_slider_card_image" %>
-                <h3 class="home_slider_card_title">Obelisco</h3>
-            </article>
+                <article class="home_slider_card">
+                    <%= image_tag "slider_2.jpg", alt: "Подборка 2", class: "home_slider_card_image" %>
+                    <h3 class="home_slider_card_title">DEAD HEAD // CGI SHORT</h3>
+                </article>
 
+                <article class="home_slider_card">
+                    <%= image_tag "slider_3.jpg", alt: "Подборка 3", class: "home_slider_card_image" %>
+                    <h3 class="home_slider_card_title">Obelisco</h3>
+                </article>
+
+                <article class="home_slider_card">
+                    <%= image_tag "slider_4.jpg", alt: "Подборка 4", class: "home_slider_card_image" %>
+                    <h3 class="home_slider_card_title">Portal Drift</h3>
+                </article>
+
+                <article class="home_slider_card">
+                    <%= image_tag "slider_5.jpg", alt: "Подборка 5", class: "home_slider_card_image" %>
+                    <h3 class="home_slider_card_title">Neon Wake</h3>
+                </article>
+
+                <article class="home_slider_card">
+                    <%= image_tag "slider_6.jpg", alt: "Подборка 6", class: "home_slider_card_image" %>
+                    <h3 class="home_slider_card_title">Dust Signal</h3>
+                </article>
+
+            </div>
         </div>
     </section>
 </div>

@@ -1,3 +1,78 @@
+<%
+  tutorial_modules = [
+    {
+      number: "Модуль 1",
+      title: "Pre-Production и съемки",
+      lessons_count: "4 урока",
+      text: "Понимаем, что происходит до того, как кадр попал к нам.",
+      lessons: [
+        { title: "Что такое vfx сегодня?", text: "Как мы общаемся с супервайзером" },
+        { title: "Пайплайн полного метра", text: "Как мы общаемся с супервайзером" },
+        { title: "On-set VFX", text: "Что происходит на площадке: HDRi, референсные шары, хромакей в кино vs ТВ, маркеры трекинга" },
+        { title: "Анализ отснятого материала", text: "Прокси, Log-цвет, интерпретация футажа" }
+      ],
+      glossary: "On-set Supervisor, HDRi, Grey Ball, Plate, Log, Proxy"
+    },
+    {
+      number: "Модуль 2",
+      title: "Реконструкция реальности",
+      lessons_count: "3 урока",
+      text: "Переносим камеру режиссера в 3D-мир",
+      lessons: [
+        { title: "3D Camera Solve", text: "Восстанавливаем движение камеры оператора с точностью до миллиметра" },
+        { title: "Matchmoving", text: "Как посадить 3D-персонажа на стул, который стоял на площадке, если его там не было" },
+        { title: "Дисторшн и цвет", text: "Убираем искажения линз и калибруем цвет под съемочную камеру" }
+      ],
+      glossary: "Matchmoving, Lens Distortion, Undistort, Survey Data"
+    },
+    {
+      number: "Модуль 3",
+      title: "Скульптинг кадра",
+      lessons_count: "2 урока",
+      text: "Чистим кадр от лишнего (провода, страховка, микрофоны)",
+      lessons: [
+        { title: "Ротоскопинг для кино", text: "Промышленный ротоскопинг с motion blur и полупрозрачными объектами." },
+        { title: "Клин-ап (Clean Plate)", text: "Удаление объектов: убираем провода, страховку актера, риги" }
+      ],
+      glossary: "Clean Plate, Wire Removal, Paint, Clone, Patch"
+    },
+    {
+      number: "Модуль 4",
+      title: "Ключевая интеграция",
+      lessons_count: "2 урока",
+      text: "Чистим кадр от лишнего (провода, страховка, микрофоны)",
+      lessons: [
+        { title: "Хромакей высокой сложности", text: "Стекло, дым, волосы, полупрозрачная одежда" },
+        { title: "Edge Blending", text: "Как вклеить волосы актера на новый фон так, чтобы не было синей/зеленой каймы" }
+      ],
+      glossary: "Edge Blending, Core Matte, Holdout Matte, Garbage Matte"
+    },
+    {
+      number: "Модуль 5",
+      title: "Цвет под микроскопом",
+      lessons_count: "2 урока",
+      text: "Наука цвета в кино",
+      lessons: [
+        { title: "ACES и цветовые пространства", text: "Почему в кино используют ACES, а не sRGB. Лог-кривые" },
+        { title: "Цветовой мэтчинг", text: "Как цвет 3D-динозавра сделать идентичным цвету живого актера в кадре" }
+      ],
+      glossary: "ACES, LogC, Lin to Log, CDL, Color Space Transform"
+    },
+    {
+      number: "Модуль 6",
+      title: "Глубокая сборка",
+      lessons_count: "3 урока",
+      text: "Работа с 3D-слоями.",
+      lessons: [
+        { title: "Deep Data", text: "Как вставлять персонажа между деревьями, не перекрывая их вручную" },
+        { title: "Свет и атмосфера в кадре", text: "God rays, объемный свет, фог. Вписываем CG в живой свет" },
+        { title: "Финальная проверка", text: "Выполни свою первую работу" }
+      ],
+      glossary: "Deep Comp, Volume, Atmosphere, Tech Check, Spec Check"
+    }
+  ]
+%>
+
 <div class="tutorial_page">
     <aside class="tutorial_sidebar">
 
@@ -6,50 +81,35 @@
                 Содержание
             </button>
             <nav class="tutorial_sidebar_nav" data-tutorial-sidebar-nav>
-                <a href="#module_1" class="tutorial_sidebar_link tutorial_sidebar_link_active">
-                    <span class="tutorial_sidebar_module">Модуль 1</span>
-                    <span class="tutorial_sidebar_name">Основы VFX</span>
+                <% tutorial_modules.each_with_index do |tutorial_module, index| %>
+                <a href="#module_<%= index + 1 %>" class="tutorial_sidebar_link <%= 'tutorial_sidebar_link_active' if index.zero? %>" data-tutorial-module-link data-tutorial-module-id="module_<%= index + 1 %>">
+                    <span class="tutorial_sidebar_module"><%= tutorial_module[:number] %></span>
+                    <span class="tutorial_sidebar_name"><%= tutorial_module[:title] %></span>
                 </a>
-
-                <a href="#module_2" class="tutorial_sidebar_link">
-                    <span class="tutorial_sidebar_module">Модуль 2</span>
-                    <span class="tutorial_sidebar_name">Композитинг</span>
-                </a>
-
-                <a href="#module_3" class="tutorial_sidebar_link">
-                    <span class="tutorial_sidebar_module">Модуль 3</span>
-                    <span class="tutorial_sidebar_name">Трекинг</span>
-                </a>
-
-                <a href="#module_4" class="tutorial_sidebar_link">
-                    <span class="tutorial_sidebar_module">Модуль 4</span>
-                    <span class="tutorial_sidebar_name">CGI и 3D</span>
-                </a>
-
-                <a href="#module_5" class="tutorial_sidebar_link">
-                    <span class="tutorial_sidebar_module">Модуль 5</span>
-                    <span class="tutorial_sidebar_name">Финальный разбор</span>
-                </a>
+                <% end %>
             </nav>
         </div>
     </aside>
 
     <main class="tutorial_main">
-        <section class="tutorial_module" id="module_1">
+        <% tutorial_modules.each_with_index do |tutorial_module, module_index| %>
+        <% completed_lessons = module_index.zero? ? 1 : 0 %>
+        <% progress_percent = (completed_lessons.to_f / tutorial_module[:lessons].size * 100).round %>
+        <section class="tutorial_module" id="module_<%= module_index + 1 %>" data-tutorial-module <%= "hidden" unless module_index.zero? %>>
             <div class="tutorial_module_header">
                 <div class="tutorial_module_badges">
-                    <span class="tutorial_module_badge tutorial_module_number">Модуль 1</span>
-                    <span class="tutorial_module_badge tutorial_module_lessons">4 урока</span>
+                    <span class="tutorial_module_badge tutorial_module_number"><%= tutorial_module[:number] %></span>
+                    <span class="tutorial_module_badge tutorial_module_lessons">
+                        <span class="tutorial_module_lessons_progress"><%= completed_lessons %>/<%= tutorial_module[:lessons].size %></span>
+                        <span><%= tutorial_module[:lessons_count] %></span>
+                    </span>
                 </div>
                 <div class="tutorial_module_meta">
-
-
                     <div class="tutorial_module_intro">
-                        <h2 class="tutorial_module_title">Основы VFX</h2>
-                        <p class="tutorial_module_text">
-                            В этом модуле вы познакомитесь с базовыми принципами визуальных эффектов,
-                            узнаете основные термины и поймёте, как строится работа над VFX-проектом.
-                        </p>
+                        <h2 class="tutorial_module_title"><%= tutorial_module[:title] %></h2>
+                        <% if tutorial_module[:text].present? %>
+                        <p class="tutorial_module_text"><%= tutorial_module[:text] %></p>
+                        <% end %>
                     </div>
                     <div class="tutorial_module_status">
                         <div class="tutorial_module_status_texts">
@@ -57,145 +117,64 @@
                             <span class="tutorial_module_status_value">супервайзер 2 ступени</span>
                         </div>
 
-                        <div class="tutorial_progress_circle" style="--progress: 32;">
+                        <div class="tutorial_progress_circle" style="--progress: <%= progress_percent %>;">
                             <div class="tutorial_progress_circle_inner">
-                                <span class="tutorial_progress_circle_value">32%</span>
+                                <span class="tutorial_progress_circle_value"><%= progress_percent %>%</span>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
 
             <div class="tutorial_cards">
+                <% tutorial_module[:lessons].each_with_index do |lesson, lesson_index| %>
+                <% lesson_cover_index = tutorial_modules.first(module_index).sum { |mod| mod[:lessons].size } + lesson_index + 1 %>
+                <% lesson_record = @lessons_by_module_and_number[[tutorial_module[:number], lesson_index + 1]] %>
                 <article class="lesson_card">
                     <div class="lesson_card_image">
-                        <%= image_tag "/autoupload/lessons/lesson_cover_1.jpg", alt: "Урок 1" %>
+                        <%= image_tag "/autoupload/lessons/lesson_cover_#{lesson_cover_index}.jpg", alt: "Урок #{lesson_index + 1}" %>
                     </div>
 
                     <div class="lesson_card_content">
                         <div class="lesson_card_meta">
-                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 1</span>
-                            <span class="lesson_card_meta_item">20 мин</span>
+                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок <%= lesson_index + 1 %></span>
+                            <span class="lesson_card_meta_item"><%= [20, 18, 24, 16][lesson_index % 4] %> мин</span>
                         </div>
                         <div class="lesson_card_texts_action">
                             <div class="lesson_card_texts">
-                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
-                                <p class="lesson_card_text">
-                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
-                                </p>
+                                <h3 class="lesson_card_title"><%= lesson[:title] %></h3>
+                                <p class="lesson_card_text"><%= lesson[:text] %></p>
                             </div>
                             <div class="lesson_card_action">
-                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
-                        </div>
-
-                    </div>
-
-
-                </article>
-
-                <article class="lesson_card">
-                    <div class="lesson_card_image">
-                        <%= image_tag "/autoupload/lessons/lesson_cover_2.jpg", alt: "Урок 2" %>
-                    </div>
-
-                    <div class="lesson_card_content">
-                        <div class="lesson_card_meta">
-                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 2</span>
-                            <span class="lesson_card_meta_item">18 мин</span>
-                        </div>
-
-                        <div class="lesson_card_texts_action">
-                            <div class="lesson_card_texts">
-                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
-                                <p class="lesson_card_text">
-                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
-                                </p>
+                                <% if lesson_record %>
+                                <%= link_to "Пройти", lesson_path(lesson_record), class: "lesson_card_button" %>
+                                <% else %>
+                                <span class="lesson_card_button lesson_card_button_disabled">Скоро</span>
+                                <% end %>
                             </div>
-                            <div class="lesson_card_action">
-                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
                         </div>
                     </div>
-
-
                 </article>
-
-                <article class="lesson_card">
-                    <div class="lesson_card_image">
-                        <%= image_tag "/autoupload/lessons/lesson_cover_3.jpg", alt: "Урок 3" %>
-                    </div>
-
-                    <div class="lesson_card_content">
-                        <div class="lesson_card_meta">
-                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 3</span>
-                            <span class="lesson_card_meta_item">24 мин</span>
-                        </div>
-
-                        <div class="lesson_card_texts_action">
-                            <div class="lesson_card_texts">
-                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
-                                <p class="lesson_card_text">
-                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
-                                </p>
-                            </div>
-                            <div class="lesson_card_action">
-                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
-                        </div>
-                    </div>
-
-
-                </article>
-
-                <article class="lesson_card">
-                    <div class="lesson_card_image">
-                        <%= image_tag "/autoupload/lessons/lesson_cover_4.jpg", alt: "Урок 4" %>
-                    </div>
-
-                    <div class="lesson_card_content">
-                        <div class="lesson_card_meta">
-                            <span class="lesson_card_meta_item lesson_card_meta_number">Урок 4</span>
-                            <span class="lesson_card_meta_item">16 мин</span>
-                        </div>
-
-                        <div class="lesson_card_texts_action">
-                            <div class="lesson_card_texts">
-                                <h3 class="lesson_card_title">Что такое визуальные эффекты</h3>
-                                <p class="lesson_card_text">
-                                    Базовое введение в индустрию VFX и роль эффектов в современном кино.
-                                </p>
-                            </div>
-                            <div class="lesson_card_action">
-                                <%= link_to "Пройти", lesson_path(1), class: "lesson_card_button" %> </div>
-                        </div>
-                    </div>
-
-
-                </article>
+                <% end %>
 
                 <article class="glossary_card">
                     <div class="glossary_card_info">
                         <div class="glossary_card_meta">
                             <span class="glossary_card_meta_item glossary_card_meta_item_title">Глоссарий</span>
-                            <span class="glossary_card_meta_item">20 слов</span>
+                            <span class="glossary_card_meta_item"><%= tutorial_module[:glossary].split(",").size %> слов</span>
                         </div>
                         <div class="glossary_card_texts_action">
                             <div class="glossary_card_texts">
-                                <h3 class="glossary_card_title">Термины модуля</h3>
-                                <p class="glossary_card_text">
-                                    Закрепите основные понятия модуля перед следующими уроками.
-                                </p>
+                                <h3 class="glossary_card_title"><%= tutorial_module[:glossary] %></h3>
                             </div>
                             <div class="glossary_card_action">
-                                <a href="#" class="glossary_card_button">Изучать</a>
+                                <%= link_to "Изучать", glossary_terms_path(module: module_index + 1), class: "glossary_card_button" %>
                             </div>
                         </div>
-
                     </div>
-
-
                 </article>
             </div>
         </section>
+        <% end %>
     </main>
 </div>

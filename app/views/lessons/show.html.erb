@@ -11,15 +11,29 @@
 
             <div class="lesson_header_actions">
                 <div class="lesson_header_indicator">
-                    < <%= @lesson.module_name %>> Урок <%= @lesson.lesson_number %>
+                    <% if @previous_module_lesson %>
+                    <%= link_to "<", lesson_path(@previous_module_lesson), class: "lesson_header_module_nav", aria: { label: "Предыдущий модуль" } %>
+                    <% else %>
+                    <span class="lesson_header_module_nav lesson_header_module_nav_disabled">&lt;</span>
+                    <% end %>
+
+                    <span><%= @lesson.module_name %></span>
+
+                    <% if @next_module_lesson %>
+                    <%= link_to ">", lesson_path(@next_module_lesson), class: "lesson_header_module_nav", aria: { label: "Следующий модуль" } %>
+                    <% else %>
+                    <span class="lesson_header_module_nav lesson_header_module_nav_disabled">&gt;</span>
+                    <% end %>
+
+                    <span>Урок <%= @lesson.lesson_number %></span>
                 </div>
 
                 <% is_favourite = FavouriteLesson.exists?(user_id: current_user.id, lesson_id: @lesson.id) %>
 
-                <%= button_to is_favourite ? "В избранном" : "В избранное",
+                <%= button_to is_favourite ? "Добавлено" : "В избранное",
                     toggle_favourite_lesson_path(@lesson),
                     method: :post,
-                    class: "lesson_favorite_button" %>
+                    class: "lesson_favorite_button #{'is_favourite' if is_favourite}" %>
             </div>
         </div>
     </div>
@@ -37,9 +51,19 @@
         </aside>
 
         <main class="lesson_content">
-            <%= sanitize(@lesson.body.to_s) %>
+            <% video_embed_url = rutube_embed_url(@lesson.video_url) %>
+            <% if video_embed_url %>
+            <div class="lesson_video">
+                <iframe src="<%= video_embed_url %>" title="<%= @lesson.title %>" frameborder="0" allow="clipboard-write; autoplay; fullscreen" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <% else %>
+            <%= grouped_lesson_body(@lesson.body) %>
+            <% end %>
             <div class="lesson_card_action">
-                <%= link_to "следующий урок", lesson_path(1), class: "lesson_card_button next_lesson_button" %> </div>
+                <% if @next_lesson %>
+                <%= link_to "следующий урок", lesson_path(@next_lesson), class: "lesson_card_button next_lesson_button" %>
+                <% end %>
+            </div>
         </main>
     </div>
 </div>

@@ -1,4 +1,6 @@
-<div class="community_page">
+<div class="community_page community_page_<%= @active_tab %>">
+    <% @contest_submissions_by_slug ||= {} %>
+    <% popular_tags = %w[aftereffects houdini nuke ноды blender maya cinema4d unrealengine cgi vfx compositing rendering] %>
     <div class="community_tabs">
         <%= link_to "Обсуждения",
       community_index_path(tab: "discussions"),
@@ -24,9 +26,97 @@
     <% if @active_tab == "discussions" %>
     <div class="community_layout">
         <div class="community_main_col">
+            <div class="community_posts" data-community-posts>
+                <% @posts.each do |post| %>
+                <%
+                    avatar_images = %w[community_avatar_1.png community_avatar_2.png community_avatar_3.png]
+                    display_name = post.user&.name.presence || post.user&.nickname.presence || post.user&.email.to_s.split("@").first.presence || "Пользователь"
+                    avatar_image = post.user&.email == "user0@example.com" ? "community_avatar_4.png" : avatar_images[post.user_id.to_i % avatar_images.length]
+                    post_tags = [ "ноды", "nuke", "aftereffects" ]
+                %>
+                <article class="community_post_card" data-community-post-card data-community-post-tags="<%= post_tags.join(' ') %>">
+                    <div class="community_post_content">
+                        <div class="community_post_header">
+                            <div class="community_post_author_block">
+                                <%= image_tag avatar_image, alt: "", class: "community_post_avatar" %>
 
+                                <div class="community_post_author_texts">
+                                    <span class="community_post_author"><%= display_name %></span>
+                                    <span class="community_post_time"><%= time_ago_in_words(post.created_at) %> назад</span>
+                                </div>
+                            </div>
 
+                            <div class="community_post_tags">
+                                <% post_tags.each do |tag| %>
+                                    <span>#<%= tag %></span>
+                                <% end %>
+                            </div>
+                        </div>
 
+                        <p class="community_post_text"><%= post.body %></p>
+
+                        <% if post.post_image_available? %>
+                        <div class="community_post_image">
+                            <%= image_tag post.post_image.url, alt: "Изображение к вопросу" %>
+                        </div>
+                        <% end %>
+
+                        <div class="community_post_footer">
+                            <div class="community_post_stats">
+                                <div class="community_post_stat">
+                                    <%= image_tag "community_icon_view.svg", alt: "", class: "community_post_stat_icon" %>
+                                    <span><%= number_to_human((post.id.to_i * 137) + 480, units: { thousand: "K" }, format: "%n%u") %></span>
+                                </div>
+
+                                <%= render "posts/like_button", post: post %>
+
+                                <div class="community_post_comments_info">
+                                    <%= image_tag "community_icon_comment.svg", alt: "", class: "community_post_stat_icon community_post_comments_icon" %>
+                                    <span class="community_post_comments_count"><%= post.comments.count %></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="community_post_reply_block">
+                        <%= link_to post_path(post), class: "community_post_reply_trigger" do %>
+                            <span class="community_ask_icon">
+                                <%= image_tag "profile_icon.png", alt: "", class: "community_ask_icon_img" %>
+                            </span>
+                            <span class="community_ask_placeholder">Ответить</span>
+                            <span class="community_ask_smile" aria-hidden="true"></span>
+                        <% end %>
+
+                        <div class="community_ask_bottom">
+                            <div class="community_ask_files">
+                                <span class="community_ask_action">
+                                    <span class="community_ask_file_icon" aria-hidden="true"></span>
+                                    <span>Файл</span>
+                                </span>
+                                <span class="community_ask_action">
+                                    <span class="community_ask_image_icon" aria-hidden="true"></span>
+                                    <span>Изображение</span>
+                                </span>
+                            </div>
+
+                            <%= link_to "Ответить", post_path(post), class: "community_reply_button" %>
+                        </div>
+                    </div>
+                </article>
+                <% end %>
+            </div>
+
+            <% if @posts.next_page %>
+                <div class="community_load_more">
+                    <%= link_to "Загрузить ещё",
+                        community_index_path(tab: "discussions", page: @posts.next_page),
+                        class: "community_load_more_button",
+                        data: { community_load_more: true } %>
+                </div>
+            <% end %>
+        </div>
+
+        <div class="community_side_col">
             <div class="community_ask_block">
                 <button class="community_ask_trigger" type="button" data-open-community-modal>
                     <span class="community_ask_icon">
@@ -58,89 +148,57 @@
                 </div>
             </div>
 
-
-
-            <div class="community_posts" data-community-posts>
-                <% @posts.each do |post| %>
-                <%
-                    avatar_images = %w[community_avatar_1.png community_avatar_2.png community_avatar_3.png]
-                    display_name = post.user&.name.presence || post.user&.nickname.presence || post.user&.email.to_s.split("@").first.presence || "Пользователь"
-                    avatar_image = post.user&.email == "user0@example.com" ? "community_avatar_4.png" : avatar_images[post.user_id.to_i % avatar_images.length]
-                %>
-                <article class="community_post_card">
-                    <div class="community_post_header">
-                        <div class="community_post_author_block">
-                            <%= image_tag avatar_image, alt: "", class: "community_post_avatar" %>
-
-                            <div class="community_post_author_texts">
-                                <span class="community_post_author"><%= display_name %></span>
-                                <span class="community_post_time"><%= time_ago_in_words(post.created_at) %> назад</span>
-                            </div>
-                        </div>
-
-                        <div class="community_post_tags">
-                            <span>#ноды</span>
-                            <span>#nuke</span>
-                            <span>#after effects</span>
-                        </div>
+            <div class="community_side_sticky_stack">
+                <div class="community_contest_card">
+                    <div class="community_contest_top">
+                        <span class="community_contest_badge">конкурс недели</span>
+                        <span class="community_contest_deadline">Осталось: 3 дн</span>
+                    </div>
+                    <div class="community_contest_texts">
+                        <h3 class="community_contest_title">лучший портал</h3>
+                        <p class="community_contest_text">
+                            Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.
+                        </p>
                     </div>
 
-                    <p class="community_post_text"><%= post.body %></p>
+                    <%= render "community/contest_gallery",
+                        contest_slug: "contest_portal",
+                        submissions: @contest_submissions_by_slug["contest_portal"],
+                        title: "лучший портал",
+                        description: "Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.",
+                        images: [
+                            "/autoupload/contests/contest_portal_1.jpg",
+                            "/autoupload/contests/contest_portal_2.jpg",
+                            "/autoupload/contests/contest_portal_3.jpg",
+                            "/autoupload/contests/contest_portal_4.jpg",
+                            "/autoupload/contests/contest_portal_5.jpg",
+                            "/autoupload/contests/contest_portal_6.jpg",
+                            "/autoupload/contests/contest_portal_7.jpg",
+                            "/autoupload/contests/contest_portal_8.jpg",
+                            "/autoupload/contests/contest_portal_9.jpg",
+                            "/autoupload/contests/contest_portal_10.jpg",
+                            "/autoupload/contests/contest_portal_11.jpg",
+                            "/autoupload/contests/contest_portal_12.jpg",
+                            "/autoupload/contests/contest_portal_13.jpg",
+                            "/autoupload/contests/contest_portal_14.jpg"
+                        ] %>
 
-                    <% if post.post_image.present? %>
-                    <div class="community_post_image">
-                        <%= image_tag post.post_image.url, alt: "Изображение к вопросу" %>
+                    <button class="community_button community_button_secondary" type="button" data-contest-upload-button="contest_portal">
+                        Загрузить кейс
+                    </button>
+                </div>
+
+                <div class="community_popular_tags_block">
+                    <h3 class="community_popular_tags_title">Популярные теги</h3>
+
+                    <div class="community_popular_tags" data-community-tag-filter>
+                        <% popular_tags.each do |tag| %>
+                            <button class="community_popular_tag" type="button" data-community-filter-tag="<%= tag %>">
+                                #<%= tag %>
+                            </button>
+                        <% end %>
                     </div>
-                    <% end %>
-
-                    <div class="community_post_footer">
-                        <div class="community_post_stats">
-                            <div class="community_post_stat">
-                                <%= image_tag "community_icon_view.svg", alt: "", class: "community_post_stat_icon" %>
-                                <span><%= number_to_human((post.id.to_i * 137) + 480, units: { thousand: "K" }, format: "%n%u") %></span>
-                            </div>
-
-                            <%= render "posts/like_button", post: post %>
-
-                            <div class="community_post_comments_info">
-                                <%= image_tag "community_icon_comment.svg", alt: "", class: "community_post_stat_icon community_post_comments_icon" %>
-                                <span class="community_post_comments_count"><%= post.comments.count %></span>
-                            </div>
-                        </div>
-
-                        <%= link_to "Ответить", post_path(post), class: "community_reply_button" %>
-                    </div>
-                </article>
-                <% end %>
-            </div>
-
-            <% if @posts.next_page %>
-                <div class="community_load_more">
-                    <%= link_to "Загрузить ещё",
-                        community_index_path(tab: "discussions", page: @posts.next_page),
-                        class: "community_load_more_button",
-                        data: { community_load_more: true } %>
                 </div>
-            <% end %>
-        </div>
-
-        <div class="community_side_col">
-            <div class="community_contest_card">
-                <span class="community_contest_badge">конкурс недели</span>
-                <div class="community_contest_texts">
-                    <h3 class="community_contest_title">лучший портал</h3>
-                    <p class="community_contest_text">
-                        Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.
-                    </p>
-                </div>
-
-                <div class="community_contest_image">
-                    <%= image_tag "contest_preview.jpg", alt: "Конкурс недели" %>
-                </div>
-
-                <button class="community_button community_button_secondary" type="button">
-                    Загрузить кейс
-                </button>
             </div>
         </div>
     </div>
@@ -150,6 +208,11 @@
     <%
 =end%>
     <% elsif @active_tab == "meetups" %>
+    <%
+      first_meetup_title = "VFX в инди-кино: как создать магию с малым бюджетом"
+      first_meetup_registration = defined?(MeetupRegistration) && MeetupRegistration.find_by(user: current_user, meetup_slug: "vfx-indie-cinema")
+      first_meetup_registered = first_meetup_registration.present?
+    %>
     <div class="community_meetup_layout">
 
 
@@ -157,14 +220,22 @@
             <div class="community_meetup_texts">
                 <span class="community_meetup_meta community_meetup_time">2 часа</span>
                 <span class="community_meetup_meta community_meetup_date">29.03.2026</span>
-                <span class="community_meetup_meta community_meetup_join">Участвовать</span>
+                <% if first_meetup_registered %>
+                <button class="community_meetup_meta community_meetup_join community_meetup_join_registered" type="button" data-open-meetup-modal>
+                    Вы записаны
+                </button>
+                <% else %>
+                <button class="community_meetup_meta community_meetup_join" type="button" data-open-meetup-modal>
+                    Участвовать
+                </button>
+                <% end %>
             </div>
 
             <div class="community_meetup_image">
                 <%= image_tag "meetup_1.jpg", alt: "Митап 1" %>
             </div>
 
-            <h3 class="community_meetup_title">VFX в инди-кино: как создать магию с малым бюджетом</h3>
+            <h3 class="community_meetup_title"><%= first_meetup_title %></h3>
         </article>
 
         <article class="community_meetup_card">
@@ -183,6 +254,44 @@
 
 
 
+    </div>
+
+    <div class="meetup_confirm_modal" data-meetup-modal>
+        <div class="meetup_confirm_overlay" data-close-meetup-modal></div>
+
+        <div class="meetup_confirm_window">
+            <button class="meetup_confirm_close" type="button" data-close-meetup-modal>×</button>
+            <% if first_meetup_registered %>
+            <h2 class="meetup_confirm_title">Отписаться от мероприятия?</h2>
+            <p class="meetup_confirm_text">
+                Вы хотите отменить участие в онлайн-мероприятии «<%= first_meetup_title %>»?
+                После подтверждения ваша запись будет удалена.
+            </p>
+            <% else %>
+            <h2 class="meetup_confirm_title">Записаться на мероприятие?</h2>
+            <p class="meetup_confirm_text">
+                Вы хотите записаться на онлайн-мероприятие «<%= first_meetup_title %>»?
+                После подтверждения мы отправим письмо с подробной информацией и ссылкой на встречу.
+            </p>
+            <% end %>
+
+            <div class="meetup_confirm_actions">
+                <button class="meetup_confirm_cancel" type="button" data-close-meetup-modal>Отмена</button>
+                <% if first_meetup_registered %>
+                <%= button_to "Отписаться",
+                    meetup_registration_path(first_meetup_registration),
+                    method: :delete,
+                    class: "meetup_confirm_submit meetup_confirm_submit_danger",
+                    form: { class: "meetup_confirm_form" } %>
+                <% else %>
+                <%= button_to "Записаться",
+                    meetup_registrations_path,
+                    method: :post,
+                    class: "meetup_confirm_submit",
+                    form: { class: "meetup_confirm_form" } %>
+                <% end %>
+            </div>
+        </div>
     </div>
     <%
 =begin%>
@@ -262,11 +371,29 @@
                 </p>
             </div>
 
-            <div class="community_contest_image">
-                <%= image_tag "contest_preview.jpg", alt: "Конкурс недели" %>
-            </div>
+            <%= render "community/contest_gallery",
+                contest_slug: "contest_portal",
+                submissions: @contest_submissions_by_slug["contest_portal"],
+                title: "лучший портал",
+                description: "Создай эффект магического портала, используя любые инструменты, а пользователи выберут победителя.",
+                images: [
+                    "/autoupload/contests/contest_portal_1.jpg",
+                    "/autoupload/contests/contest_portal_2.jpg",
+                    "/autoupload/contests/contest_portal_3.jpg",
+                    "/autoupload/contests/contest_portal_4.jpg",
+                    "/autoupload/contests/contest_portal_5.jpg",
+                    "/autoupload/contests/contest_portal_6.jpg",
+                    "/autoupload/contests/contest_portal_7.jpg",
+                    "/autoupload/contests/contest_portal_8.jpg",
+                    "/autoupload/contests/contest_portal_9.jpg",
+                    "/autoupload/contests/contest_portal_10.jpg",
+                    "/autoupload/contests/contest_portal_11.jpg",
+                    "/autoupload/contests/contest_portal_12.jpg",
+                    "/autoupload/contests/contest_portal_13.jpg",
+                    "/autoupload/contests/contest_portal_14.jpg"
+                ] %>
 
-            <button class="community_button community_button_secondary" type="button">
+            <button class="community_button community_button_secondary" type="button" data-contest-upload-button="contest_portal">
                 Загрузить кейс
             </button>
         </div>
@@ -279,10 +406,13 @@
                     где этот объект «оживает» с помощью простых, но креативных
                     VFX-приёмов (стоп-моушн, склейки). </p>
             </div>
-            <div class="community_contest_image">
-                <%= image_tag "contest_preview_1.jpg", alt: "Конкурс недели" %>
-            </div>
-            <button class="community_button community_button_secondary" type="button">
+            <%= render "community/contest_gallery",
+                contest_slug: "contest_object",
+                submissions: @contest_submissions_by_slug["contest_object"],
+                title: "оживший объект",
+                description: "Обычный бытовой объект (настольная лампа, чайник). Задача участников — снять на телефон короткое видео (до 30 сек), где этот объект «оживает» с помощью простых, но креативных VFX-приёмов (стоп-моушн, склейки).",
+                images: [ "/autoupload/contests/contest_object_1.jpg", "/autoupload/contests/contest_object_2.jpg", "/autoupload/contests/contest_object_3.jpg" ] %>
+            <button class="community_button community_button_secondary" type="button" data-contest-upload-button="contest_object">
                 Загрузить кейс
             </button>
         </div>
@@ -293,10 +423,13 @@
                 <p class="community_contest_text">
                     Участники должны создать короткий VFX-ролик (5-15 секунд). Исходник — скучный кадр: пустая комната, простой коридор, вид из окна. Задача — вдохнуть в него магию, добавив один продуманный эффект (появление фантастического существа). </p>
             </div>
-            <div class="community_contest_image">
-                <%= image_tag "contest_preview_2.jpg", alt: "Конкурс недели" %>
-            </div>
-            <button class="community_button community_button_secondary" type="button">
+            <%= render "community/contest_gallery",
+                contest_slug: "contest_effect",
+                submissions: @contest_submissions_by_slug["contest_effect"],
+                title: "эффект в кадре",
+                description: "Участники должны создать короткий VFX-ролик (5-15 секунд). Исходник — скучный кадр: пустая комната, простой коридор, вид из окна. Задача — вдохнуть в него магию, добавив один продуманный эффект (появление фантастического существа).",
+                images: [ "/autoupload/contests/contest_effect_1.jpg", "/autoupload/contests/contest_effect_2.jpg", "/autoupload/contests/contest_effect_3.jpg" ] %>
+            <button class="community_button community_button_secondary" type="button" data-contest-upload-button="contest_effect">
                 Загрузить кейс
             </button>
         </div>
@@ -305,6 +438,17 @@
 
     </div>
     <% end %>
+
+    <div class="contest_gallery_modal" data-contest-gallery-modal>
+        <div class="contest_gallery_modal_overlay" data-close-contest-gallery></div>
+
+        <div class="contest_gallery_modal_window">
+            <button class="contest_gallery_modal_close" type="button" data-close-contest-gallery>×</button>
+            <h2 class="contest_gallery_modal_title" data-contest-gallery-modal-title></h2>
+            <p class="contest_gallery_modal_description" data-contest-gallery-modal-description></p>
+            <div class="contest_gallery_modal_grid" data-contest-gallery-modal-grid></div>
+        </div>
+    </div>
 
     <div class="community_modal" data-community-modal>
         <div class="community_modal_overlay" data-close-community-modal></div>

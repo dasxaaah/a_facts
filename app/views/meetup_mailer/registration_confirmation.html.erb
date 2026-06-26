@@ -1,0 +1,17 @@
+<p>Здравствуйте!</p>
+
+<p>Вы записались на онлайн-мероприятие «<%= @registration.meetup_title %>».</p>
+
+<p>
+  Дата и время:
+  <%= l(@registration.meetup_starts_at, format: "%d.%m.%Y, %H:%M") if @registration.meetup_starts_at.present? %>
+</p>
+
+<p>
+  Ссылка на встречу:
+  <%= link_to @registration.meetup_url, @registration.meetup_url %>
+</p>
+
+<p>Ближе к началу мероприятия мы отправим дополнительную информацию.</p>
+
+<p>Команда AFACTS</p>

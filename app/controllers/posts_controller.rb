@@ -43,7 +43,10 @@ def create
   if @post.save
     redirect_to community_index_path(tab: "discussions"), notice: "Вопрос опубликован"
   else
-    @posts = Post.order(id: :desc)
+    @posts = Post.includes(:user)
+                 .order(id: :desc)
+                 .paginate(page: params[:page], per_page: 10)
+    @contest_submissions_by_slug = ContestSubmission.includes(:user).order(created_at: :desc).group_by(&:contest_slug)
     @active_tab = "discussions"
     render "community/index", status: :unprocessable_entity
   end

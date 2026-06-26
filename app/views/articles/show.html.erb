@@ -11,10 +11,10 @@
 
             <% is_favourite = FavouriteArticle.exists?(user_id: current_user.id, article_id: @article.id) %>
 
-            <%= button_to is_favourite ? "В избранном" : "В избранное",
+            <%= button_to is_favourite ? "Добавлено" : "В избранное",
                 toggle_favourite_article_path(@article),
                 method: :post,
-                class: "article_favorite_button" %>
+                class: "article_favorite_button #{'is_favourite' if is_favourite}" %>
         </div>
 
         <div class="article_meta">

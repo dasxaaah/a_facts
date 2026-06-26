@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_26_115500) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -55,6 +55,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
     t.string "category"
     t.string "cover_image"
     t.datetime "published_at"
+    t.text "subcategories"
+    t.string "subcategory"
     t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
@@ -69,6 +71,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
     t.integer "user_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contest_submissions", force: :cascade do |t|
+    t.string "contest_slug", null: false
+    t.datetime "created_at", null: false
+    t.string "image", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["contest_slug"], name: "index_contest_submissions_on_contest_slug"
+    t.index ["user_id"], name: "index_contest_submissions_on_user_id"
   end
 
   create_table "favourite_articles", force: :cascade do |t|
@@ -111,6 +123,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
     t.string "module_name"
     t.string "title"
     t.datetime "updated_at", null: false
+    t.string "video_url"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -121,6 +134,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
     t.integer "user_id", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable_type_and_likeable_id"
     t.index ["user_id", "likeable_type", "likeable_id"], name: "index_likes_on_user_id_and_likeable_type_and_likeable_id", unique: true
+  end
+
+  create_table "meetup_registrations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "meetup_slug", null: false
+    t.datetime "meetup_starts_at"
+    t.string "meetup_title", null: false
+    t.string "meetup_url", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id", "meetup_slug"], name: "index_meetup_registrations_on_user_id_and_meetup_slug", unique: true
+    t.index ["user_id"], name: "index_meetup_registrations_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -204,8 +229,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_19_170000) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "contest_submissions", "users"
   add_foreign_key "favourite_lessons", "lessons"
   add_foreign_key "favourite_lessons", "users"
+  add_foreign_key "meetup_registrations", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "quiz_questions", "quizzes"

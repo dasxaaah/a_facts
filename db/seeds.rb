@@ -100,12 +100,12 @@ QA_QUESTIONS = [
   },
   {
     title: "Вопрос: Как выбрать между After Effects и Nuke для простого композа?",
-    body:  "Шот несложный, но хочется привыкнуть к node-based workflow. Есть ли смысл сразу делать в Nuke?",
-    image: "5-Centimeters-Per-Second-046.jpg"
+    body:  "Ребята, пытаюсь повторить эффект расхождения реальности из «Доктора Стрэнджа». Вроде делаю все по туториалу, но получается какая-то «мыльная» картинка, нет той резкости и глубины. Может, кто-то сталкивался? В чем может быть подвох? Поделитесь рабочим проектом?",
+    image: "С_PostAttachments.jpg"
   },
   {
     title: "Вопрос: Как аккуратно добавить grain после композа?",
-    body:  "CG слишком чистый, а plate зернистый. Нужно ли match grain делать в самом конце или раньше?"
+    body:  "Объясните, пожалуйста, как дизайнеру, когда нужно использовать Nuke вместо After Effects? Все вокруг твердят про ноды, но я не понимаю, в чем их магическое преимущество перед привычными слоями."
   }
 ]
 
@@ -141,6 +141,8 @@ ARTICLES_DATA = [
   {
     title: "За кулисами: сцены из  «Безумного Макса»",
     category: "Разборы",
+    subcategory: "Транспорт и техника",
+    subcategories: [ "Транспорт и техника", "От идеи до финала" ],
     cover: "article_cover_1.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
@@ -199,7 +201,8 @@ ARTICLES_DATA = [
   {
     title: "Что такое motion capture",
     category: "Технологии",
-    cover: "article_cover_2.jpg",
+    subcategory: "Unreal Engine",
+    cover: "article_cover_7.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -256,8 +259,10 @@ ARTICLES_DATA = [
   },
   {
     title: "VFX разбор: плащ Доктора Стрэнджа",
-    category: "Личности",
-    cover: "article_cover_3.jpg",
+    category: "Разборы",
+    subcategory: "Существа и персонажи",
+    subcategories: [ "Существа и персонажи", "Клонирование, массовка" ],
+    cover: "article_cover_2.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -314,8 +319,9 @@ ARTICLES_DATA = [
   },
   {
     title: "Как работает 3D-сканирование",
-    category: "Подборки",
-    cover: "article_cover_4.jpg",
+    category: "Технологии",
+    subcategory: "Maya / 3ds Max / Blender",
+    cover: "article_cover_8.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -372,8 +378,9 @@ ARTICLES_DATA = [
   },
   {
     title: "Илона Мелькертс",
-    category: "Технологии",
-    cover: "article_cover_5.jpg",
+    category: "Личности",
+    subcategory: "Истории успеха",
+    cover: "article_cover_13.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -431,7 +438,8 @@ ARTICLES_DATA = [
   {
     title: "Матчмувинг",
     category: "Технологии",
-    cover: "article_cover_6.jpg",
+    subcategory: "Nuke локаций",
+    cover: "article_cover_10.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -488,8 +496,9 @@ ARTICLES_DATA = [
   },
   {
     title: "Денис Вильнёв и его вселенная",
-    category: "Технологии",
-    cover: "article_cover_7.jpg",
+    category: "Личности",
+    subcategory: "Интервью",
+    cover: "article_cover_12.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -545,9 +554,11 @@ ARTICLES_DATA = [
     HTML
   },
   {
-    title: "Как создали взрыв в 'Тёмном рыцаре'",
-    category: "Технологии",
-    cover: "article_cover_8.jpg",
+    title: "Как создали взрыв  в «Тёмном рыцаре»",
+    category: "Разборы",
+    subcategory: "Разрушения, взрывы",
+    subcategories: [ "Разрушения, взрывы", "Создание локаций" ],
+    cover: "article_cover_3.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -605,6 +616,7 @@ ARTICLES_DATA = [
   {
     title: "Симуляция жидкости в кино: от воды до лавы",
     category: "Технологии",
+    subcategory: "Houdini",
     cover: "article_cover_9.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
@@ -662,8 +674,8 @@ ARTICLES_DATA = [
   },
   {
     title: "Фильмы, где CGI лучше, чем в Marvel",
-    category: "Технологии",
-    cover: "article_cover_5.jpg",
+    category: "Подборки",
+    cover: "article_cover_15.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -719,8 +731,9 @@ ARTICLES_DATA = [
     HTML
   }, {
     title: "Фильмы-катастрофы: как создают реализм",
-    category: "Разборы",
-    cover: "article_cover_10.jpg",
+    category: "Технологии",
+    subcategory: "Houdini",
+    cover: "article_cover_6.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -777,8 +790,9 @@ ARTICLES_DATA = [
   },
   {
     title: "Художник по VFX: кто  и чем занимается?",
-    category: "Разборы",
-    cover: "article_cover_11.jpg",
+    category: "Личности",
+    subcategory: "Студийные кейсы",
+    cover: "article_cover_14.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -835,8 +849,9 @@ ARTICLES_DATA = [
   },
   {
     title: "ТОП-5 ошибок VFX, которые заметили",
-    category: "Личности",
-    cover: "article_cover_12.jpg",
+    category: "Разборы",
+    subcategory: "Невидимые эффекты",
+    cover: "article_cover_4.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -894,7 +909,8 @@ ARTICLES_DATA = [
   {
     title: "Рендеринг: почему это занимает так много времени",
     category: "Технологии",
-    cover: "article_cover_13.jpg",
+    subcategory: "Maya / 3ds Max / Blender",
+    cover: "article_cover_11.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -951,8 +967,9 @@ ARTICLES_DATA = [
   },
   {
     title: "Водная сцена из Формы воды",
-    category: "Подборки",
-    cover: "article_cover_14.jpg",
+    category: "Разборы",
+    subcategory: "Сложные симуляции",
+    cover: "article_cover_5.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -1009,66 +1026,8 @@ ARTICLES_DATA = [
   },
   {
     title: "Лучшие VFX 2025 года: наш топ-5",
-    category: "Личности",
-    cover: "article_cover_15.jpg",
-     published_at: Time.zone.parse("2025-03-10"),
-    body: <<~HTML
-      <section class="article_section" id="section_1">
-        <h2>Мета-информация:</h2>
-
-        <div class="article_info_block">
-          <div class="article_info_text">Проект</div>
-          <div class="article_info_text">Год выпуска</div>
-        </div>
-
-        <p>В «Безумном Максе: Дороге ярости» 80% трюков были настоящими. Но как создали#{' '}
-            тот самый эпичный песчаный шторм и безумные машины-монстры? Разбираем,#{' '}
-            где заканчивается реальная опасность каскадёров и начинается цифровая магия.</p>
-      </section>
-
-      <section class="article_section" id="section_2">
-        <h2>КАК ПРОХОДИЛА СЪЕМКА</h2>
-
-        <p>Когда Джордж Миллер решил вернуться к миру Безумного Макса с его новой Дорогой Ярости, режиссер приступил к долгому периоду разработки, во время которого было несколько ложных стартов. Кульминация этого периода произошла в пустыне Намиб, там прошла съемка длиной в шесть месяцев. Во время этой съемки Джон Сил, оператор, использовал несколько камер, чтобы запечатлеть потрясающие трюки с более чем 150 автомобилями, задуманными дизайнером Колином Гибсоном, а потом приведенными в действие и разбитыми благодаря усилиям ключевой команды, включающей в себя руководителей специальными эффектами Энди Уилльямса#{' '}
-        и Дэна Оливера, а также руководителя трюками Гая Норриса. Но съемка в пустыне и последующая съемка в Сиднее были лишь половиной истории создания безумных трюков и постапокалиптических ландшафтов «Дороги Ярости». Сотни специалистов по визуальным эффектам потратили довольно много времени на создание более 2000 визуальных эффектов и помогая превратить изначальные кадры в финальный фильм. Также над кадрами работал колорист Эрик Уипп, вложив множество усилий в небо, чтобы оно было детализированным и уникальным.</p>
-
-        <div class="article_single_image">
-          <img src="/autoupload/articles/article_1.jpg" alt="Изображение 1" />
-        </div>
-
-        <div class="article_single_image">
-          <img src="/autoupload/articles/article_2.jpg" alt="Изображение 2" />
-        </div>
-      </section>
-
-      <section class="article_section" id="section_3">
-        <h2>Что было снято на самом деле?</h2>
-
-        <p>Реальная пустыня Намиб в Африке как главная локация.
-          Более 150 уникальных кастомных машин, построенных для фильма.
-          Десятки настоящих каскадёров на модифицированных транспортных средствах.
-          Гигантские практические конструкции, например, раскачивающиеся на кранах платформы с барабанщиками.
-          Главная проблема: снять в пустыне идеальный, безопасный и кинематографичный шторм, который длится 15 минут экранного времени, — невозможно. Здесь на сцену вышли цифровые художники.</p>
-
-        <div class="article_two_images">
-          <img src="/autoupload/articles/article_3.jpg" alt="Изображение 3" />
-          <img src="/autoupload/articles/article_4.jpg" alt="Изображение 4" />
-        </div>
-
-        <p>На месте съемок был старый карьер, который было решено использовать, как миниатюру для будущего кадра. Команде разрешили взорвать его. Было решено снять реальный взрыв, чтобы кадр выглядел более реалистично.</p>
-
-        <div class="article_single_image">
-          <img src="/autoupload/articles/article_5.jpg" alt="Изображение 5" />
-        </div>
-
-        <p>Автомобиль был взорван с помощью баллонов с газом. Взрыв команда снимала, конечно же, удаленно, и сцена была тоже довольно сложной из-за опасности. Но в итоге даже было решено изменять сам взрыв совсем немного, так как он выглядел круто и реалистично.</p>
-      </section>
-    HTML
-  },
-  {
-    title: "Лучшие VFX 2025 года: наш топ-3",
-    category: "Личности",
-    cover: "article_cover_7.jpg",
+    category: "Подборки",
+    cover: "article_cover_16.jpg",
      published_at: Time.zone.parse("2025-03-10"),
     body: <<~HTML
       <section class="article_section" id="section_1">
@@ -1126,42 +1085,150 @@ ARTICLES_DATA = [
 
 ]
 
+LESSON_INTRO_BODY = <<~HTML
+  <section class="lesson_section" id="section_1">
+    <p>Вы смотрели «Аватара» и поражались летающим горам? Замирали от масштаба битвы в «Властелин колец»? Всё это — VFX. VFX (Visual Effects, визуальные эффекты) — это процесс создания, модификации или усиления изображения для кино, сериалов и рекламы на этапе постпродакшна (то есть после съёмок). Проще говоря, VFX — это цифровая магия, которая превращает обычный кадр в нечто невозможное.</p>
+    <div class="lesson_single_image">
+      <img src="/autoupload/lessons/lesson_1.jpg" alt="Изображение 1" />
+    </div>
+    </section>
+
+  <section class="lesson_section" id="section_2">
+    <h2>Чем VFX отличается от спецэффектов (SFX)?</h2>
+    <p>SFX (Special Effects) — это практические эффекты на площадке. Взрывы, дождь, грим, разрушающиеся декорации. Их снимают камерой в реальном времени. </p>
+    <p>VFX (Visual Effects) — это цифровые эффекты на компьютере. Драконы, инопланетные миры, омоложение актёра. Их добавляют после съёмок. Пример: В «Безумном Максе» взрывающаяся машина — это SFX. А гигантский песчаный смерч, нарисованный вокруг неё, — это уже VFX.</p>
+    <p>Пример: В «Безумном Максе» взрывающаяся машина — это SFX. А гигантский песчаный смерч, нарисованный вокруг неё, — это уже VFX.</p>
+    <h2>Из чего состоят VFX? 3 ключевых кита:</h2>
+    <p>CGI (Computer-Generated Imagery): Полностью созданные на компьютере объекты: персонажи (Голлум), окружение (планета Пандора), фантастическая техника.</p>
+    <p>Композитинг (Compositing): Искусство «склеивания» разных элементов в один кадр. Именно здесь настоящий актёр на фоне зелёного экрана оказывается в цифровом мире. Главный инструмент — программа Nuke.</p>
+    <p>Мэтч-мувинг (Match Moving): Технология, которая «подвязывает» цифровую камеру к движению реальной, чтобы CGI-объект двигался точно так же, как если бы его снимали на съёмочной площадке.</p>
+  </section>
+
+  <section class="lesson_section" id="section_3">
+  <div class="lesson_single_image">
+      <img src="/autoupload/lessons/lesson_2.jpg" alt="Изображение 2" />
+    </div>
+    <h2>Где применяются VFX сегодня?</h2>
+    <p>Кино и сериалы: От космических опер до исторических драм (чтобы достроить город или убрать современные здания).</p>
+    <p>Игры и анимация: Для создания финальных роликов (синематиков) и сложной графики.</p>
+    <p>Реклама: Чтобы продукт выглядел идеально или совершал что-то фантастическое.</p>
+
+  </section>
+HTML
+
 LESSONS_DATA = [
   {
     title: "Что такое визуальные эффекты",
     module_name: "Модуль 1",
     lesson_number: 1,
     cover: "lesson_cover_1.jpg",
-    body: <<~HTML
-      <section class="lesson_section" id="section_1">
-        <p>Вы смотрели «Аватара» и поражались летающим горам? Замирали от масштаба битвы в «Властелин колец»? Всё это — VFX. VFX (Visual Effects, визуальные эффекты) — это процесс создания, модификации или усиления изображения для кино, сериалов и рекламы на этапе постпродакшна (то есть после съёмок). Проще говоря, VFX — это цифровая магия, которая превращает обычный кадр в нечто невозможное.</p>
-        <div class="lesson_single_image">
-          <img src="/autoupload/lessons/lesson_1.jpg" alt="Изображение 1" />
-        </div>
-        </section>
-
-      <section class="lesson_section" id="section_2">
-        <h2>Чем VFX отличается от спецэффектов (SFX)?</h2>
-        <p>SFX (Special Effects) — это практические эффекты на площадке. Взрывы, дождь, грим, разрушающиеся декорации. Их снимают камерой в реальном времени. </p>
-        <p>VFX (Visual Effects) — это цифровые эффекты на компьютере. Драконы, инопланетные миры, омоложение актёра. Их добавляют после съёмок. Пример: В «Безумном Максе» взрывающаяся машина — это SFX. А гигантский песчаный смерч, нарисованный вокруг неё, — это уже VFX.</p>
-        <p>Пример: В «Безумном Максе» взрывающаяся машина — это SFX. А гигантский песчаный смерч, нарисованный вокруг неё, — это уже VFX.</p>
-        <h2>Из чего состоят VFX? 3 ключевых кита:</h2>
-        <p>CGI (Computer-Generated Imagery): Полностью созданные на компьютере объекты: персонажи (Голлум), окружение (планета Пандора), фантастическая техника.</p>
-        <p>Композитинг (Compositing): Искусство «склеивания» разных элементов в один кадр. Именно здесь настоящий актёр на фоне зелёного экрана оказывается в цифровом мире. Главный инструмент — программа Nuke.</p>
-        <p>Мэтч-мувинг (Match Moving): Технология, которая «подвязывает» цифровую камеру к движению реальной, чтобы CGI-объект двигался точно так же, как если бы его снимали на съёмочной площадке.</p>
-      </section>
-
-      <section class="lesson_section" id="section_3">
-      <div class="lesson_single_image">
-          <img src="/autoupload/lessons/lesson_2.jpg" alt="Изображение 2" />
-        </div>
-        <h2>Где применяются VFX сегодня?</h2>
-        <p>Кино и сериалы: От космических опер до исторических драм (чтобы достроить город или убрать современные здания).</p>
-        <p>Игры и анимация: Для создания финальных роликов (синематиков) и сложной графики.</p>
-        <p>Реклама: Чтобы продукт выглядел идеально или совершал что-то фантастическое.</p>
-
-      </section>
-    HTML
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Пайплайн полного метра",
+    module_name: "Модуль 1",
+    lesson_number: 2,
+    cover: "lesson_cover_2.jpg",
+    video_url: "https://rutube.ru/video/941ce369816b2c2fb9da87b320ce7d2e/?r=wd",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "On-set VFX",
+    module_name: "Модуль 1",
+    lesson_number: 3,
+    cover: "lesson_cover_3.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Анализ отснятого материала",
+    module_name: "Модуль 1",
+    lesson_number: 4,
+    cover: "lesson_cover_4.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "3D Camera Solve",
+    module_name: "Модуль 2",
+    lesson_number: 1,
+    cover: "lesson_cover_5.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Matchmoving",
+    module_name: "Модуль 2",
+    lesson_number: 2,
+    cover: "lesson_cover_6.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Дисторшн и цвет",
+    module_name: "Модуль 2",
+    lesson_number: 3,
+    cover: "lesson_cover_7.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Ротоскопинг для кино",
+    module_name: "Модуль 3",
+    lesson_number: 1,
+    cover: "lesson_cover_8.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Клин-ап (Clean Plate)",
+    module_name: "Модуль 3",
+    lesson_number: 2,
+    cover: "lesson_cover_9.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Хромакей высокой сложности",
+    module_name: "Модуль 4",
+    lesson_number: 1,
+    cover: "lesson_cover_10.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Edge Blending",
+    module_name: "Модуль 4",
+    lesson_number: 2,
+    cover: "lesson_cover_11.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "ACES и цветовые пространства",
+    module_name: "Модуль 5",
+    lesson_number: 1,
+    cover: "lesson_cover_12.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Цветовой мэтчинг",
+    module_name: "Модуль 5",
+    lesson_number: 2,
+    cover: "lesson_cover_13.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Deep Data",
+    module_name: "Модуль 6",
+    lesson_number: 1,
+    cover: "lesson_cover_14.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Свет и атмосфера в кадре",
+    module_name: "Модуль 6",
+    lesson_number: 2,
+    cover: "lesson_cover_15.jpg",
+    body: LESSON_INTRO_BODY
+  },
+  {
+    title: "Финальная проверка",
+    module_name: "Модуль 6",
+    lesson_number: 3,
+    cover: "lesson_cover_16.jpg",
+    body: LESSON_INTRO_BODY
   }
 ]
 
@@ -2638,6 +2705,8 @@ def seed_articles(admin)
     a = Article.find_or_initialize_by(title: data[:title])
     a.body = data[:body]
     a.category = data[:category]
+    a.subcategories = data[:subcategories] || Array(data[:subcategory]) if a.respond_to?(:subcategories=)
+    a.subcategory = data[:subcategory] if a.respond_to?(:subcategory=)
     a.user_id = admin.id
     a.published_at = data[:published_at]
 
@@ -2710,6 +2779,7 @@ def seed_lessons
 
     lesson.title = data[:title]
     lesson.body = data[:body]
+    lesson.video_url = data[:video_url]
 
     if data[:cover].present?
       cover_file = file_from_public("autoupload", "lessons", data[:cover])

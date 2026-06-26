@@ -2,16 +2,49 @@
 <div class="articles_filter">
     <%= link_to "Все статьи",
       articles_path,
-      class: "articles_filter_item #{'active' unless @selected_category}" %>
+      class: "articles_filter_item #{'active' unless @selected_category || @selected_filters.any?}" %>
+
+    <%
+      filter_options = Article::SUBCATEGORIES_BY_CATEGORY
+      category_labels = Article::CATEGORY_LABELS
+    %>
 
     <% @categories.each do |category| %>
-    <%= link_to articles_path(category: category),
-        class: "articles_filter_item #{'active' if @selected_category == category}" do %>
+    <% if filter_options[category] %>
+    <% selected_category_filters = @selected_filters & filter_options[category] %>
+    <% other_selected_filters = @selected_filters - filter_options[category] %>
+    <div class="articles_filter_dropdown" data-article-filter>
+        <button class="articles_filter_item articles_filter_button <%= 'active' if @selected_category == category || selected_category_filters.any? %>" type="button" data-article-filter-toggle>
+            <span><%= category_labels.fetch(category, category) %></span>
+            <span class="articles_filter_arrow"></span>
+            <% if selected_category_filters.any? %>
+            <span class="articles_filter_count">+<%= selected_category_filters.size %></span>
+            <% end %>
+        </button>
 
-    <span><%= category.capitalize %></span>
+        <form class="articles_filter_menu" action="<%= articles_path %>" method="get">
+            <% other_selected_filters.each do |filter| %>
+            <input type="hidden" name="filters[]" value="<%= filter %>">
+            <% end %>
 
+            <% filter_options[category].each do |option| %>
+            <label class="articles_filter_option">
+                <span><%= option %></span>
+                <input type="checkbox" name="filters[]" value="<%= option %>" <%= "checked" if selected_category_filters.include?(option) %>>
+            </label>
+            <% end %>
+
+            <button class="articles_filter_apply" type="submit">Применить</button>
+        </form>
+    </div>
+    <% else %>
+    <%= link_to category,
+        articles_path(category: category),
+        class: "articles_filter_item #{'active' if @selected_category == category}" %>
     <% end %>
     <% end %>
+
+    <%= link_to "Очистить", articles_path, class: "articles_filter_item articles_filter_clear" %>
 </div>
 
 <!-- Сетка карточек -->

@@ -5,4 +5,8 @@ class Post < ApplicationRecord
   validates :body,  presence: true
   mount_uploader :post_image, PostImageUploader
   has_rich_text :body
+
+  def post_image_available?
+    post_image.present? && post_image.file&.exists?
+  end
 end

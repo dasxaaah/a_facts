@@ -1,6 +1,18 @@
+<%
+  menu_logo_color_class = if current_page?(root_path) || current_page?(about_path)
+    "menu_logo_home"
+  elsif controller_name == "articles"
+    "menu_logo_articles"
+  elsif controller_name == "tutorials"
+    "menu_logo_tutorial"
+  elsif controller_name == "community"
+    "menu_logo_community"
+  end
+%>
+
 <nav class="menu">
-    <%= link_to root_path, class: "menu_logo" do %>
-    <%= image_tag "new_logo.png", alt: "AFACTS", class: "menu_logo_img" %>
+    <%= link_to root_path, class: ["menu_logo", menu_logo_color_class].compact.join(" "), aria: { label: "AFACTS" } do %>
+    <%= render "shared/logo_updated" %>
     <% end %>
     <div class="W_MainSection">
         <%= link_to "Главная", root_path,
@@ -41,7 +53,7 @@
             <%= form_with url: articles_path, method: :get, local: true, class: "menu_search_form" do %>
             <%= text_field_tag :query,
         params[:query],
-        placeholder: "Поиск",
+        placeholder: "Дюна...",
         class: "menu_search_input" %>
             <% end %>
             <span class="menu_search_icon">

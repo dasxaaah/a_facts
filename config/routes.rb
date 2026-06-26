@@ -28,12 +28,15 @@ Rails.application.routes.draw do
 
   # Публичные разделы (для обычных пользователей)
   resources :tutorials, only: [ :index, :show ]
+  resources :glossary_terms, only: [ :index, :show ]
   resources :articles, only: [ :index, :show ] do
     member do
       post :toggle_favourite
     end
   end
   resources :community, only: [ :index, :show ], controller: "community"
+  resources :meetup_registrations, only: [ :create, :destroy ]
+  resources :contest_submissions, only: [ :create ]
   resources :posts do
     member do
       post :toggle_like

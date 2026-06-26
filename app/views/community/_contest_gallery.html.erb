@@ -1,0 +1,72 @@
+<% static_images = local_assigns.fetch(:images) %>
+<% gallery_title = local_assigns.fetch(:title) %>
+<% gallery_description = local_assigns.fetch(:description) %>
+<% contest_slug = local_assigns.fetch(:contest_slug) %>
+<% submissions = Array(local_assigns[:submissions]) %>
+<%
+  static_authors = [
+    "Maya Renders",
+    "Node Artist",
+    "Comp Studio",
+    "Portal Lab",
+    "VFX Notes",
+    "Frame Craft",
+    "Pixel Room",
+    "Shot Lab",
+    "Render Pass",
+    "Nuke Desk",
+    "CG Diary",
+    "Motion Key",
+    "Light Match",
+    "Final Plate"
+  ]
+
+  static_items = static_images.map.with_index do |image, index|
+    {
+      image: image,
+      author: static_authors[index] || "AFACTS #{index + 1}",
+      avatar: asset_path("community_avatar_#{(index % 4) + 1}.png"),
+      likes: (index + 3) * 7
+    }
+  end
+
+  submission_items = submissions.map do |submission|
+    {
+      image: submission.image.url,
+      author: community_display_name(submission.user),
+      avatar: asset_path(community_avatar_image(submission.user)),
+      likes: 0,
+      isCurrentUser: submission.user == current_user
+    }
+  end
+
+  gallery_items = submission_items + static_items
+%>
+
+<div class="community_contest_image community_contest_gallery"
+     data-contest-gallery
+     data-contest-card="<%= contest_slug %>"
+     data-contest-gallery-title="<%= gallery_title %>"
+     data-contest-gallery-description="<%= gallery_description %>"
+     data-contest-gallery-items="<%= json_escape(gallery_items.to_json) %>">
+    <% gallery_items.first(3).each_with_index do |item, index| %>
+    <div class="community_contest_gallery_item">
+        <%= image_tag item[:image], alt: "#{gallery_title} #{index + 1}" %>
+    </div>
+    <% end %>
+
+    <button class="community_contest_gallery_count" type="button" data-open-contest-gallery>
+        +<%= gallery_items.size %>
+    </button>
+</div>
+
+<%= form_with url: contest_submissions_path,
+    method: :post,
+    local: true,
+    html: { multipart: true, class: "contest_submission_form", data: { contest_card: contest_slug, contest_submission_form: contest_slug } } do |form| %>
+    <%= hidden_field_tag :contest_slug, contest_slug %>
+    <%= file_field_tag :image,
+        accept: "image/*",
+        class: "community_hidden_input",
+        data: { contest_submission_input: contest_slug } %>
+<% end %>

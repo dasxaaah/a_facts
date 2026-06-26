@@ -47,8 +47,101 @@ document.addEventListener('turbo:load', () => {
   })
 
   tutorialSidebarLinks.forEach((link) => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (event) => {
+      const moduleId = link.dataset.tutorialModuleId
+
+      if (moduleId) {
+        event.preventDefault()
+
+        document.querySelectorAll('[data-tutorial-module]').forEach((module) => {
+          module.hidden = module.id !== moduleId
+        })
+
+        tutorialSidebarLinks.forEach((sidebarLink) => {
+          sidebarLink.classList.toggle(
+            'tutorial_sidebar_link_active',
+            sidebarLink === link
+          )
+        })
+
+        history.replaceState(null, '', `#${moduleId}`)
+      }
+
       tutorialSidebar.classList.remove('tutorial_sidebar_open')
+    })
+  })
+
+  const currentModuleId = window.location.hash.slice(1)
+  const currentLink = currentModuleId
+    ? document.querySelector(`[data-tutorial-module-link][data-tutorial-module-id="${currentModuleId}"]`)
+    : null
+
+  currentLink?.click()
+})
+
+document.addEventListener('turbo:load', () => {
+  const articleFilters = document.querySelectorAll('[data-article-filter]')
+
+  if (!articleFilters.length) return
+
+  const closeArticleFilters = (exceptFilter = null) => {
+    articleFilters.forEach((filter) => {
+      if (filter !== exceptFilter) filter.classList.remove('articles_filter_dropdown_open')
+    })
+  }
+
+  articleFilters.forEach((filter) => {
+    const toggle = filter.querySelector('[data-article-filter-toggle]')
+
+    toggle?.addEventListener('click', (event) => {
+      event.stopPropagation()
+      const isOpen = filter.classList.contains('articles_filter_dropdown_open')
+
+      closeArticleFilters(filter)
+      filter.classList.toggle('articles_filter_dropdown_open', !isOpen)
+    })
+
+    filter.addEventListener('click', (event) => {
+      event.stopPropagation()
+    })
+  })
+
+  document.addEventListener('click', () => {
+    closeArticleFilters()
+  })
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeArticleFilters()
+  })
+})
+
+document.addEventListener('turbo:load', () => {
+  const tagFilter = document.querySelector('[data-community-tag-filter]')
+  const tagButtons = document.querySelectorAll('[data-community-filter-tag]')
+  const postCards = document.querySelectorAll('[data-community-post-card]')
+
+  if (!tagFilter || !tagButtons.length || !postCards.length) return
+
+  const setActiveTag = (activeTag) => {
+    postCards.forEach((card) => {
+      const tags = (card.dataset.communityPostTags || '').split(/\s+/)
+      card.hidden = activeTag ? !tags.includes(activeTag) : false
+    })
+
+    tagButtons.forEach((button) => {
+      button.classList.toggle(
+        'community_popular_tag_active',
+        button.dataset.communityFilterTag === activeTag
+      )
+    })
+  }
+
+  tagButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const tag = button.dataset.communityFilterTag
+      const isActive = button.classList.contains('community_popular_tag_active')
+
+      setActiveTag(isActive ? null : tag)
     })
   })
 })
@@ -175,6 +268,165 @@ document.addEventListener('turbo:load', () => {
       loadMoreButton.textContent = 'Попробовать ещё раз'
       loadMoreButton.removeAttribute('aria-busy')
     }
+  })
+})
+
+document.addEventListener('turbo:load', () => {
+  const meetupModal = document.querySelector('[data-meetup-modal]')
+  const openMeetupButtons = document.querySelectorAll('[data-open-meetup-modal]')
+  const closeMeetupButtons = document.querySelectorAll('[data-close-meetup-modal]')
+
+  if (!meetupModal) return
+
+  const openMeetupModal = () => {
+    meetupModal.classList.add('meetup_confirm_modal_open')
+    document.body.classList.add('modal_open')
+  }
+
+  const closeMeetupModal = () => {
+    meetupModal.classList.remove('meetup_confirm_modal_open')
+    document.body.classList.remove('modal_open')
+  }
+
+  openMeetupButtons.forEach((button) => {
+    button.addEventListener('click', openMeetupModal)
+  })
+
+  closeMeetupButtons.forEach((button) => {
+    button.addEventListener('click', closeMeetupModal)
+  })
+})
+
+document.addEventListener('turbo:load', () => {
+  const galleryModal = document.querySelector('[data-contest-gallery-modal]')
+  const galleryTitle = document.querySelector('[data-contest-gallery-modal-title]')
+  const galleryDescription = document.querySelector('[data-contest-gallery-modal-description]')
+  const galleryGrid = document.querySelector('[data-contest-gallery-modal-grid]')
+  const openGalleryButtons = document.querySelectorAll('[data-open-contest-gallery]')
+  const closeGalleryButtons = document.querySelectorAll('[data-close-contest-gallery]')
+
+  if (!galleryModal || !galleryGrid) return
+
+  const closeGalleryModal = () => {
+    galleryModal.classList.remove('contest_gallery_modal_open')
+    document.body.classList.remove('modal_open')
+  }
+
+  openGalleryButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const gallery = button.closest('[data-contest-gallery]')
+      if (!gallery) return
+
+      const items = JSON.parse(gallery.dataset.contestGalleryItems || '[]')
+
+      if (galleryTitle) galleryTitle.textContent = gallery.dataset.contestGalleryTitle || ''
+      if (galleryDescription) galleryDescription.textContent = gallery.dataset.contestGalleryDescription || ''
+
+      galleryGrid.innerHTML = ''
+      items.forEach((item) => {
+        const card = document.createElement('div')
+        card.className = 'contest_gallery_modal_card'
+
+        const img = document.createElement('img')
+        img.src = item.image
+        img.alt = gallery.dataset.contestGalleryTitle || ''
+        img.className = 'contest_gallery_modal_image'
+
+        const imageWrapper = document.createElement('div')
+        imageWrapper.className = 'contest_gallery_modal_image_wrapper'
+        imageWrapper.appendChild(img)
+
+        const author = document.createElement('div')
+        author.className = 'contest_gallery_modal_author'
+
+        const avatar = document.createElement('img')
+        avatar.src = item.avatar
+        avatar.alt = ''
+        avatar.className = 'community_post_avatar'
+
+        const name = document.createElement('span')
+        name.className = 'community_post_author'
+        name.textContent = item.author
+
+        author.appendChild(avatar)
+        author.appendChild(name)
+
+        let ownerBadge = null
+        if (item.isCurrentUser) {
+          ownerBadge = document.createElement('span')
+          ownerBadge.className = 'profile_board_item_badge profile_board_item_badge_article contest_gallery_modal_owner_badge'
+          ownerBadge.textContent = 'Ваш проект'
+        }
+
+        const likeButton = document.createElement('button')
+        likeButton.className = 'community_post_like_button contest_gallery_modal_like'
+        likeButton.type = 'button'
+        likeButton.setAttribute('aria-label', 'Поставить лайк')
+        likeButton.innerHTML = `
+          <svg class="community_post_stat_icon community_post_like_icon" viewBox="0 0 30 30" aria-hidden="true" focusable="false">
+            <path class="community_post_like_shape" d="M21.7005 25H7.5C6.11929 25 5 23.8807 5 22.5V12.5H9.91204C10.7479 12.5 11.5285 12.0822 11.9922 11.3868L15.1368 6.66987C15.8322 5.62663 17.0031 5 18.2569 5H18.5244C19.2968 5 19.8844 5.69358 19.7574 6.4555L18.75 12.5H23.2005C24.7781 12.5 25.9613 13.9433 25.6519 15.4903L24.1519 22.9903C23.9182 24.1589 22.8922 25 21.7005 25Z" />
+            <path class="community_post_like_line" d="M10 12.5V25" />
+          </svg>
+          <span class="community_post_like_count">${item.likes || 0}</span>
+        `
+        likeButton.addEventListener('click', () => {
+          const count = likeButton.querySelector('.community_post_like_count')
+          const isLiked = likeButton.classList.toggle('community_post_like_button_active')
+          const currentCount = Number.parseInt(count?.textContent || '0', 10)
+
+          if (count) count.textContent = Math.max(0, currentCount + (isLiked ? 1 : -1))
+          likeButton.setAttribute('aria-label', isLiked ? 'Убрать лайк' : 'Поставить лайк')
+        })
+
+        card.appendChild(author)
+        if (ownerBadge) imageWrapper.appendChild(ownerBadge)
+        card.appendChild(imageWrapper)
+        card.appendChild(likeButton)
+        galleryGrid.appendChild(card)
+      })
+
+      galleryModal.classList.add('contest_gallery_modal_open')
+      document.body.classList.add('modal_open')
+    })
+  })
+
+  closeGalleryButtons.forEach((button) => {
+    button.addEventListener('click', closeGalleryModal)
+  })
+})
+
+document.addEventListener('turbo:load', () => {
+  const uploadButtons = document.querySelectorAll('[data-contest-upload-button]')
+
+  uploadButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const slug = button.dataset.contestUploadButton
+      const contestCard = button.closest(
+        '.community_contest_card, .community_contest_card_main'
+      )
+      const input =
+        contestCard?.querySelector(`[data-contest-submission-input="${slug}"]`) ||
+        document.querySelector(`[data-contest-submission-input="${slug}"]`)
+
+      if (!input) return
+
+      input.value = ''
+      input.click()
+    })
+  })
+
+  document.querySelectorAll('[data-contest-submission-input]').forEach((input) => {
+    input.addEventListener('change', () => {
+      if (!input.files[0]) return
+
+      const form = input.closest('form')
+
+      if (form?.requestSubmit) {
+        form.requestSubmit()
+      } else {
+        form?.submit()
+      }
+    })
   })
 })
 
